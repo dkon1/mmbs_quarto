@@ -1,0 +1,23 @@
+project:
+  type: book
+
+book:
+  title: "Mathematical Methods for Biology, Part 1"
+  author: "Dmitry Kondrashov"
+  #date: "9/11/2022"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+
