@@ -8,8 +8,14 @@ book:
   #date: "9/11/2022"
   chapters:
     - index.qmd
-    - ch1_1.qmd
-    - ch1_2.qmd
+    - ch1_discrete1var.qmd
+    - ch2_plotting_python.qmd
+    - ch3_discrete_chaos.qmd
+    - ch4_cobweb_plots.qmd
+    - ch5_discrete_higher.qmd
+    - ch6_matrix_mult.qmd
+    - ch7_linear_pplane.qmd
+    - ch8_phase_portraits.qmd
     - references.qmd
 
 bibliography: references.bib
