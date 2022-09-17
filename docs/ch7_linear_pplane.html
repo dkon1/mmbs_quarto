@@ -153,21 +153,14 @@ ul.task-list{list-style: none;}
   <li><a href="#activators-and-inhibitors-in-biochemical-reactions" id="toc-activators-and-inhibitors-in-biochemical-reactions" class="nav-link" data-scroll-target="#activators-and-inhibitors-in-biochemical-reactions"> <span class="header-section-number">7.1.1</span> activators and inhibitors in biochemical reactions</a></li>
   <li><a href="#phase-plane-portraits" id="toc-phase-plane-portraits" class="nav-link" data-scroll-target="#phase-plane-portraits"> <span class="header-section-number">7.1.2</span> phase plane portraits</a></li>
   </ul></li>
-  <li><a href="#eigenvectors-and-eigenvalues" id="toc-eigenvectors-and-eigenvalues" class="nav-link" data-scroll-target="#eigenvectors-and-eigenvalues"> <span class="header-section-number">7.2</span> Eigenvectors and eigenvalues</a>
+  <li><a href="#solutions-of-linear-two-variable-odes" id="toc-solutions-of-linear-two-variable-odes" class="nav-link" data-scroll-target="#solutions-of-linear-two-variable-odes"> <span class="header-section-number">7.2</span> Solutions of linear two-variable ODEs</a></li>
+  <li><a href="#classification-of-linear-systems" id="toc-classification-of-linear-systems" class="nav-link" data-scroll-target="#classification-of-linear-systems"> <span class="header-section-number">7.3</span> Classification of linear systems</a>
   <ul class="collapse">
-  <li><a href="#basic-linear-algebra-terminology" id="toc-basic-linear-algebra-terminology" class="nav-link" data-scroll-target="#basic-linear-algebra-terminology"> <span class="header-section-number">7.2.1</span> basic linear algebra terminology</a></li>
-  <li><a href="#matrices-transform-vectors" id="toc-matrices-transform-vectors" class="nav-link" data-scroll-target="#matrices-transform-vectors"> <span class="header-section-number">7.2.2</span> matrices transform vectors</a></li>
-  <li><a href="#calculating-eigenvalues" id="toc-calculating-eigenvalues" class="nav-link" data-scroll-target="#calculating-eigenvalues"> <span class="header-section-number">7.2.3</span> calculating eigenvalues</a></li>
-  <li><a href="#calculation-of-eigenvectors-on-paper" id="toc-calculation-of-eigenvectors-on-paper" class="nav-link" data-scroll-target="#calculation-of-eigenvectors-on-paper"> <span class="header-section-number">7.2.4</span> calculation of eigenvectors on paper</a></li>
+  <li><a href="#real-eigenvalues" id="toc-real-eigenvalues" class="nav-link" data-scroll-target="#real-eigenvalues"> <span class="header-section-number">7.3.1</span> real eigenvalues</a></li>
+  <li><a href="#complex-eigenvalues" id="toc-complex-eigenvalues" class="nav-link" data-scroll-target="#complex-eigenvalues"> <span class="header-section-number">7.3.2</span> complex eigenvalues</a></li>
+  <li><a href="#classification-of-linear-systems-1" id="toc-classification-of-linear-systems-1" class="nav-link" data-scroll-target="#classification-of-linear-systems-1"> <span class="header-section-number">7.3.3</span> classification of linear systems</a></li>
   </ul></li>
-  <li><a href="#solutions-of-linear-two-variable-odes" id="toc-solutions-of-linear-two-variable-odes" class="nav-link" data-scroll-target="#solutions-of-linear-two-variable-odes"> <span class="header-section-number">7.3</span> Solutions of linear two-variable ODEs</a></li>
-  <li><a href="#classification-of-linear-systems" id="toc-classification-of-linear-systems" class="nav-link" data-scroll-target="#classification-of-linear-systems"> <span class="header-section-number">7.4</span> Classification of linear systems</a>
-  <ul class="collapse">
-  <li><a href="#real-eigenvalues" id="toc-real-eigenvalues" class="nav-link" data-scroll-target="#real-eigenvalues"> <span class="header-section-number">7.4.1</span> real eigenvalues</a></li>
-  <li><a href="#complex-eigenvalues" id="toc-complex-eigenvalues" class="nav-link" data-scroll-target="#complex-eigenvalues"> <span class="header-section-number">7.4.2</span> complex eigenvalues</a></li>
-  <li><a href="#classification-of-linear-systems-1" id="toc-classification-of-linear-systems-1" class="nav-link" data-scroll-target="#classification-of-linear-systems-1"> <span class="header-section-number">7.4.3</span> classification of linear systems</a></li>
-  </ul></li>
-  <li><a href="#dynamics-of-romantic-relationships" id="toc-dynamics-of-romantic-relationships" class="nav-link" data-scroll-target="#dynamics-of-romantic-relationships"> <span class="header-section-number">7.5</span> Dynamics of romantic relationships</a></li>
+  <li><a href="#dynamics-of-romantic-relationships" id="toc-dynamics-of-romantic-relationships" class="nav-link" data-scroll-target="#dynamics-of-romantic-relationships"> <span class="header-section-number">7.4</span> Dynamics of romantic relationships</a></li>
   </ul>
 </nav>
     </div>
@@ -201,7 +194,8 @@ ul.task-list{list-style: none;}
 <p><span class="math display">\[
 \begin{aligned}
 \dot  A &amp; = &amp; - \alpha I\\
-\dot  I &amp; = &amp; \beta A\end{aligned}
+\dot  I &amp; = &amp; \beta A
+\end{aligned}
 \]</span></p>
 <p><span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are positive rate constants. They represent the rate of inhibition of <span class="math inline">\(A\)</span> by <span class="math inline">\(I\)</span>, and of activation of <span class="math inline">\(I\)</span> by <span class="math inline">\(A\)</span>, respectively. Let us now complicate the model by adding self-inhibition. It is common for regulatory proteins to inhibit their own production. Then, we have the following system of equations:</p>
 <p><span class="math display">\[
@@ -217,7 +211,7 @@ ul.task-list{list-style: none;}
 <p>Before we learn about the analytical tools of linear algebra, let us think intuitively about the effect of the variables on each other. The best way to describe this is through plotting the geometry of the <em>flow</em> prescribed by the differential equations. As we saw, for one-dimensional ODEs the direction of the change of the dependent variable (also known as the flow) could be shown as arrows on a line. A single variable can only increase, decrease, or stay the same (at a fixed point). In two dimensions there is more freedom. The flow is plotted on the <em>phase plane</em>, where for any combination of the two variables (say <span class="math inline">\(x,y\)</span>) the ODE gives the derivatives of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. This vector gives the flow, or the rate of change at the particular point in the plane. Intuitively, the flow describes the direction in which the system is pulling the 2-dimensional solution. If we plot the progress of a solution of ODE (all the values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> starting with the initial condition) we will obtain a <em>trajectory</em> in the phase plane. The arrows of the flow are tangent to any trajectory curve, since they plot the derivatives of <span class="math inline">\(x,y\)</span>.</p>
 <p><strong>Example: positive relationship between the variables</strong> Consider the following system of differential equations:</p>
 <p><span class="math display">\[
-\\begin{aligned}
+\begin{aligned}
 \dot x &amp; = &amp; x + y \\
 \dot y &amp; = &amp; x + 2y
 \end{aligned}
@@ -247,194 +241,8 @@ ul.task-list{list-style: none;}
 <p>Let us consider the trajectories of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in time. The blue curves in the phase plane plot demonstrate the solutions go around the origin and return to the same point. This means that the behavior of the solutions over time is <em>periodic</em>, with oscillations going from positive to negative numbers and back forever.</p>
 </section>
 </section>
-<section id="eigenvectors-and-eigenvalues" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="eigenvectors-and-eigenvalues"><span class="header-section-number">7.2</span> Eigenvectors and eigenvalues</h2>
-<section id="basic-linear-algebra-terminology" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="basic-linear-algebra-terminology"><span class="header-section-number">7.2.1</span> basic linear algebra terminology</h3>
-<p>We have seen matrix notation introduced in the previous chapter, along with the definition of matrix multiplication. One basic advantage of this notation is that it makes it possible to write any set of <em>linear equations</em> as a single matrix equation. By linear equations we mean those that contain only constants or first powers of the variables. The field of mathematics studying matrices and their generalizations is called <em>linear algebra</em>; it is fundamental to both pure and applied mathematics. In this section we will learn some basic facts about matrices and their properties. First of all, let us define some basic terms:</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Matrix definitions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>A matrix <span class="math inline">\(A\)</span> is a rectangular array of <em>elements</em> <span class="math inline">\(A_{ij}\)</span>, in which <span class="math inline">\(i\)</span> denotes the row number (index), counted from the top, and <span class="math inline">\(j\)</span> denotes the column number (index), counted from left to right.</p></li>
-<li><p>The elements of a matrix <span class="math inline">\(A\)</span> which have the same row and column index, e.g.&nbsp;<span class="math inline">\(A_{33}\)</span> are called the <em>diagonal elements</em>. Those which do not lie on the diagonal are called the <em>off-diagonal</em> elements.</p></li>
-<li><p>The <em>trace</em> <span class="math inline">\(\tau\)</span> of a matrix <span class="math inline">\(A\)</span> is the sum of the diagonal elements: <span class="math inline">\(\tau = \sum_i A_{ii}\)</span></p></li>
-<li><p>The <em>determinant</em> <span class="math inline">\(\Delta\)</span> of a 2x2 matrix <span class="math inline">\(A\)</span> is given by the following: <span class="math inline">\(\Delta = ad - bc\)</span>, where</p></li>
-</ul>
-<p><span class="math display">\[
-A = \left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right)
-\]</span></p>
-<p>For larger matrices, the determinant is defined recursively, in terms of 2x2 submatrices of the larger matrix, but we will not give the full definition here.</p>
-</div>
-</div>
-<p>For example, in the 3 x 3 matrix below, the elements <span class="math inline">\(a, e, i\)</span> are the diagonal elements:</p>
-<p><span class="math display">\[
-A = \left(\begin{array}{ccc}a &amp; b &amp; c \\d &amp; e &amp; f \\g &amp; h &amp; i\end{array}\right)
-\]</span></p>
-<p>In chapter 3 you learned the rule of matrix multiplication, and we can write <span class="math inline">\(C = A \times B\)</span>, so long as the number of columns in <span class="math inline">\(A\)</span> matches the number of rows in <span class="math inline">\(B\)</span>. However, what if we want to reverse the process? If we know the resulting matrix <span class="math inline">\(C\)</span>, and one of the two matrices, e.g.&nbsp;<span class="math inline">\(A\)</span>, how can we find <span class="math inline">\(B\)</span>? Naively, we would like to be able to divide both sides by the matrix <span class="math inline">\(A\)</span>, and find <span class="math inline">\(B = C/A\)</span>. However, things are more complicated for matrices.</p>
-<p>Properly speaking, we need to introduce the <em>inverse</em> of a matrix <span class="math inline">\(A\)</span>. If we think about inverses of real numbers, <span class="math inline">\(a^{-1}\)</span> is a number that when it multiplies <span class="math inline">\(a\)</span>, results in one. In order to define the equivalent for matrices, we first need to introduce the unity of matrix multiplication.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The <em>identity</em> matrix is an <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrix that does not change another <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrix by multiplication:</p>
-<p><span class="math display">\[
-A \times I = I \times A  = A
-\]</span></p>
-<p>The diagonal elements of the identity matrix are 1s and all off-diagonal elements are zero.</p>
-</div>
-</div>
-<p><strong>Example:</strong> Useing the definition of matrix multiplication from chapter 3, we can verify that this definition works for any 2 by 2 matrix:</p>
-<p><span class="math display">\[
-\begin{pmatrix}-6 &amp; -2 \\ 12 &amp; -1 \end{pmatrix} \times \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{pmatrix} =
-\begin{pmatrix}-6\times 1 + -2\times 0 &amp; -6\times 0 + -2\times 1  \\ 12\times 1 -1 \times 0 &amp; 12\times 0 -1 \times 1  \end{pmatrix} = \begin{pmatrix}-6 &amp; -2 \\ 12 &amp; -1 \end{pmatrix}
-\]</span></p>
-<p>Now that we have specified the identity, we can define the matrix inverse:</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A square matrix <span class="math inline">\(A\)</span> has an <em>inverse matrix</em> <span class="math inline">\(A^{-1}\)</span> if it satisfies the following:</p>
-<p><span class="math display">\[
-A^{-1} A = A A^{-1} = I
-\]</span></p>
-</div>
-</div>
-<p>Finding the inverse of a matrix is not simple, and we will be content to let computers handle the dirty work. In fact, not every matrix possesses an inverse. There is a test for existence of an inverse of <span class="math inline">\(A\)</span>, and it depends on the determinant <span class="citation" data-cites="strang_linear_2005">(<a href="#ref-strang_linear_2005" role="doc-biblioref"><strong>strang_linear_2005?</strong></a>)</span>:</p>
-<p>A square matrix <span class="math inline">\(A\)</span> possesses an inverse <span class="math inline">\(A^{-1}\)</span> and is called <em>invertible</em> if and only if its determinant is not zero.</p>
-</section>
-<section id="matrices-transform-vectors" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="matrices-transform-vectors"><span class="header-section-number">7.2.2</span> matrices transform vectors</h3>
-<p>In this section we will learn to characterize square matrices by finding special numbers and vectors associated with them. At the core of this analysis lies the concept of a matrix as an <em>operator</em> that transforms vectors by multiplication, as we defined in chapter 3. To be clear, in this section we take as default that the matrices <span class="math inline">\(A\)</span> are square, and that vectors <span class="math inline">\(\vec v\)</span> are column vectors, and thus will multiply the matrix on the right: <span class="math inline">\(A \times \vec v\)</span>.</p>
-<p>A matrix multiplied by a vector produces another vector, provided the number of columns in the matrix is the same as the number of rows in the vector. This can be interpreted as the matrix transforming the vector <span class="math inline">\(\vec v\)</span> into another one: $ A v = u$. The resultant vector <span class="math inline">\(\vec u\)</span> may or may not resemble <span class="math inline">\(\vec v\)</span>, but there are special vectors for which the transformation is very simple.</p>
-<p><strong>Example.</strong> Let us multiply the following matrix and vector (specially chosen to make a point):</p>
-<p><span class="math display">\[
-\left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)\left(\begin{array}{c}1 \\ -1 \end{array}\right) = \left(\begin{array}{c}2 -1 \\ 2 - 3 \end{array}\right) =  \left(\begin{array}{c} 1 \\ -1 \end{array}\right)
-\]</span></p>
-<p>We see that this particular vector is unchanged when multiplied by this matrix, or we can say that the matrix multiplication is equivalent to multiplication by 1. Here is another such vector for the same matrix:</p>
-<p><span class="math display">\[
-\left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)\left(\begin{array}{c}1 \\ 2 \end{array}\right) = \left(\begin{array}{c}2 +2 \\ 2 + 6 \end{array}\right) =  \left(\begin{array}{c} 4 \\ 8 \end{array}\right)
-\]</span></p>
-<p>In this case, the vector is changed, but only by multiplication by a constant (4). Thus the geometric direction of the vector remained unchanged.</p>
-<p>Generally, a square matrix has an associated set of vectors for which multiplication by the matrix is equivalent to multiplication by a constant. This can be written down as a definition:</p>
-<div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Definition
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>An <em>eigenvector</em> of a square matrix <span class="math inline">\(A\)</span> is a vector <span class="math inline">\(\vec v\)</span> for which matrix multiplication by <span class="math inline">\(A\)</span> is equivalent to multiplication by a constant. This constant <span class="math inline">\(\lambda\)</span> is called its <em>eigenvalue</em> of <span class="math inline">\(A\)</span> corresponding the the eigenvector <span class="math inline">\(\vec v\)</span>. The relationship is summarized in the following equation:</p>
-<p><span class="math display">\[
-A  \times  \vec v = \lambda \vec v
-\]</span> (def-eigen)</p>
-</div>
-</div>
-<p>Note that this equation combines a matrix (<span class="math inline">\(A\)</span>), a vector (<span class="math inline">\(\vec v\)</span>) and a scalar <span class="math inline">\(\lambda\)</span>, and that both sides of the equation are column vectors. This definition is illustrated in {numref}<code>fig-eig-vec</code>, showing a vector (<span class="math inline">\(v\)</span>) multiplied by a matrix <span class="math inline">\(A\)</span>, and the resulting vector <span class="math inline">\(\lambda v\)</span>, which is in the same direction as <span class="math inline">\(v\)</span>, due to scalar multiplying all elements of a vector, thus either stretching it if <span class="math inline">\(\lambda&gt;1\)</span> or compressing it if <span class="math inline">\(\lambda &lt; 1\)</span>. This assumes that <span class="math inline">\(\lambda\)</span> is a real number, which is not always the case, but we will leave that complication aside for the purposes of this chapter.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Eigenvalue_equation.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Illustration of the geometry of a matrix <span class="math inline">\(A\)</span> multiplying its eigenvector <span class="math inline">\(v\)</span>, resulting in a vector in the same direction <span class="math inline">\(\lambda v\)</span>. (Figure by Lantonov under CC BY-SA 4.0 via Wikimedia Commons)</figcaption><p></p>
-</figure>
-</div>
-<p>The definition does not specify how many such eigenvectors and eigenvalues can exist for a given matrix <span class="math inline">\(A\)</span>. There are usually as many such vectors <span class="math inline">\(\vec v\)</span> and corresponding numbers <span class="math inline">\(\lambda\)</span> as the number of rows or columns of the square matrix <span class="math inline">\(A\)</span>, so a 2 by 2 matrix has two eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One ironclad rule is that there cannot be more distinct eigenvalues than the matrix dimension. Some matrices possess fewer eigenvalues than the matrix dimension, those are said to have a <em>degenerate</em> set of eigenvalues, and at least two of the eigenvectors share the same eigenvalue.</p>
-<p>The situation with eigenvectors is trickier. There are some matrices for which any vector is an eigenvector, and others which have a limited set of eigenvectors. What is difficult about counting eigenvectors is that an eigenvector is still an eigenvector when multiplied by a constant. You can show that for any matrix, multiplication by a constant is commutative: <span class="math inline">\(cA = Ac\)</span>, where <span class="math inline">\(A\)</span> is a matrix and <span class="math inline">\(c\)</span> is a constant. This leads us to the important result that if <span class="math inline">\(\vec v\)</span> is an eigenvector with eigenvalue <span class="math inline">\(\lambda\)</span>, then any scalar multiple <span class="math inline">\(c \vec v\)</span> is also an eigenvector with the same eigenvalue. The following demonstrates this algebraically:</p>
-<p><span class="math display">\[
-A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \vec v)
-\]</span></p>
-<p>This shows that when the vector <span class="math inline">\(c \vec v\)</span> is multiplied by the matrix <span class="math inline">\(A\)</span>, it results in its being multiplied by the same number <span class="math inline">\(\lambda\)</span>, so by definition it is an eigenvector. Therefore, an eigenvector <span class="math inline">\(\vec v\)</span> is not unique, as any constant multiple <span class="math inline">\(c \vec v\)</span> is also an eigenvector. It is more useful to think not of a single eigenvector <span class="math inline">\(\vec v\)</span>, but of a <strong>collection of vectors that can be interconverted by scalar multiplication</strong> that are all essentially the same eigenvector. Another way to represent this, if the eigenvector is real, is that an eigenvector as a <strong>direction that remains unchanged by multiplication by the matrix</strong>, such as direction of the vector <span class="math inline">\(v\)</span> in figure . As mentioned above, this is true only for real eigenvalues and eigenvectors, since complex eigenvectors cannot be used to define a direction in a real space.</p>
-<p>To summarize, eigenvalues and eigenvectors of a matrix are a set of numbers and a set of vectors (up to scalar multiple) that describe the action of the matrix as a multiplicative operator on vectors. “Well-behaved” square <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrices have <span class="math inline">\(n\)</span> distinct eigenvalues and <span class="math inline">\(n\)</span> eigenvectors pointing in distinct directions. In a deep sense, the collection of eigenvectors and eigenvalues defines a matrix <span class="math inline">\(A\)</span>, which is why an older name for them is characteristic vectors and values.</p>
-</section>
-<section id="calculating-eigenvalues" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="calculating-eigenvalues"><span class="header-section-number">7.2.3</span> calculating eigenvalues</h3>
-<p>Finding the eigenvalues and eigenvectors analytically, that is on paper, is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger ones there is no analytical solution. In practice, the task is outsourced to a computer, and MATLAB has a number of functions for this purpose. Nevertheless, it is useful to go through the process in 2 dimensions in order to gain an understanding of what is involved. From the definition [def:eigen] of eigenvalues and eigenvectors, the condition can be written in terms of the four elements of a 2 by 2 matrix:</p>
-<p><span class="math display">\[
-\left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
-\]</span></p>
-<p>This is now a system of two linear algebraic equations, which we can solve by substitution. First, let us solve for <span class="math inline">\(v_1\)</span> in the first row, to get</p>
-<p><span class="math display">\[
-v_1 = \frac{-bv_2}{a-\lambda}
-\]</span></p>
-<p>Then we substitute this into the second equation and get:</p>
-<p><span class="math display">\[
-\frac{-bcv_2}{a-\lambda} +(d-\lambda)v_2 = 0
-\]</span></p>
-<p>Since <span class="math inline">\(v_2\)</span> multiplies both terms, and is not necessarily zero, we require that its multiplicative factor be zero. Doing a little algebra, we obtain the following, known as the <em>characteristic equation</em> of the matrix:</p>
-<p><span class="math display">\[
--bc +(a-\lambda)(d-\lambda) = \lambda^2-(a+d)\lambda +ad-bc = 0
-\]</span></p>
-<p>This equation can be simplified by using two quantities we defined at the beginning of the section: the sum of the diagonal elements called the trace <span class="math inline">\(\tau = a+d\)</span>, and the determinant <span class="math inline">\(\Delta = ad-bc\)</span>. The quadratic equation has two solutions, dependent solely on <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\Delta\)</span>:</p>
-<p><span class="math display">\[
-\lambda = \frac{\tau \pm \sqrt{\tau^2-4\Delta}}{2}
-\]</span></p>
-<p>This is the general expression for a 2 by 2 matrix, showing there are two possible eigenvalues. Note that if <span class="math inline">\(\tau^2-4\Delta&gt;0\)</span>, the eigenvalues are real, if <span class="math inline">\(\tau^2-4\Delta&lt;0\)</span>, they are complex (have real and imaginary parts), and if <span class="math inline">\(\tau^2-4\Delta=0\)</span>, there is only one eigenvalue. This situation is known as degenerate, because two eigenvectors share the same eigenvalue.</p>
-<p><strong>Example.</strong> Let us take the same matrix we looked at in the previous subsection:</p>
-<p><span class="math display">\[
-A = \left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)
-\]</span></p>
-<p>The trace of this matrix is <span class="math inline">\(\tau = 2+3 =5\)</span> and the determinant is <span class="math inline">\(\Delta = 6 - 2 = 4\)</span>. Then by our formula, the eigenvalues are:</p>
-<p><span class="math display">\[
-\lambda = \frac{5 \pm \sqrt{5^2-4 \times 4}}{2}  =  \frac{5 \pm 3}{2}  = 4, 1
-\]</span></p>
-<p>These are the multiples we found in the example above, as expected.</p>
-<p>A real matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts. For discrete time models, it is enough to consider the absolute value of a complex eigenvalue, which is defined as following: <span class="math inline">\(|a +b i|= \sqrt{a^2 + b^2}\)</span>. As before, the eigenvalue with the largest absolute value “wins” in the long term.</p>
-</section>
-<section id="calculation-of-eigenvectors-on-paper" class="level3" data-number="7.2.4">
-<h3 data-number="7.2.4" class="anchored" data-anchor-id="calculation-of-eigenvectors-on-paper"><span class="header-section-number">7.2.4</span> calculation of eigenvectors on paper</h3>
-<p>The surprising fact is that, as we saw in the last subsection, the eigenvalues of a matrix can be found without knowing its eigenvectors! However, the converse is not true: to find the eigenvectors, one first needs to know the eigenvalues. Given an eigenvalue <span class="math inline">\(\lambda\)</span>, let us again write down the defining equation of the eigenvector for a generic 2 by 2 matrix:</p>
-<p><span class="math display">\[
-\left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
-\]</span></p>
-<p>This vector equation is equivalent to two algebraic equations:</p>
-<p><span class="math display">\[
-\begin{aligned}
-av_1 + b v_2 &amp;= \lambda v_1 \\
-cv_1 + d v_2 &amp;= \lambda v_2
-\end{aligned}
-\]</span></p>
-<p>Since we’ve already found <span class="math inline">\(\lambda\)</span> by solving the characteristic equation, this is two linear equations with two unknowns (<span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span>). You may remember from advanced algebra that such equations may either have a single solution for each unknown, but sometimes they may have none, or infinitely many solutions. Since there are unknowns on both sides of the equation, we can make both equations be equal to zero:</p>
-<p><span class="math display">\[\begin{aligned}
-(a-\lambda)v_1 + b v_2 &amp;= 0 \\
-cv_1 + (d-\lambda ) v_2 &amp;=0
-\end{aligned}
-\]</span></p>
-<p>So the first equation yields the relationship <span class="math inline">\(v_1 = -v_2 b/(a-\lambda)\)</span> and the second equation is <span class="math inline">\(v_1 = -v_2(d-\lambda)/c\)</span>, which we already obtained in the last subsection. We know that these two equations must be the same, since the ratio of <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> is what defines the eigenvector. So we can use either expression to find the eigenvector.</p>
-<p><strong>Example.</strong> Let us return to the same matrix we looked at in the previous subsection:</p>
-<p><span class="math display">\[
-A = \left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)
-\]</span></p>
-<p>The eigenvalues of the matrix are 1 and 4. Using our expression above, where the element <span class="math inline">\(a=2\)</span> and <span class="math inline">\(b=1\)</span>, let us find the eigenvector corresponding to the eigenvalue 1:</p>
-<p><span class="math display">\[
-v_1 = - v_2 \times  1/(2-1) = - v_2
-\]</span></p>
-<p>Therefore the eigenvector is characterized by the first and second elements being negatives of each other. We already saw in the example two subsections above that the vector <span class="math inline">\((1,-1)\)</span> is such as eigenvector, but it is also true of the vectors <span class="math inline">\((-1,1)\)</span>, <span class="math inline">\((-\pi, \pi)\)</span> and <span class="math inline">\((10^6, -10^6)\)</span>. This infinite collection of vectors, all along the same direction, can be described as the eigenvector (or eigendirection) corresponding to the eigenvalue 1.</p>
-<p>Repeating this procedure for <span class="math inline">\(\lambda = 4\)</span>, we obtain the linear relationship: <span class="math display">\[v_1 = - v_2 \times  1/(2-4) = 0.5 v_2\]</span> Once again, the example vector we saw two subsections <span class="math inline">\((2,1)\)</span> is in agreement with our calculation. Other vectors that satisfy this relationship include <span class="math inline">\((10,5)\)</span>, <span class="math inline">\((-20,-10)\)</span>, and <span class="math inline">\((-0.4,-0.2)\)</span>. This is again a collection of vectors that are all considered the same eigenvector with eigenvalue 4 which are all pointing in the same direction, with the only difference being their length.</p>
-</section>
-</section>
-<section id="solutions-of-linear-two-variable-odes" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="solutions-of-linear-two-variable-odes"><span class="header-section-number">7.3</span> Solutions of linear two-variable ODEs</h2>
+<section id="solutions-of-linear-two-variable-odes" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="solutions-of-linear-two-variable-odes"><span class="header-section-number">7.2</span> Solutions of linear two-variable ODEs</h2>
 <p>Let us start by considering two variable ODEs that do not affect each other:</p>
 <p><strong>Example: two uncoupled ODEs</strong> In general, for a two-variable system, the value of one variable affects the other. In the equations above, the terms with the constants <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> provide what is known as <em>coupling</em> between the two variables. Let us look at the primitive situation where the two variables are uncoupled, as an illustration of solving two-dimensional ODEs. If we set the coupling constants <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> to 0, we get:</p>
 <p><span class="math display">\[
@@ -482,12 +290,12 @@ General solution of linear 2-variable ODEs
 </div>
 </div>
 </section>
-<section id="classification-of-linear-systems" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="classification-of-linear-systems"><span class="header-section-number">7.4</span> Classification of linear systems</h2>
+<section id="classification-of-linear-systems" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="classification-of-linear-systems"><span class="header-section-number">7.3</span> Classification of linear systems</h2>
 <p>We have seen that linear algebra allows us to write down the solution of a multivariable dynamical system into a sum of exponential terms. In this section we use computational techniques to find the eigenvalues and eigenvectors of a system, and then produce the <em>phase portraits</em> of the linear systems. There are only a few different types of flow possible for linear systems, and we will classify them.</p>
-<section id="real-eigenvalues" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="real-eigenvalues"><span class="header-section-number">7.4.1</span> real eigenvalues</h3>
-<p>Let us consider the fixed points of the linear system: since both $x =0 $ and <span class="math inline">\(\dot y = 0\)</span> must be zero, the only fixed point is the origin <span class="math inline">\((0,0)\)</span>. We will see that the stability of the fixed point depends on the sign of the real part of the eigenvalue.</p>
+<section id="real-eigenvalues" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="real-eigenvalues"><span class="header-section-number">7.3.1</span> real eigenvalues</h3>
+<p>Let us consider the fixed points of the linear system: since both <span class="math inline">\(\dot x =0\)</span> and <span class="math inline">\(\dot y = 0\)</span> must be zero, the only fixed point is the origin <span class="math inline">\((0,0)\)</span>. We will see that the stability of the fixed point depends on the sign of the real part of the eigenvalue.</p>
 <p>Suppose we have a positive real eigenvalue. The solution in the direction of the corresponding eigenvector is then described by <span class="math inline">\(Ce^{\lambda t}\)</span>, <span class="math inline">\(\lambda &gt; 0\)</span>, which is exponential growth. The means that the solution is going to grow in the direction of the eigenvector away from the origin, and thus the origin is an unstable fixed point (in this direction). This type of fixed point is called an <em>unstable node</em>.</p>
 <p>On the other hand, if <span class="math inline">\(\lambda &lt; 0\)</span> for both eigenvalues, the solution decays exponentially and thus approaches the origin, so the fixed point is stable. This type of fixed point is called a <em>stable node</em>.</p>
 <p>Since there are two different eigenvalues, one may be positive while another is negative. In this case, the fixed point is is called a <em>saddle point</em> for geometric reasons: solutions flow toward it in one direction, like a marble along the forward-backward axis of a saddle on a horse and flow away from it along the sideways direction on a saddle. Then, the fixed point is stable when approached along one eigenvector, but unstable along the other. What happens if the initial condition is not on either eigenvector? I will use a fact of linear algebra that given any two (non-colinear) 2D vectors, any vector in the plane can represented as a sum (with some coefficients) of these two. Thus, the general solution can be written as follows:</p>
@@ -497,8 +305,8 @@ General solution of linear 2-variable ODEs
 <p>where <span class="math inline">\(a,b&gt;0\)</span>. Then we see that the component in the direction of the first eigenvector will grow, while the component along the second eigenvector will decay. Thus, as <span class="math inline">\(t \rightarrow \infty\)</span>, all solutions will approach the vector with the unstable eigenvalue, except those with initial conditions right on the eigenvector corresponding to the stable eigenvalue. This means that the fixed point is essentially unstable, because only trajectories which start exactly along the stable direction approach the fixed point in the long run, while others, may approach the fixed point for a finite time, flow away when the unstable component with the positive eigenvalue takes over, as shown in figure .</p>
 <p>[Phase plane flow for a linear system with a saddle point] (images/week6_pp1.png)</p>
 </section>
-<section id="complex-eigenvalues" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="complex-eigenvalues"><span class="header-section-number">7.4.2</span> complex eigenvalues</h3>
+<section id="complex-eigenvalues" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="complex-eigenvalues"><span class="header-section-number">7.3.2</span> complex eigenvalues</h3>
 <p>If the argument of the square root is negative, eigenvalues may be complex numbers, which we can write like this: <span class="math inline">\(a+bi\)</span>. Using Euler’s formula, we can write down the time-dependent part of the solutions as the following:</p>
 <p><span class="math display">\[
 e^{(a + bi)t} = e^{at}e^{bit}= e^{at}(\cos(bt)+i\sin(bt))
@@ -518,8 +326,8 @@ e^{(a + bi)t} = e^{at}e^{bit}= e^{at}(\cos(bt)+i\sin(bt))
 </div>
 <p>Thus we see that the stability of the fixed point with complex eigenvalues depends on the sign of the real part. Purely imaginary eigenvalues produce periodic oscillations, which keep the same amplitude, as we saw in the example in the modeling section.</p>
 </section>
-<section id="classification-of-linear-systems-1" class="level3" data-number="7.4.3">
-<h3 data-number="7.4.3" class="anchored" data-anchor-id="classification-of-linear-systems-1"><span class="header-section-number">7.4.3</span> classification of linear systems</h3>
+<section id="classification-of-linear-systems-1" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="classification-of-linear-systems-1"><span class="header-section-number">7.3.3</span> classification of linear systems</h3>
 <table class="table">
 <colgroup>
 <col style="width: 11%">
@@ -559,14 +367,14 @@ e^{(a + bi)t} = e^{at}e^{bit}= e^{at}(\cos(bt)+i\sin(bt))
 <p>For complex eigenvalues, there are three possibilities: if the real part is positive, the solution will grow and oscillate (oscillations with exponentially increasing amplitude), if the real part is negative, the solution will decay and oscillation (oscillations with exponentially increasing amplitude), and if the real part is zero (pure imaginary&nbsp;eigenvalues) the solution will oscillate with constant amplitude. The first type is called an <em>unstable spiral</em>, the second a <em>stable spiral</em>, and the third a <em>center</em>. It is not possible for complex eigenvalues of two-dimensional systems to have different signs of real parts, because as the formula shows, the real part is the same for both and is equal to the trace divided by two.</p>
 </section>
 </section>
-<section id="dynamics-of-romantic-relationships" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="dynamics-of-romantic-relationships"><span class="header-section-number">7.5</span> Dynamics of romantic relationships</h2>
-<p>We examine a model, taken from <span class="citation" data-cites="strogatz_nonlinear_2001">(<a href="#ref-strogatz_nonlinear_2001" role="doc-biblioref"><strong>strogatz_nonlinear_2001?</strong></a>)</span>, that applies dynamical systems modeling to a pressing concern for many humans: the prediction of dynamics of a romantic relationship. There are several unrealistic assumptions involved in the following model: first, that love or affection can be quantified, second, that any changes in relationship depend only on the emotions of the two people involved, and third, that the rate of change of the two love variables depend linearly on each other.</p>
+<section id="dynamics-of-romantic-relationships" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="dynamics-of-romantic-relationships"><span class="header-section-number">7.4</span> Dynamics of romantic relationships</h2>
+<p>We examine a model, taken from <span class="citation" data-cites="strogatz_nonlinear_2001">(<a href="references.html#ref-strogatz_nonlinear_2001" role="doc-biblioref"><strong>strogatz_nonlinear_2001?</strong></a>)</span>, that applies dynamical systems modeling to a pressing concern for many humans: the prediction of dynamics of a romantic relationship. There are several unrealistic assumptions involved in the following model: first, that love or affection can be quantified, second, that any changes in relationship depend only on the emotions of the two people involved, and third, that the rate of change of the two love variables depend linearly on each other.</p>
 <p>If we can give those assumptions the benefit of the doubt (which is how all relationships begin), we can write down a system of ODEs to describe a romantically involved couple. Here <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are dynamic variables that quantify the emotional states of the two lovers:</p>
-<p><span class="math display">\[\
-begin{aligned}
-\dot  X &amp; = &amp; aX+ bY \\
-\dot  Y &amp; = &amp; cX + dY
+<p><span class="math display">\[
+\begin{aligned}
+\dot  X &amp;=&amp; aX+ bY \\
+\dot  Y &amp;=&amp; cX + dY
 \end{aligned}
 \]</span></p>
 <p>Let us denote positive feelings (love) with positive values of <span class="math inline">\(X,Y\)</span>, while negative values signify negative feelings (hate.) The significance of the parameters can be interpreted as follows: <span class="math inline">\(a,d\)</span> describe the response of the two people to their own feelings, while <span class="math inline">\(b,c\)</span> correspond to the effect the other person’s feeling has on their own. For example, a person whose feeling grow as the other person’s affection increases can be modeled with a positive value of <span class="math inline">\(b\)</span> (or <span class="math inline">\(c\)</span>). On the other hand, a person whose own feelings are dampened by the other one’s excessively positive emotions, can be decribed by a negative value of <span class="math inline">\(b\)</span> or <span class="math inline">\(c\)</span>. Their own feelings can also play a role, either positive or negative, reflected in the sign of the constants <span class="math inline">\(a\)</span> and <span class="math inline">\(d\)</span>.</p>

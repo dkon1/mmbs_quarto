@@ -11,10 +11,10 @@ from scipy.integrate import odeint
 We are going to plot phase diagrams for linear ODEs that have the form
 
 $$
-\begin{align}
+\begin{aligned}
 dx/dt &=& ax + by \\
 dy/dt &=& cx + dy
-\end{align}
+\end{aligned}
 $$
 
 Python's `ax.quiver()` function allows displays vectors with arrows made of the components $(u,v)$, which is exactly what we need. The function takes 4 inputs $(x,y,u,v)$: $x$ and $y$ are the grid points and $u$ and $v$ are the $u$ and $v$ components of the vector, which are given by our ODEs. 

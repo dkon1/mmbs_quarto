@@ -156,12 +156,20 @@ ul.task-list{list-style: none;}
   <li><a href="#solutions-for-linear-higher-order-difference-equations" id="toc-solutions-for-linear-higher-order-difference-equations" class="nav-link" data-scroll-target="#solutions-for-linear-higher-order-difference-equations"> <span class="header-section-number">5.2</span> Solutions for linear higher order difference equations</a>
   <ul class="collapse">
   <li><a href="#solutions-of-linear-difference-equations" id="toc-solutions-of-linear-difference-equations" class="nav-link" data-scroll-target="#solutions-of-linear-difference-equations"> <span class="header-section-number">5.2.1</span> solutions of linear difference equations</a></li>
-  <li><a href="#elementary-matrix-operations" id="toc-elementary-matrix-operations" class="nav-link" data-scroll-target="#elementary-matrix-operations"> <span class="header-section-number">5.2.2</span> elementary matrix operations</a></li>
   </ul></li>
-  <li><a href="#age-structured-population-models" id="toc-age-structured-population-models" class="nav-link" data-scroll-target="#age-structured-population-models"> <span class="header-section-number">5.3</span> Age-structured population models</a>
+  <li><a href="#matrices-and-vectors" id="toc-matrices-and-vectors" class="nav-link" data-scroll-target="#matrices-and-vectors"> <span class="header-section-number">5.3</span> Matrices and vectors</a>
   <ul class="collapse">
-  <li><a href="#leslie-models" id="toc-leslie-models" class="nav-link" data-scroll-target="#leslie-models"> <span class="header-section-number">5.3.1</span> Leslie models</a></li>
-  <li><a href="#usher-models" id="toc-usher-models" class="nav-link" data-scroll-target="#usher-models"> <span class="header-section-number">5.3.2</span> Usher models</a></li>
+  <li><a href="#elementary-matrix-operations" id="toc-elementary-matrix-operations" class="nav-link" data-scroll-target="#elementary-matrix-operations"> <span class="header-section-number">5.3.1</span> elementary matrix operations</a></li>
+  <li><a href="#matrix-multiplication" id="toc-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication"> <span class="header-section-number">5.3.2</span> matrix multiplication</a></li>
+  <li><a href="#matrix-inverses" id="toc-matrix-inverses" class="nav-link" data-scroll-target="#matrix-inverses"> <span class="header-section-number">5.3.3</span> matrix inverses</a></li>
+  <li><a href="#matrices-transform-vectors" id="toc-matrices-transform-vectors" class="nav-link" data-scroll-target="#matrices-transform-vectors"> <span class="header-section-number">5.3.4</span> matrices transform vectors</a></li>
+  <li><a href="#calculating-eigenvalues" id="toc-calculating-eigenvalues" class="nav-link" data-scroll-target="#calculating-eigenvalues"> <span class="header-section-number">5.3.5</span> calculating eigenvalues</a></li>
+  <li><a href="#calculation-of-eigenvectors-on-paper" id="toc-calculation-of-eigenvectors-on-paper" class="nav-link" data-scroll-target="#calculation-of-eigenvectors-on-paper"> <span class="header-section-number">5.3.6</span> calculation of eigenvectors on paper</a></li>
+  </ul></li>
+  <li><a href="#age-structured-population-models" id="toc-age-structured-population-models" class="nav-link" data-scroll-target="#age-structured-population-models"> <span class="header-section-number">5.4</span> Age-structured population models</a>
+  <ul class="collapse">
+  <li><a href="#leslie-models" id="toc-leslie-models" class="nav-link" data-scroll-target="#leslie-models"> <span class="header-section-number">5.4.1</span> Leslie models</a></li>
+  <li><a href="#usher-models" id="toc-usher-models" class="nav-link" data-scroll-target="#usher-models"> <span class="header-section-number">5.4.2</span> Usher models</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -221,9 +229,11 @@ N_{t+1} = N_t + N_{t-1}
 <section id="matrix-representation-of-discrete-time-models" class="level3" data-number="5.1.2">
 <h3 data-number="5.1.2" class="anchored" data-anchor-id="matrix-representation-of-discrete-time-models"><span class="header-section-number">5.1.2</span> matrix representation of discrete time models</h3>
 <p>The Fibonacci model above can be represented by two equations instead of one, if we consider two dependent variables. Let us represent the number of rabbits in generation 1 (young) by <span class="math inline">\(x\)</span> and in generation 2 (old) by<span class="math inline">\(y\)</span>. The new generation at the next time (<span class="math inline">\(t+1\)</span>) is comprised of offspring of the young and old generations at time <span class="math inline">\(t\)</span>, while the old generation at the next time is simply is young generation at the current time. This gives the following set of equations:</p>
-<p><span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 x_{t+1} &amp; = &amp; x_t + x_{t-1}\\
-x_{t} &amp; = &amp; x_t\end{aligned}
+x_{t} &amp; = &amp; x_t
+\end{aligned}
 \]</span></p>
 <p>The advantage of re-writing a single equation as two is that the new system is first order, that is, only relies on the values of the variables at the current time <span class="math inline">\(t\)</span>. These equations can also be written in <em>matrix</em> form:</p>
 <p><span class="math display">\[
@@ -321,18 +331,48 @@ N_t \approx \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^t
 </div>
 <p>To show that the geometric golden ratio is the same as the ratio that appears in the Fibonacci sequence, let us write down the algebraic condition stated above. Because we are interested in the ratio, let the smaller quantity be 1 and the larger one be <span class="math inline">\(\phi\)</span>; by the definition we obtain the following. <span class="math inline">\(\phi = (\phi+1)/\phi\)</span>, thus <span class="math inline">\(\phi^2-\phi-1 = 0\)</span>. This is the same quadratic equation that we derived for the exponential bases of the solution above. The solution to this equation (by the quadratic formula) is <span class="math inline">\(\phi=(1\pm\sqrt5)/2\)</span>, and the positive solution is the golden ratio.</p>
 </section>
-<section id="elementary-matrix-operations" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="elementary-matrix-operations"><span class="header-section-number">5.2.2</span> elementary matrix operations</h3>
-<p>Now is a good time to properly define what matrices are and how we can operate on them. We have already seen transition matrices, but just to make sure all of the terms are clear:</p>
-<p>A <em>matrix</em> <span class="math inline">\(A\)</span> is a rectangular array of <em>elements</em> <span class="math inline">\(A_{ij}\)</span>, in which <span class="math inline">\(i\)</span> denotes the row number (index), counted from top to bottom, and <span class="math inline">\(j\)</span> denotes the column number (index), counted from left to right. The <em>dimensions</em> of a matrix are defined by the number of rows and columns, so an <em>n by m matrix</em> contains <span class="math inline">\(n\)</span> rows and <span class="math inline">\(m\)</span> columns.</p>
-<p>Elements of a matrix are not all created equal, they are divided into two types:</p>
+</section>
+<section id="matrices-and-vectors" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="matrices-and-vectors"><span class="header-section-number">5.3</span> Matrices and vectors</h2>
+<p>One basic advantage of matrix notation is that it makes it possible to write any set of <em>linear equations</em> as a single matrix equation. By linear equations we mean those that contain only constants or first powers of the variables. The field of mathematics studying matrices and their generalizations is called <em>linear algebra</em>; it is fundamental to both pure and applied mathematics. In this section we will learn some basic facts about matrices and their properties.</p>
+<section id="elementary-matrix-operations" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="elementary-matrix-operations"><span class="header-section-number">5.3.1</span> elementary matrix operations</h3>
+<p>Now is a good time to properly define what matrices are and how we can operate on them. We have already seen a matrix for the Fibonacci model, but just to make sure all of the terms are clear:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A matrix <span class="math inline">\(A\)</span> is a rectangular array of <em>elements</em> <span class="math inline">\(A_{ij}\)</span>, in which <span class="math inline">\(i\)</span> denotes the row number (index), counted from the top, and <span class="math inline">\(j\)</span> denotes the column number (index), counted from left to right. The <em>dimensions</em> of a matrix are defined by the number of rows and columns, so an <em>n by m matrix</em> contains <span class="math inline">\(n\)</span> rows and <span class="math inline">\(m\)</span> columns.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The elements of a matrix <span class="math inline">\(A\)</span> which have the same row and column index, e.g.&nbsp;<span class="math inline">\(A_{33}\)</span> are called the <em>diagonal elements</em>. Those which do not lie on the diagonal are called the <em>off-diagonal</em> elements.</p>
+</div>
+</div>
 <p>For instance, in the 3 by 3 matrix below, the elements <span class="math inline">\(a, e, i\)</span> are the diagonal elements:</p>
 <p><span class="math display">\[
 A = \left(\begin{array}{ccc}a &amp; b &amp; c \\d &amp; e &amp; f \\g &amp; h &amp; i\end{array}\right)
 \]</span></p>
 <p>Matrices can be added together if they have the same dimensions. Then matrix addition is defined simply as adding up corresponding elements, for instance the element in the second row and first column of matrix <span class="math inline">\(A\)</span> is added with the element in the second row and first column of matrix <span class="math inline">\(B\)</span> to give the element in the second row and first column of matrix <span class="math inline">\(C\)</span>. Recall from the previous chapter that rows in matrices are counted from top to bottom, while the columns are counted left to right.</p>
-<p>Matrices can also be multiplied, but this operation is trickier. For mathematical reasons, multiplication of matrices <span class="math inline">\(A \times B\)</span> does not mean multiplying corresponding elements. Instead, the definition seeks to capture the calculation of simultaneous equations, like the one in the previous section. Here is the definition of matrix multiplication, in words and in a formula <span class="citation" data-cites="strang_linear_2005">(<a href="#ref-strang_linear_2005" role="doc-biblioref"><strong>strang_linear_2005?</strong></a>)</span>:</p>
+</section>
+<section id="matrix-multiplication" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="matrix-multiplication"><span class="header-section-number">5.3.2</span> matrix multiplication</h3>
+<p>Matrices can also be multiplied, but this operation is trickier. For mathematical reasons, multiplication of matrices <span class="math inline">\(A \times B\)</span> does not mean multiplying corresponding elements. Instead, the definition seeks to capture the calculation of simultaneous equations, like the one in the previous section. Here is the definition of matrix multiplication, in words and in a formula <span class="citation" data-cites="strang_linear_2005">(<a href="references.html#ref-strang_linear_2005" role="doc-biblioref"><strong>strang_linear_2005?</strong></a>)</span>:</p>
 <p>The <em>product of matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></em> is defined to be a matrix <span class="math inline">\(C\)</span>, whose element <span class="math inline">\(c_{ij}\)</span> is the <strong>dot product of the i-th row of <span class="math inline">\(A\)</span> and the j-th column of <span class="math inline">\(B\)</span></strong>:</p>
 <p><span class="math display">\[
 c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + ... + a_{iN}b_{Nj} = \sum_{k=1}^q a_{ik} b_{kj}
@@ -364,21 +404,214 @@ c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + ... + a_{iN}b_{Nj} = \sum_{k=1}^q a_{ik} 
 \]</span></p>
 <p>We can take the resulting vector and apply the matrix again, to propagate the sequence for one more step:</p>
 <p><span class="math display">\[
-\left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right)\left(\begin{array}{c}1\\ 1\end{array}\right) = \left(\begin{array}{c}1+ 1 \\ 1 \end{array}\right)  = \left(\begin{array}{c}2 \\ 1 \end{array}\right)
+\left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right) \times
+\left(\begin{array}{c}1\\ 1\end{array}\right) = \left(\begin{array}{c}1+ 1 \\ 1 \end{array}\right)  = \left(\begin{array}{c}2 \\ 1 \end{array}\right)
 \]</span></p>
 <p>Multiplying matrices and vectors is a basic operation that depends on the orientation of the vector. One can only multiply a square matrix by a column vector on the left, as we saw above, not on the right. By the same token, a row vector can only multiply a matrix on the right, and not the left, because we must use the <em>rows</em> of the matrix on the left to multiply the <em>columns</em> of the matrix on the right. This underscores the important fact that matrix multiplication is not commutative.</p>
 </section>
+<section id="matrix-inverses" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="matrix-inverses"><span class="header-section-number">5.3.3</span> matrix inverses</h3>
+<p>Above we learned the rules of matrix multiplication, and we can write <span class="math inline">\(C = A \times B\)</span>, so long as the number of columns in <span class="math inline">\(A\)</span> matches the number of rows in <span class="math inline">\(B\)</span>. However, what if we want to reverse the process? If we know the resulting matrix <span class="math inline">\(C\)</span>, and one of the two matrices, e.g.&nbsp;<span class="math inline">\(A\)</span>, how can we find <span class="math inline">\(B\)</span>? Naively, we would like to be able to divide both sides by the matrix <span class="math inline">\(A\)</span>, and find <span class="math inline">\(B = C/A\)</span>. However, things are more complicated for matrices.</p>
+<p>Properly speaking, we need to introduce the <em>inverse</em> of a matrix <span class="math inline">\(A\)</span>. If we think about inverses of real numbers, <span class="math inline">\(a^{-1}\)</span> is a number that when it multiplies <span class="math inline">\(a\)</span>, results in one. In order to define the equivalent for matrices, we first need to introduce the unity of matrix multiplication.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>identity</em> matrix is an <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrix that does not change another <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrix by multiplication:</p>
+<p><span class="math display">\[
+A \times I = I \times A  = A
+\]</span></p>
+<p>The diagonal elements of the identity matrix are 1s and all off-diagonal elements are zero.</p>
+</div>
+</div>
+<p><strong>Example:</strong> Using the definition of matrix multiplication we can verify that this definition works for any 2 by 2 matrix:</p>
+<p><span class="math display">\[
+\begin{pmatrix}-6 &amp; -2 \\ 12 &amp; -1 \end{pmatrix} \times \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{pmatrix} =
+\begin{pmatrix}-6\times 1 + -2\times 0 &amp; -6\times 0 + -2\times 1  \\ 12\times 1 -1 \times 0 &amp; 12\times 0 -1 \times 1  \end{pmatrix} = \begin{pmatrix}-6 &amp; -2 \\ 12 &amp; -1 \end{pmatrix}
+\]</span></p>
+<p>Now that we have specified the identity, we can define the matrix inverse:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A square matrix <span class="math inline">\(A\)</span> has an <em>inverse matrix</em> <span class="math inline">\(A^{-1}\)</span> if it satisfies the following:</p>
+<p><span class="math display">\[
+A^{-1} \times A = A \times A^{-1} = I
+\]</span></p>
+</div>
+</div>
+<p>Finding the inverse of a matrix is not simple, and we will be content to let computers handle the dirty work. In fact, not every matrix possesses an inverse. There is a test for existence of an inverse of <span class="math inline">\(A\)</span>, and it depends on the determinant <span class="citation" data-cites="strang_linear_2005">(<a href="references.html#ref-strang_linear_2005" role="doc-biblioref"><strong>strang_linear_2005?</strong></a>)</span>:</p>
+<p>A square matrix <span class="math inline">\(A\)</span> possesses an inverse <span class="math inline">\(A^{-1}\)</span> and is called <em>invertible</em> if and only if its determinant is not zero.</p>
 </section>
-<section id="age-structured-population-models" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="age-structured-population-models"><span class="header-section-number">5.3</span> Age-structured population models</h2>
+<section id="matrices-transform-vectors" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="matrices-transform-vectors"><span class="header-section-number">5.3.4</span> matrices transform vectors</h3>
+<p>In this section we will learn to characterize square matrices by finding special numbers and vectors associated with them. At the core of this analysis lies the concept of a matrix as an <em>operator</em> that transforms vectors by multiplication. To be clear, in this section we take as default that the matrices <span class="math inline">\(A\)</span> are square, and that vectors <span class="math inline">\(\vec v\)</span> are column vectors, and thus will multiply the matrix on the right: <span class="math inline">\(A \times \vec v\)</span>.</p>
+<p>A matrix multiplied by a vector produces another vector, provided the number of columns in the matrix is the same as the number of rows in the vector. This can be interpreted as the matrix transforming the vector <span class="math inline">\(\vec v\)</span> into another one: <span class="math inline">\(A \times \vec v = \vec u\)</span>. The resultant vector <span class="math inline">\(\vec u\)</span> may or may not resemble <span class="math inline">\(\vec v\)</span>, but there are special vectors for which the transformation is very simple.</p>
+<p><strong>Example.</strong> Let us multiply the following matrix and vector (specially chosen to make a point):</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right) \times
+\left(\begin{array}{c}1 \\ -1 \end{array}\right) = \left(\begin{array}{c}2 -1 \\ 2 - 3 \end{array}\right) =  \left(\begin{array}{c} 1 \\ -1 \end{array}\right)
+\]</span></p>
+<p>We see that this particular vector is unchanged when multiplied by this matrix, or we can say that the matrix multiplication is equivalent to multiplication by 1. Here is another such vector for the same matrix:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right) \times
+\left(\begin{array}{c}1 \\ 2 \end{array}\right) = \left(\begin{array}{c}2 +2 \\ 2 + 6 \end{array}\right) =  \left(\begin{array}{c} 4 \\ 8 \end{array}\right)
+\]</span></p>
+<p>In this case, the vector is changed, but only by multiplication by a constant (4). Thus the geometric direction of the vector remained unchanged.</p>
+<p>Generally, a square matrix has an associated set of vectors for which multiplication by the matrix is equivalent to multiplication by a constant. This can be written down as a definition:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An <em>eigenvector</em> of a square matrix <span class="math inline">\(A\)</span> is a vector <span class="math inline">\(\vec v\)</span> for which matrix multiplication by <span class="math inline">\(A\)</span> is equivalent to multiplication by a constant. This constant <span class="math inline">\(\lambda\)</span> is called its <em>eigenvalue</em> of <span class="math inline">\(A\)</span> corresponding the the eigenvector <span class="math inline">\(\vec v\)</span>. The relationship is summarized in the following equation:</p>
+<p><span class="math display">\[
+A  \times  \vec v = \lambda \vec v
+\]</span> (def-eigen)</p>
+</div>
+</div>
+<p>Note that this equation combines a matrix (<span class="math inline">\(A\)</span>), a vector (<span class="math inline">\(\vec v\)</span>) and a scalar <span class="math inline">\(\lambda\)</span>, and that both sides of the equation are column vectors. This definition is illustrated in {numref}<code>fig-eig-vec</code>, showing a vector (<span class="math inline">\(v\)</span>) multiplied by a matrix <span class="math inline">\(A\)</span>, and the resulting vector <span class="math inline">\(\lambda v\)</span>, which is in the same direction as <span class="math inline">\(v\)</span>, due to scalar multiplying all elements of a vector, thus either stretching it if <span class="math inline">\(\lambda&gt;1\)</span> or compressing it if <span class="math inline">\(\lambda &lt; 1\)</span>. This assumes that <span class="math inline">\(\lambda\)</span> is a real number, which is not always the case, but we will leave that complication aside for the purposes of this chapter.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Eigenvalue_equation.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Illustration of the geometry of a matrix <span class="math inline">\(A\)</span> multiplying its eigenvector <span class="math inline">\(v\)</span>, resulting in a vector in the same direction <span class="math inline">\(\lambda v\)</span>. (Figure by Lantonov under CC BY-SA 4.0 via Wikimedia Commons)</figcaption><p></p>
+</figure>
+</div>
+<p>The definition does not specify how many such eigenvectors and eigenvalues can exist for a given matrix <span class="math inline">\(A\)</span>. There are usually as many such vectors <span class="math inline">\(\vec v\)</span> and corresponding numbers <span class="math inline">\(\lambda\)</span> as the number of rows or columns of the square matrix <span class="math inline">\(A\)</span>, so a 2 by 2 matrix has two eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One ironclad rule is that there cannot be more distinct eigenvalues than the matrix dimension. Some matrices possess fewer eigenvalues than the matrix dimension, those are said to have a <em>degenerate</em> set of eigenvalues, and at least two of the eigenvectors share the same eigenvalue.</p>
+<p>The situation with eigenvectors is trickier. There are some matrices for which any vector is an eigenvector, and others which have a limited set of eigenvectors. What is difficult about counting eigenvectors is that an eigenvector is still an eigenvector when multiplied by a constant. You can show that for any matrix, multiplication by a constant is commutative: <span class="math inline">\(cA = Ac\)</span>, where <span class="math inline">\(A\)</span> is a matrix and <span class="math inline">\(c\)</span> is a constant. This leads us to the important result that if <span class="math inline">\(\vec v\)</span> is an eigenvector with eigenvalue <span class="math inline">\(\lambda\)</span>, then any scalar multiple <span class="math inline">\(c \vec v\)</span> is also an eigenvector with the same eigenvalue. The following demonstrates this algebraically:</p>
+<p><span class="math display">\[
+A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \vec v)
+\]</span></p>
+<p>This shows that when the vector <span class="math inline">\(c \vec v\)</span> is multiplied by the matrix <span class="math inline">\(A\)</span>, it results in its being multiplied by the same number <span class="math inline">\(\lambda\)</span>, so by definition it is an eigenvector. Therefore, an eigenvector <span class="math inline">\(\vec v\)</span> is not unique, as any constant multiple <span class="math inline">\(c \vec v\)</span> is also an eigenvector. It is more useful to think not of a single eigenvector <span class="math inline">\(\vec v\)</span>, but of a <strong>collection of vectors that can be interconverted by scalar multiplication</strong> that are all essentially the same eigenvector. Another way to represent this, if the eigenvector is real, is that an eigenvector as a <strong>direction that remains unchanged by multiplication by the matrix</strong>, such as direction of the vector <span class="math inline">\(v\)</span> in figure . As mentioned above, this is true only for real eigenvalues and eigenvectors, since complex eigenvectors cannot be used to define a direction in a real space.</p>
+<p>To summarize, eigenvalues and eigenvectors of a matrix are a set of numbers and a set of vectors (up to scalar multiple) that describe the action of the matrix as a multiplicative operator on vectors. “Well-behaved” square <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrices have <span class="math inline">\(n\)</span> distinct eigenvalues and <span class="math inline">\(n\)</span> eigenvectors pointing in distinct directions. In a deep sense, the collection of eigenvectors and eigenvalues defines a matrix <span class="math inline">\(A\)</span>, which is why an older name for them is characteristic vectors and values.</p>
+</section>
+<section id="calculating-eigenvalues" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="calculating-eigenvalues"><span class="header-section-number">5.3.5</span> calculating eigenvalues</h3>
+<p>Finding the eigenvalues and eigenvectors analytically, that is on paper, is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger ones there is no analytical solution. In practice, the task is outsourced to a computer. Nevertheless, it is useful to go through the process in 2 dimensions in order to gain an understanding of what is involved.</p>
+<p>First, let us define two quantities that will be useful for this calculation:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>trace</em> <span class="math inline">\(\tau\)</span> of a matrix <span class="math inline">\(A\)</span> is the sum of the diagonal elements: <span class="math inline">\(\tau = \sum_i A_{ii}\)</span></p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>determinant</em> <span class="math inline">\(\Delta\)</span> of a 2x2 matrix <span class="math inline">\(A\)</span> is given by the following: <span class="math inline">\(\Delta = ad - bc\)</span>, where</p>
+<p><span class="math display">\[
+A = \left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right)
+\]</span></p>
+</div>
+</div>
+<p>For larger matrices, the determinant is defined recursively, in terms of 2x2 submatrices of the larger matrix, but we will not give the full definition here.</p>
+<p>From the definition [def:eigen] of eigenvalues and eigenvectors, the condition can be written in terms of the four elements of a 2 by 2 matrix:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right) \times
+\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
+\]</span></p>
+<p>This is now a system of two linear algebraic equations, which we can solve by substitution. First, let us solve for <span class="math inline">\(v_1\)</span> in the first row, to get</p>
+<p><span class="math display">\[
+v_1 = \frac{-bv_2}{a-\lambda}
+\]</span></p>
+<p>Then we substitute this into the second equation and get:</p>
+<p><span class="math display">\[
+\frac{-bcv_2}{a-\lambda} +(d-\lambda)v_2 = 0
+\]</span></p>
+<p>Since <span class="math inline">\(v_2\)</span> multiplies both terms, and is not necessarily zero, we require that its multiplicative factor be zero. Doing a little algebra, we obtain the following, known as the <em>characteristic equation</em> of the matrix:</p>
+<p><span class="math display">\[
+-bc +(a-\lambda)(d-\lambda) = \lambda^2-(a+d)\lambda +ad-bc = 0
+\]</span></p>
+<p>This equation can be simplified by using two quantities we defined at the beginning of the section: the sum of the diagonal elements called the trace <span class="math inline">\(\tau = a+d\)</span>, and the determinant <span class="math inline">\(\Delta = ad-bc\)</span>. The quadratic equation has two solutions, dependent solely on <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\Delta\)</span>:</p>
+<p><span class="math display">\[
+\lambda = \frac{\tau \pm \sqrt{\tau^2-4\Delta}}{2}
+\]</span></p>
+<p>This is the general expression for a 2 by 2 matrix, showing there are two possible eigenvalues. Note that if <span class="math inline">\(\tau^2-4\Delta&gt;0\)</span>, the eigenvalues are real, if <span class="math inline">\(\tau^2-4\Delta&lt;0\)</span>, they are complex (have real and imaginary parts), and if <span class="math inline">\(\tau^2-4\Delta=0\)</span>, there is only one eigenvalue. This situation is known as degenerate, because two eigenvectors share the same eigenvalue.</p>
+<p><strong>Example.</strong> Let us take the same matrix we looked at in the previous subsection:</p>
+<p><span class="math display">\[
+A = \left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)
+\]</span></p>
+<p>The trace of this matrix is <span class="math inline">\(\tau = 2+3 =5\)</span> and the determinant is <span class="math inline">\(\Delta = 6 - 2 = 4\)</span>. Then by our formula, the eigenvalues are:</p>
+<p><span class="math display">\[
+\lambda = \frac{5 \pm \sqrt{5^2-4 \times 4}}{2}  =  \frac{5 \pm 3}{2}  = 4, 1
+\]</span></p>
+<p>These are the multiples we found in the example above, as expected.</p>
+<p>A real matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts. For discrete time models, it is enough to consider the absolute value of a complex eigenvalue, which is defined as following: <span class="math inline">\(|a +b i|= \sqrt{a^2 + b^2}\)</span>. As before, the eigenvalue with the largest absolute value “wins” in the long term.</p>
+</section>
+<section id="calculation-of-eigenvectors-on-paper" class="level3" data-number="5.3.6">
+<h3 data-number="5.3.6" class="anchored" data-anchor-id="calculation-of-eigenvectors-on-paper"><span class="header-section-number">5.3.6</span> calculation of eigenvectors on paper</h3>
+<p>The surprising fact is that, as we saw in the last subsection, the eigenvalues of a matrix can be found without knowing its eigenvectors! However, the converse is not true: to find the eigenvectors, one first needs to know the eigenvalues. Given an eigenvalue <span class="math inline">\(\lambda\)</span>, let us again write down the defining equation of the eigenvector for a generic 2 by 2 matrix:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
+\]</span></p>
+<p>This vector equation is equivalent to two algebraic equations:</p>
+<p><span class="math display">\[
+\begin{aligned}
+av_1 + b v_2 &amp;= \lambda v_1 \\
+cv_1 + d v_2 &amp;= \lambda v_2
+\end{aligned}
+\]</span></p>
+<p>Since we’ve already found <span class="math inline">\(\lambda\)</span> by solving the characteristic equation, this is two linear equations with two unknowns (<span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span>). You may remember from advanced algebra that such equations may either have a single solution for each unknown, but sometimes they may have none, or infinitely many solutions. Since there are unknowns on both sides of the equation, we can make both equations be equal to zero:</p>
+<p><span class="math display">\[
+\begin{aligned}
+(a-\lambda)v_1 + b v_2 &amp;= 0 \\
+cv_1 + (d-\lambda ) v_2 &amp;=0
+\end{aligned}
+\]</span></p>
+<p>So the first equation yields the relationship <span class="math inline">\(v_1 = -v_2 b/(a-\lambda)\)</span> and the second equation is <span class="math inline">\(v_1 = -v_2(d-\lambda)/c\)</span>, which we already obtained in the last subsection. We know that these two equations must be the same, since the ratio of <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> is what defines the eigenvector. So we can use either expression to find the eigenvector.</p>
+<p><strong>Example.</strong> Let us return to the same matrix we looked at in the previous subsection:</p>
+<p><span class="math display">\[
+A = \left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)
+\]</span></p>
+<p>The eigenvalues of the matrix are 1 and 4. Using our expression above, where the element <span class="math inline">\(a=2\)</span> and <span class="math inline">\(b=1\)</span>, let us find the eigenvector corresponding to the eigenvalue 1:</p>
+<p><span class="math display">\[
+v_1 = - v_2 \times  1/(2-1) = - v_2
+\]</span></p>
+<p>Therefore the eigenvector is characterized by the first and second elements being negatives of each other. We already saw in the example two subsections above that the vector <span class="math inline">\((1,-1)\)</span> is such as eigenvector, but it is also true of the vectors <span class="math inline">\((-1,1)\)</span>, <span class="math inline">\((-\pi, \pi)\)</span> and <span class="math inline">\((10^6, -10^6)\)</span>. This infinite collection of vectors, all along the same direction, can be described as the eigenvector (or eigendirection) corresponding to the eigenvalue 1.</p>
+<p>Repeating this procedure for <span class="math inline">\(\lambda = 4\)</span>, we obtain the linear relationship: <span class="math display">\[v_1 = - v_2 \times  1/(2-4) = 0.5 v_2\]</span> Once again, the example vector we saw two subsections <span class="math inline">\((2,1)\)</span> is in agreement with our calculation. Other vectors that satisfy this relationship include <span class="math inline">\((10,5)\)</span>, <span class="math inline">\((-20,-10)\)</span>, and <span class="math inline">\((-0.4,-0.2)\)</span>. This is again a collection of vectors that are all considered the same eigenvector with eigenvalue 4 which are all pointing in the same direction, with the only difference being their length.</p>
+</section>
+</section>
+<section id="age-structured-population-models" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="age-structured-population-models"><span class="header-section-number">5.4</span> Age-structured population models</h2>
 <p>It is often useful to divide a population into different groups by age in order to better describe the population dynamics. Typically, individuals at different life stages have distinct mortality and reproductive rates. The total population is represented as a vector, where each component denotes the size of the corresponding age group. The matrix <span class="math inline">\(A\)</span> that multiplies this vector defines the dynamics of the higher order difference equation:</p>
 <p><span class="math display">\[
 \vec x_{t+1} = A \vec x_t
 \]</span></p>
 <p>We will now analyze two common <em>age-structured models</em> used by biologists and demographers.</p>
-<section id="leslie-models" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="leslie-models"><span class="header-section-number">5.3.1</span> Leslie models</h3>
-<p>One type of age-structured model used to describe population dynamics is called the <em>Leslie model</em> <span class="citation" data-cites="edelstein-keshet_mathematical_2005 allman_mathematical_2003">(<a href="#ref-edelstein-keshet_mathematical_2005" role="doc-biblioref"><strong>edelstein-keshet_mathematical_2005?</strong></a>; <a href="#ref-allman_mathematical_2003" role="doc-biblioref"><strong>allman_mathematical_2003?</strong></a>)</span>. In this model, there are several different age groups, and after a single time step, individuals in each one all either advance to the next oldest age group or die. This type of can be described in general using the following matrix (called a Leslie matrix):</p>
+<section id="leslie-models" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="leslie-models"><span class="header-section-number">5.4.1</span> Leslie models</h3>
+<p>One type of age-structured model used to describe population dynamics is called the <em>Leslie model</em> <span class="citation" data-cites="edelstein-keshet_mathematical_2005 allman_mathematical_2003">(<a href="references.html#ref-edelstein-keshet_mathematical_2005" role="doc-biblioref"><strong>edelstein-keshet_mathematical_2005?</strong></a>; <a href="references.html#ref-allman_mathematical_2003" role="doc-biblioref"><strong>allman_mathematical_2003?</strong></a>)</span>. In this model, there are several different age groups, and after a single time step, individuals in each one all either advance to the next oldest age group or die. This type of can be described in general using the following matrix (called a Leslie matrix):</p>
 <p><span class="math display">\[
 L = \left(\begin{array}{cccc}f_1 &amp; f_2 &amp; ... &amp; f_n \\s_1 &amp; 0 &amp; ... &amp; 0 \\... &amp; ... &amp;...&amp; ... \\0 &amp; ... &amp; s_{n-1}&amp; 0\end{array}\right)
 \]</span></p>
@@ -415,8 +648,8 @@ m_t = \frac{m_1}{\sqrt 8} \sqrt 8^t - \left(m_0 - \frac{m_1}{\sqrt 8} \right)  \
 </figure>
 </div>
 </section>
-<section id="usher-models" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="usher-models"><span class="header-section-number">5.3.2</span> Usher models</h3>
+<section id="usher-models" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="usher-models"><span class="header-section-number">5.4.2</span> Usher models</h3>
 <p>Usher models are a modification of the Leslie model, where individuals are allowed to remain in the same age group after one time step. Thus, the form of an Usher matrix is:</p>
 <p><span class="math display">\[
 U = \left(\begin{array}{cccc}f_1 &amp; f_2 &amp; ... &amp; f_n \\s_1 &amp; r_2 &amp; ... &amp; 0 \\... &amp; ... &amp;...&amp; ... \\0 &amp; ... &amp; s_{n-1} &amp; r_n\end{array}\right)

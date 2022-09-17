@@ -245,8 +245,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="8.0.1" class="anchored" data-anchor-id="phase-plane-plots-via-quiver"><span class="header-section-number">8.0.1</span> phase plane plots via quiver</h3>
 <p>We are going to plot phase diagrams for linear ODEs that have the form</p>
 <p><span class="math display">\[
-dx/dt = a*x + b*y \\
-dy/dt = c*x + d*y
+\begin{aligned}
+dx/dt &amp;=&amp; ax + by \\
+dy/dt &amp;=&amp; cx + dy
+\end{aligned}
 \]</span></p>
 <p>Python’s <code>ax.quiver()</code> function allows displays vectors with arrows made of the components <span class="math inline">\((u,v)\)</span>, which is exactly what we need. The function takes 4 inputs <span class="math inline">\((x,y,u,v)\)</span>: <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are the grid points and <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> components of the vector, which are given by our ODEs.</p>
 <p>In order to make the grid points <span class="math inline">\((x,y)\)</span>, we will use the function <code>np.meshgrid()</code>. It’s a pretty handy function that takes as input a range of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values and returns two matrices <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> that together give us the grid points. Here is the code to produce a grid with an <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> range from (-1.5, 1.5) with a spacing of 0.2, we could do the following:</p>
