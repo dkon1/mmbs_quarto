@@ -18,7 +18,8 @@ Suppose two gene products (proteins) regulate each others’ expression. Activat
 $$
 \begin{aligned}
 \dot  A & = & - \alpha I\\
-\dot  I & = & \beta A\end{aligned}
+\dot  I & = & \beta A
+\end{aligned}
 $$ 
 
 $\alpha$ and $\beta$ are positive rate constants. They represent the rate of inhibition of $A$ by $I$, and of activation of $I$ by $A$, respectively. Let us now complicate the model by adding self-inhibition. It is common for regulatory proteins to
@@ -40,7 +41,7 @@ Before we learn about the analytical tools of linear algebra, let us think intui
 **Example: positive relationship between the variables** Consider the following system of differential equations: 
 
 $$
-\\begin{aligned}
+\begin{aligned}
 \dot x & = & x + y \\
 \dot y & = & x + 2y 
 \end{aligned}
@@ -69,225 +70,8 @@ As above, the flow at any one point is given by the ODEs. E.g. at $(0,1)$ the tw
 
 Let us consider the trajectories of $x$ and $y$ in time. The blue curves in the phase plane plot demonstrate the solutions go around the origin and return to the same point. This means that the behavior of the solutions over time is *periodic*, with oscillations going from positive to negative numbers and back forever.
 
-## Eigenvectors and eigenvalues
-
-
-### basic linear algebra terminology
-
-We have seen matrix notation introduced in the previous chapter, along with the definition of matrix multiplication. One basic advantage of this notation is that it makes it possible to write any set of *linear equations* as a single matrix equation. By linear equations we mean those that contain only constants or first powers of the variables. The field of mathematics studying matrices and their generalizations is called *linear algebra*; it is fundamental to both pure and applied mathematics. In this section we will learn some basic facts about matrices and their properties. First of all, let us define some basic terms:
-
-
-:::{.callout-note}
-
-## Matrix definitions
-
-*  A matrix $A$ is a rectangular array of *elements* $A_{ij}$, in which $i$ denotes the row number (index), counted from the top, and $j$ denotes the column number (index), counted from left to right.
-
-*  The elements of a matrix $A$ which have the same row and column index, e.g. $A_{33}$ are called the *diagonal elements*. Those which do not lie on the diagonal are called the *off-diagonal* elements. 
-
-* The *trace* $\tau$ of a matrix $A$ is the sum of the diagonal elements: $\tau = \sum_i A_{ii}$
-
-* The *determinant* $\Delta$ of a 2x2 matrix $A$ is given by the following: $\Delta = ad - bc$, where
-
-$$
-A = \left(\begin{array}{cc}a & b \\c & d\end{array}\right)
-$$ 
-
-For larger matrices, the determinant is defined recursively, in terms of 2x2 submatrices of the larger matrix, but we will not give the full definition here.
-:::
-
-For example, in the 3 x 3 matrix below, the elements $a, e, i$ are the diagonal elements:
-    
-$$
-A = \left(\begin{array}{ccc}a & b & c \\d & e & f \\g & h & i\end{array}\right)
-$$
-
-
-In chapter 3 you learned the rule of matrix multiplication, and we can write $C = A \times B$, so long as the number of columns in $A$ matches the number of rows in $B$. However, what if we want to reverse the process? If we know the resulting matrix $C$, and one of the two matrices, e.g. $A$, how can we find $B$? Naively, we would like to be able to divide both sides by the matrix $A$, and find $B = C/A$. However, things are more complicated for matrices.
-
-Properly speaking, we need to introduce the *inverse* of a matrix $A$. If we think about inverses of real numbers, $a^{-1}$ is a number that when it multiplies $a$, results in one. In order to define the equivalent for matrices, we first need to introduce the unity of matrix multiplication.
-
-:::{.callout-note} 
-## Definition 
-The *identity* matrix is an $n$ by $n$ matrix that does not change another $n$ by $n$ matrix by multiplication:
-
-$$
-A \times I = I \times A  = A
-$$ 
-
-The diagonal elements of the identity matrix are 1s and all off-diagonal elements are zero.
-:::
-
-**Example:** Useing the definition of matrix multiplication from chapter 3, we can verify that this definition works for any 2 by 2 matrix:
-
-
-$$
-\begin{pmatrix}-6 & -2 \\ 12 & -1 \end{pmatrix} \times \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix} = 
-\begin{pmatrix}-6\times 1 + -2\times 0 & -6\times 0 + -2\times 1  \\ 12\times 1 -1 \times 0 & 12\times 0 -1 \times 1  \end{pmatrix} = \begin{pmatrix}-6 & -2 \\ 12 & -1 \end{pmatrix}
-$$
-
-
-Now that we have specified the identity, we can define the matrix inverse:
-
-:::{.callout-note}  
-## Definition 
-A square matrix $A$ has an *inverse matrix* $A^{-1}$ if it satisfies the following: 
-
-$$
-A^{-1} A = A A^{-1} = I
-$$
-:::
-
-Finding the inverse of a matrix is not simple, and we will be content to let computers handle the dirty work. In fact, not every matrix possesses an inverse. There is a test for existence of an inverse of $A$, and it depends on the determinant [@strang_linear_2005]:
-
-A square matrix $A$ possesses an inverse $A^{-1}$ and is called *invertible* if and only if its determinant is not zero.
-
-### matrices transform vectors
-
-In this section we will learn to characterize square matrices by finding special numbers and vectors associated with them. At the core of this analysis lies the concept of a matrix as an *operator* that transforms vectors by multiplication, as we defined in chapter 3. To be clear, in this section we take as default that the matrices $A$ are square, and that vectors $\vec v$ are column vectors, and thus will multiply the matrix on the right: $A \times  \vec v$.
-
-A matrix multiplied by a vector produces another vector, provided the number of columns in the matrix is the same as the number of rows in the vector. This can be interpreted as the matrix transforming the vector $\vec v$ into another one: $ A  \times  \vec v = \vec u$. The resultant vector $\vec u$ may or may not resemble $\vec v$, but there are special vectors for which the transformation is very simple.
-
-**Example.** Let us multiply the following matrix and vector (specially chosen to make a point):
-
-$$
-\left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)\left(\begin{array}{c}1 \\ -1 \end{array}\right) = \left(\begin{array}{c}2 -1 \\ 2 - 3 \end{array}\right) =  \left(\begin{array}{c} 1 \\ -1 \end{array}\right)
-$$
-
-We see that this particular vector is unchanged when multiplied by this matrix, or we can say that the matrix multiplication is equivalent to multiplication by 1. Here is another such vector for the same matrix:
-
-$$
-\left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)\left(\begin{array}{c}1 \\ 2 \end{array}\right) = \left(\begin{array}{c}2 +2 \\ 2 + 6 \end{array}\right) =  \left(\begin{array}{c} 4 \\ 8 \end{array}\right)
-$$
-
-In this case, the vector is changed, but only by multiplication by a constant (4). Thus the geometric direction of the vector remained unchanged.
-
-Generally, a square matrix has an associated set of vectors for which multiplication by the matrix is equivalent to multiplication by a constant. This can be written down as a definition:
-
-:::{.callout-note}
-## Definition 
-
-An *eigenvector* of a square matrix $A$ is a vector $\vec v$ for which matrix multiplication by $A$ is equivalent to multiplication by a constant. This constant $\lambda$ is called its *eigenvalue* of $A$ corresponding the the eigenvector $\vec v$. The relationship is summarized in the following equation:
-
-$$
-A  \times  \vec v = \lambda \vec v
-$$ (def-eigen)
-:::
-
-Note that this equation combines a matrix ($A$), a vector ($\vec v$) and a scalar $\lambda$, and that both sides of the equation are column vectors. This definition is illustrated in {numref}`fig-eig-vec`, showing a vector ($v$) multiplied by a matrix $A$, and the resulting vector $\lambda v$, which is in the same direction as $v$, due to scalar multiplying all elements of a vector, thus either stretching it if $\lambda>1$ or compressing it if $\lambda < 1$. This assumes that $\lambda$ is a real number, which is not always the case, but we will leave that complication aside for the purposes of this chapter.
-
-
-![Illustration of the geometry of a matrix $A$ multiplying its eigenvector $v$, resulting in a vector in the same direction
-$\lambda v$. (Figure by Lantonov under CC BY-SA 4.0 via Wikimedia Commons)](images/Eigenvalue_equation.png)
-
-The definition does not specify how many such eigenvectors and eigenvalues can exist for a given matrix $A$. There are usually as many such vectors $\vec v$ and corresponding numbers $\lambda$ as the number of rows or columns of the square matrix $A$, so a 2 by 2 matrix has two eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One ironclad rule is that there cannot be more distinct eigenvalues than the matrix dimension. Some matrices possess fewer eigenvalues than the matrix dimension, those are said to have a *degenerate* set of eigenvalues, and at least two of the eigenvectors share the same eigenvalue.
-
-The situation with eigenvectors is trickier. There are some matrices for which any vector is an eigenvector, and others which have a limited set of eigenvectors. What is difficult about counting eigenvectors is that an eigenvector is still an eigenvector when multiplied by a constant. You can show that for any matrix, multiplication by a constant is commutative: $cA = Ac$, where $A$ is a matrix and $c$ is a constant. This leads us to the important result that if $\vec v$ is an eigenvector with eigenvalue $\lambda$, then any scalar multiple $c \vec v$ is also an eigenvector with the same eigenvalue. The following demonstrates this algebraically:
-
-$$
-A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \vec v)
-$$
-
-This shows that when the vector $c \vec v$ is multiplied by the matrix $A$, it results in its being multiplied by the same number $\lambda$, so by definition it is an eigenvector. Therefore, an eigenvector $\vec v$ is not unique, as any constant multiple $c \vec v$ is also an eigenvector. It is more useful to think not of a single eigenvector $\vec v$, but of a **collection of vectors that can be interconverted by scalar multiplication** that are all essentially the same eigenvector. Another way to represent this, if the eigenvector is real, is that an eigenvector as a **direction that remains unchanged by multiplication by the matrix**, such as direction of the vector $v$ in figure . As mentioned above, this is true only for real eigenvalues and eigenvectors, since complex eigenvectors cannot be used to define a direction in a real space.
-
-To summarize, eigenvalues and eigenvectors of a matrix are a set of numbers and a set of vectors (up to scalar multiple) that describe the action of the matrix as a multiplicative operator on vectors. “Well-behaved” square $n$ by $n$ matrices have $n$ distinct eigenvalues and $n$ eigenvectors pointing in distinct directions. In a deep sense, the collection of eigenvectors and eigenvalues defines a matrix $A$, which is why an older name for them is characteristic vectors and values.
-
-### calculating eigenvalues
-
-Finding the eigenvalues and eigenvectors analytically, that is on paper, is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger ones there is no analytical solution. In practice, the task is outsourced to a computer, and MATLAB has a number of functions for this purpose. Nevertheless, it is useful to go through the process in 2 dimensions in order to gain an understanding of what is involved. From the definition \[def:eigen\] of eigenvalues and eigenvectors, the condition can be written in terms of the four elements of a 2 by 2 matrix:
-
-$$
-\left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
-$$
-
-This is now a system of two linear algebraic equations, which we can solve by substitution. First, let us solve for $v_1$ in the first row, to get 
-
-$$
-v_1 = \frac{-bv_2}{a-\lambda}
-$$ 
-
-Then we substitute this into the second equation and get:
-
-$$
-\frac{-bcv_2}{a-\lambda} +(d-\lambda)v_2 = 0
-$$ 
-
-Since $v_2$ multiplies both terms, and is not necessarily zero, we require that its multiplicative factor be zero. Doing a little algebra, we obtain the following, known as the *characteristic equation* of the matrix:
-
-$$
--bc +(a-\lambda)(d-\lambda) = \lambda^2-(a+d)\lambda +ad-bc = 0
-$$ 
-
-This equation can be simplified by using two quantities we defined at the beginning of the section: the sum of the diagonal elements called the trace $\tau = a+d$, and the determinant $\Delta = ad-bc$. The quadratic equation has two solutions, dependent solely on $\tau$ and $\Delta$:
-
-$$
-\lambda = \frac{\tau \pm \sqrt{\tau^2-4\Delta}}{2}
-$$ 
-
-This is the general expression for a 2 by 2 matrix, showing there are two possible eigenvalues. Note that if $\tau^2-4\Delta>0$, the eigenvalues are real, if $\tau^2-4\Delta<0$, they are complex (have real and imaginary parts), and if $\tau^2-4\Delta=0$, there is only one eigenvalue. This situation is known as degenerate, because two eigenvectors share the same eigenvalue.
-
-**Example.** Let us take the same matrix we looked at in the previous subsection:
-
-$$
-A = \left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)
-$$ 
-
-The trace of this matrix is $\tau = 2+3 =5$ and the determinant is $\Delta = 6 - 2 = 4$. Then by our formula, the eigenvalues are:
-
-$$
-\lambda = \frac{5 \pm \sqrt{5^2-4 \times 4}}{2}  =  \frac{5 \pm 3}{2}  = 4, 1
-$$
-
-These are the multiples we found in the example above, as expected.
-
-A real matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts. For discrete time models, it is enough to consider the absolute value of a complex eigenvalue, which is defined as following: $|a +b i|= \sqrt{a^2 + b^2}$. As before, the eigenvalue with the largest absolute value “wins” in the long term.
-
-### calculation of eigenvectors on paper
-
-The surprising fact is that, as we saw in the last subsection, the eigenvalues of a matrix can be found without knowing its eigenvectors! However, the converse is not true: to find the eigenvectors, one first needs to know the eigenvalues. Given an eigenvalue $\lambda$, let us again write down the defining equation of the eigenvector for a generic 2 by 2 matrix:
-
-$$
-\left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
-$$
-
-This vector equation is equivalent to two algebraic equations:
-
-$$
-\begin{aligned}
-av_1 + b v_2 &= \lambda v_1 \\
-cv_1 + d v_2 &= \lambda v_2 
-\end{aligned}
-$$ 
-
-Since we’ve already found $\lambda$ by solving the characteristic equation, this is two linear equations with two unknowns ($v_1$ and $v_2$). You may remember from advanced algebra that such equations may either have a single solution for each unknown, but sometimes they may have none, or infinitely many solutions. Since there are unknowns on both sides of the equation, we can make both equations be equal to zero: 
-
-$$\begin{aligned}
-(a-\lambda)v_1 + b v_2 &= 0 \\
-cv_1 + (d-\lambda ) v_2 &=0
-\end{aligned}
-$$ 
-
-So the first equation yields the relationship $v_1 = -v_2 b/(a-\lambda)$ and the second equation is $v_1 = -v_2(d-\lambda)/c$, which we already obtained in the last subsection. We know that these two equations must be the same, since the ratio of $v_1$ and $v_2$ is what defines the eigenvector. So we can use either expression to find the eigenvector.
-
-**Example.** Let us return to the same matrix we looked at in the previous subsection:
-
-$$
-A = \left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)
-$$ 
-
-The eigenvalues of the matrix are 1 and 4. Using our expression above, where the element $a=2$ and $b=1$, let us find the eigenvector corresponding to the eigenvalue 1: 
-
-$$
-v_1 = - v_2 \times  1/(2-1) = - v_2
-$$ 
-
-Therefore the eigenvector is characterized by the first and second elements being negatives of each other. We already saw in the example two subsections above that the vector $(1,-1)$ is such as eigenvector, but it is also true of the vectors $(-1,1)$, $(-\pi, \pi)$ and $(10^6, -10^6)$. This infinite collection of vectors, all along the same direction, can be described as the eigenvector (or eigendirection) corresponding to the eigenvalue 1.
-
-Repeating this procedure for $\lambda = 4$, we obtain the linear relationship: $$v_1 = - v_2 \times  1/(2-4) = 0.5 v_2$$ Once again, the example vector we saw two subsections $(2,1)$ is in agreement with our calculation. Other vectors that satisfy this relationship include $(10,5)$, $(-20,-10)$, and $(-0.4,-0.2)$. This is again a collection of vectors that are all considered the same eigenvector with eigenvalue 4 which are all pointing in the same direction, with the only difference being their length.
-
 
 ## Solutions of linear two-variable ODEs
-
 
 Let us start by considering two variable ODEs that do not affect each other: 
 
@@ -350,7 +134,7 @@ We have seen that linear algebra allows us to write down the solution of a multi
 
 ### real eigenvalues
 
-Let us consider the fixed points of the linear system: since both $\dot x =0 $ and $\dot y = 0$ must be zero, the only fixed point is the origin $(0,0)$. We will see that the stability of the fixed point depends on the sign of the real part of the eigenvalue.
+Let us consider the fixed points of the linear system: since both $\dot x =0$ and $\dot y = 0$ must be zero, the only fixed point is the origin $(0,0)$. We will see that the stability of the fixed point depends on the sign of the real part of the eigenvalue.
 
 Suppose we have a positive real eigenvalue. The solution in the direction of the corresponding eigenvector is then described by $Ce^{\lambda t}$, $\lambda > 0$, which is exponential growth. The means that the solution is going to grow in the direction of the eigenvector away from the origin, and thus the origin is an unstable fixed point (in this direction). This type of fixed point is called an *unstable node*.
 
@@ -406,17 +190,17 @@ For complex eigenvalues, there are three possibilities: if the real part is posi
 
 ## Dynamics of romantic relationships
 
-
 We examine a model, taken from [@strogatz_nonlinear_2001], that applies dynamical systems modeling to a pressing concern for many humans: the prediction of dynamics of a romantic relationship. There are several unrealistic assumptions involved in the following model: first, that love or affection can be quantified, second, that any changes in relationship depend only on the emotions of the two people involved, and third, that the rate of change of the two love variables depend linearly on each other.
 
 If we can give those assumptions the benefit of the doubt (which is how all relationships begin), we can write down a system of ODEs to describe a romantically involved couple. Here $X$ and $Y$ are dynamic variables that quantify the emotional states of the two lovers: 
 
-$$\
-begin{aligned}
-\dot  X & = & aX+ bY \\
-\dot  Y & = & cX + dY
+$$
+\begin{aligned}
+\dot  X &=& aX+ bY \\
+\dot  Y &=& cX + dY
 \end{aligned}
-$$ 
+$$
+
 
 Let us denote positive feelings (love) with positive values of $X,Y$, while negative values signify negative feelings (hate.) The significance of the parameters can be interpreted as follows: $a,d$ describe the response of the two people to their own feelings, while $b,c$ correspond to the effect the other person’s feeling has on their own. For example, a person whose feeling grow as the other person’s affection increases can be modeled with a positive value of $b$ (or $c$). On the other hand, a person whose own feelings are dampened by the other one’s excessively positive emotions, can be decribed by a negative value of $b$ or $c$. Their own feelings can also play a role, either positive or negative, reflected in the sign of the constants $a$ and $d$.
 

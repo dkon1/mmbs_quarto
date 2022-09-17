@@ -119,13 +119,13 @@ For a difference equation $x(t+1) = f(x(t))$, a fixed point $x^*$ can be classif
 
  * $|f'(x^*)| < 1$: the deviation $\epsilon(t)$ decays, and the solution approaches the fixed point; fixed point is *stable*
 
- * $|f'(x^*)| = 1 $: the fixed point may be stable or unstable, and more information is needed
+ * $|f'(x^*)| = 1$: the fixed point may be stable or unstable, and more information is needed
 :::
 
 We now know how to determine the stability of a fixed point, so let us apply this method to some examples.
 
 **Example: linear difference equations.** Let us analyze the stability of the fixed point of a linear difference equation, e.g.
-$ N(t+1) = -0.5N(t) +10$. The derivative of the updating function is equal to -0.5. Because it is less than 1 in absolute value, the fixed point is stable, so solutions converge to this equilibrium. We can state more generally that any linear difference equation of the form $N(t+1) = aN(t) + b$ has one fixed point, which is equal to $N^* = b/(1-a)$. This fixed point is stable if $|a| <1$ and unstable if $|a|>1$.
+$N(t+1) = -0.5N(t) +10$. The derivative of the updating function is equal to -0.5. Because it is less than 1 in absolute value, the fixed point is stable, so solutions converge to this equilibrium. We can state more generally that any linear difference equation of the form $N(t+1) = aN(t) + b$ has one fixed point, which is equal to $N^* = b/(1-a)$. This fixed point is stable if $|a| <1$ and unstable if $|a|>1$.
 
 **Example: discrete logistic model.** In the last subsection we found the fixed points of the simplified logistic model. To determine what happens to the solution, we need to determine the stability of both equilibria. Since the stability of fixed points is determined by the derivative of the defining function at the fixed points, we compute the derivative of $f(N) = rN-rN^2$ to be $f'(N) = r-2rN$, and evaluate it at the two fixed points $N^* = 0$ and $N^* = (r-1)/r$:
 
@@ -204,4 +204,4 @@ We can plot the solution for the population size of the logistic model populatio
 
 **Case 2: $1 < r < 3$.** The extinction fixed point $N^*= 0$ is unstable, but the carrying capacity fixed point $N^* = (r-1)/r$ is stable. We can conclude that the solution will approach the carrying capacity for most initial conditions. This was shown in figure \[fig:sol\_logistic\_1\] for $r=1.5$ and is illustrated in figure \[fig:sol\_logistic\_3\] for $r=2.8$. Notice that although the solution approaches the carrying capacity equilibrium in both cases, when $r>2$, the solution oscillates while converging to its asymptotic value, foreshadowing the behavior when $r>3$.
 
-**Case 3: $ r > 3$.** Strange things happen: there are no stable fixed points, so there is no value for the solution to approach. As we saw in the previous section, the solution can undergo so-called period two oscillations, which are shown in figure \[fig:sol\_logistic\_4\] with $r=3.3$. However, even stranger behavior is observed when the parameter $r$ crosses the threshold of about $3.59$. Figure \[fig:sol\_logistic\_5\] shows the behavior of the solution for $r=3.6$, which is no longer periodic, and instead seems to bounce around without any discernible pattern. This dynamics is known as *chaos*.
+**Case 3: $r > 3$.** Strange things happen: there are no stable fixed points, so there is no value for the solution to approach. As we saw in the previous section, the solution can undergo so-called period two oscillations, which are shown in figure \[fig:sol\_logistic\_4\] with $r=3.3$. However, even stranger behavior is observed when the parameter $r$ crosses the threshold of about $3.59$. Figure \[fig:sol\_logistic\_5\] shows the behavior of the solution for $r=3.6$, which is no longer periodic, and instead seems to bounce around without any discernible pattern. This dynamics is known as *chaos*.
