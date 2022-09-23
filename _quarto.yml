@@ -14,8 +14,10 @@ book:
     - ch4_cobweb_plots.qmd
     - ch5_discrete_higher.qmd
     - ch6_matrix_mult.qmd
-    - ch7_linear_pplane.qmd
-    - ch8_phase_portraits.qmd
+    - ch7_1var_ode.qmd
+    - ch8_numeric_ode.qmd
+    - ch9_linear_pplane.qmd
+    - ch10_phase_portraits.qmd
     - references.qmd
 
 bibliography: references.bib
