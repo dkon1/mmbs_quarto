@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Mathematical Methods for Biology, Part 1 - 5&nbsp; Discrete models of higher order</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ch6_matrix_mult.html" rel="next">
+<link href="./ch4_cobweb_plots.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Mathematical Methods for Biology, Part 1</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch1_discrete1var.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">One variable in discrete time</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch2_plotting_python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch3_discrete_chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Nonlinear discrete-time dynamic models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch4_cobweb_plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graphical analysis of difference equations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch5_discrete_higher.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch6_matrix_mult.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Matrix multiplication and population models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch7_1var_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Models with one variable in continuous time</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch8_numeric_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numeric solutions of ODEs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch9_linear_pplane.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear ODEs with two variables</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch10_phase_portraits.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Phase portraits in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#higher-order-difference-equations" id="toc-higher-order-difference-equations" class="nav-link active" data-scroll-target="#higher-order-difference-equations"> <span class="header-section-number">5.1</span> higher order difference equations</a>
+  <ul class="collapse">
+  <li><a href="#the-fibonacci-model-and-sequence" id="toc-the-fibonacci-model-and-sequence" class="nav-link" data-scroll-target="#the-fibonacci-model-and-sequence"> <span class="header-section-number">5.1.1</span> the Fibonacci model and sequence</a></li>
+  <li><a href="#matrix-representation-of-discrete-time-models" id="toc-matrix-representation-of-discrete-time-models" class="nav-link" data-scroll-target="#matrix-representation-of-discrete-time-models"> <span class="header-section-number">5.1.2</span> matrix representation of discrete time models</a></li>
+  </ul></li>
+  <li><a href="#solutions-for-linear-higher-order-difference-equations" id="toc-solutions-for-linear-higher-order-difference-equations" class="nav-link" data-scroll-target="#solutions-for-linear-higher-order-difference-equations"> <span class="header-section-number">5.2</span> Solutions for linear higher order difference equations</a>
+  <ul class="collapse">
+  <li><a href="#solutions-of-linear-difference-equations" id="toc-solutions-of-linear-difference-equations" class="nav-link" data-scroll-target="#solutions-of-linear-difference-equations"> <span class="header-section-number">5.2.1</span> solutions of linear difference equations</a></li>
+  </ul></li>
+  <li><a href="#matrices-and-vectors" id="toc-matrices-and-vectors" class="nav-link" data-scroll-target="#matrices-and-vectors"> <span class="header-section-number">5.3</span> Matrices and vectors</a>
+  <ul class="collapse">
+  <li><a href="#elementary-matrix-operations" id="toc-elementary-matrix-operations" class="nav-link" data-scroll-target="#elementary-matrix-operations"> <span class="header-section-number">5.3.1</span> elementary matrix operations</a></li>
+  <li><a href="#matrix-multiplication" id="toc-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication"> <span class="header-section-number">5.3.2</span> matrix multiplication</a></li>
+  <li><a href="#matrix-inverses" id="toc-matrix-inverses" class="nav-link" data-scroll-target="#matrix-inverses"> <span class="header-section-number">5.3.3</span> matrix inverses</a></li>
+  <li><a href="#matrices-transform-vectors" id="toc-matrices-transform-vectors" class="nav-link" data-scroll-target="#matrices-transform-vectors"> <span class="header-section-number">5.3.4</span> matrices transform vectors</a></li>
+  <li><a href="#calculating-eigenvalues" id="toc-calculating-eigenvalues" class="nav-link" data-scroll-target="#calculating-eigenvalues"> <span class="header-section-number">5.3.5</span> calculating eigenvalues</a></li>
+  <li><a href="#calculation-of-eigenvectors-on-paper" id="toc-calculation-of-eigenvectors-on-paper" class="nav-link" data-scroll-target="#calculation-of-eigenvectors-on-paper"> <span class="header-section-number">5.3.6</span> calculation of eigenvectors on paper</a></li>
+  </ul></li>
+  <li><a href="#age-structured-population-models" id="toc-age-structured-population-models" class="nav-link" data-scroll-target="#age-structured-population-models"> <span class="header-section-number">5.4</span> Age-structured population models</a>
+  <ul class="collapse">
+  <li><a href="#leslie-models" id="toc-leslie-models" class="nav-link" data-scroll-target="#leslie-models"> <span class="header-section-number">5.4.1</span> Leslie models</a></li>
+  <li><a href="#usher-models" id="toc-usher-models" class="nav-link" data-scroll-target="#usher-models"> <span class="header-section-number">5.4.2</span> Usher models</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>It is not unusual for biological systems to have multiple variables which influence each other, and thus need to be accounted in any model that aims to be useful. In this unit we will learn how to construct such models, and the methods for analyzing, solving, and numerically simulating them. We will see how models with two or more variables are used in a variety of biological fields: to describe population demographics, motility of cochlear cells, psychology of human relationships, gene regulation, and motion of molecular structures.</p>
+<p>We will need new mathematical tools in order to analyze models with multiple variables. These methods are primarily from the realm of linear algebra. We will express multiple equations in terms of matrices and vectors, and learn how to operate on these objects. The dynamics of these models can be analyzed by doing calculations with the matrices, specifically finding special numbers and vectors known as eigenvalues and eigenvectors. These concepts, which will be introduced later, are absolutely central to all of applied mathematics, and to computational biology in particular.</p>
+<p>In this chapter, the section on modeling is devoted to an old model of a population where individuals live for two generations, known as the Fibonacci model. We then describe how this model can be written down either as a single difference equation of second order, or as two equation of the first order, which may be represented in matrix form. We will learn to solve second order difference equations with an explicit formula, and then introduce some elementary matrix operations. In the computational section we will use the matrix notation to compute numerical solutions for higher order difference equations. Finally, in the synthesis section we will analyze two demographic population models, in which the population is broken into age groups. The matrix notation will be important for concisely representing different parameters for each age group.</p>
+<p>In this chapter you will learn to:</p>
+<ul>
+<li>build higher order population models</li>
+<li>express age-structured models in matrix form</li>
+<li>analyze solutions of these models on paper</li>
+<li>use Python for matrix operations</li>
+<li>classify the behavior of solutions of these models</li>
+</ul>
+<section id="higher-order-difference-equations" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="higher-order-difference-equations"><span class="header-section-number">5.1</span> higher order difference equations</h2>
+<p>So far we have dealt with difference equations in which the value of the dependent variable at the next time step <span class="math inline">\(x_{t+1}\)</span> depends solely on the variable at the present time <span class="math inline">\(x_t\)</span>. These are known as <em>first order</em> difference equations because they only require one step from the present to the future. We will now examine difference equations where the future value depends not only on the present value <span class="math inline">\(x_t\)</span>, but also on the past values: <span class="math inline">\(x_{t-1}\)</span>, etc. The number of time steps that the equation looks into the past is the the order of the scheme.</p>
+<section id="the-fibonacci-model-and-sequence" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="the-fibonacci-model-and-sequence"><span class="header-section-number">5.1.1</span> the Fibonacci model and sequence</h3>
+<p>The Italian mathematician Leonardo Fibonacci, who lived in the late 12th - early 13th centuries, contributed greatly to the development of mathematics in the western world. For starters, he introduced the Hindu-Arabic numerals we use today, in place of the cumbersome Roman numerals. He also constructed an early model of population growth, which considered a population of individuals that lived for two generations. The first generation does not reproduce, but in the second generation each individual produces a single offspring (or each pair produces a new pair) and then dies. Then the total number of individuals at the next time step is the sum of the individuals in the previous two time steps ({numref}<code>fig-fib-rabbits</code>) This is described by the following second order difference equation:</p>
+<p><span class="math display">\[
+N_{t+1} = N_t + N_{t-1}
+\]</span> (fibonacci)</p>
+<p>The famous Fibonacci sequence is a solution of this equation. For a second-order equations, two initial conditions are required, and if we take <span class="math inline">\(N_0 = 0\)</span> and <span class="math inline">\(N_1 = 1\)</span>, then the resulting sequence will look as follows:</p>
+<p><span class="math display">\[
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
+\]</span></p>
+<p>The Fibonacci sequence is famously found in many natural phenomena, including in phyllotaxis (arrangement of parts in plants), and spirals on some mollusk shells, e.g.&nbsp;<em>Nautilus pompilius</em> ({numref}<code>fig-fib-rabbits</code>). It may be observed by counting the number of spirals that can be drawn between plant units (such as seeds or petals), and observing that alternating the right-handed and left-handed spirals, while moving away from the center, often results in the Fibonacci sequence. The precise reason for this is unclear, although explanations exist, for instance that this pattern provides the most efficient packing of seeds.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fibonacci-rabbits.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Fibbonaci model with each pair of individuals waiting one generation before producing another pair each subsequent generation &lt;https://artblot.wordpress.com/2013/05/10/rich-with-fibonacci-gold/</figcaption><p></p>
+</figure>
+</div>
+<p>[The shell of the <em>Nautilus pompilius</em> mollusk has the shape of a Fibonacci spiral, shown here filled with squares of the corresponding size <a href="http://mathforum.org/mathimages" class="uri">http://mathforum.org/mathimages</a>] (images/fibo_nautilus.jpg)</p>
+</section>
+<section id="matrix-representation-of-discrete-time-models" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="matrix-representation-of-discrete-time-models"><span class="header-section-number">5.1.2</span> matrix representation of discrete time models</h3>
+<p>The Fibonacci model above can be represented by two equations instead of one, if we consider two dependent variables. Let us represent the number of rabbits in generation 1 (young) by <span class="math inline">\(x\)</span> and in generation 2 (old) by<span class="math inline">\(y\)</span>. The new generation at the next time (<span class="math inline">\(t+1\)</span>) is comprised of offspring of the young and old generations at time <span class="math inline">\(t\)</span>, while the old generation at the next time is simply is young generation at the current time. This gives the following set of equations:</p>
+<p><span class="math display">\[
+\begin{aligned}
+x_{t+1} &amp; = &amp; x_t + x_{t-1}\\
+x_{t} &amp; = &amp; x_t
+\end{aligned}
+\]</span></p>
+<p>The advantage of re-writing a single equation as two is that the new system is first order, that is, only relies on the values of the variables at the current time <span class="math inline">\(t\)</span>. These equations can also be written in <em>matrix</em> form:</p>
+<p><span class="math display">\[
+\left(\begin{array}{c}x_{t+1} \\x_{t}\end{array}\right) = \left(\begin{array}{c}x_t + x_{t-1} \\x_ t \end{array}\right) =   \left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right) \left(\begin{array}{c}x_t \\ x_{t-1} \end{array}\right)
+\]</span></p>
+<p>This representation is convenient and leads to a set of rules for matrix manipulation. We wrote the write-hand side as a product of a matrix containing the coefficients of <span class="math inline">\(x_t\)</span> and <span class="math inline">\(y_t\)</span> and the vector with the two variables. The product of the matrix and the vector is equal to the original vector.</p>
+</section>
+</section>
+<section id="solutions-for-linear-higher-order-difference-equations" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="solutions-for-linear-higher-order-difference-equations"><span class="header-section-number">5.2</span> Solutions for linear higher order difference equations</h2>
+<section id="solutions-of-linear-difference-equations" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="solutions-of-linear-difference-equations"><span class="header-section-number">5.2.1</span> solutions of linear difference equations</h3>
+<p>Solutions for first order linear difference equations are exponential in form. The solutions for second order linear difference equations consist of a sum of two exponentials with different bases. For the following general linear second order difference equation:</p>
+<p><span class="math display">\[
+x_{t+1} = ax_{t} + b x_{t-1}
+\]</span></p>
+<p>The solution can be written as follows:</p>
+<p><span class="math display">\[
+x_t  = A \lambda_1^t + B \lambda_2^t
+\]</span></p>
+<p>The solution for a second order difference equation is a sum of two terms that look like solutions to first order difference equations. There are two different types of constants in the solution: the bases of the exponential <span class="math inline">\(\lambda_1, \lambda_2\)</span> and the multiplicative constants <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. They are different because the exponential parameters depend on the equation itself, but not on the initial conditions, while the multiplicative constants depend only on the initial conditions. Therefore, they can be determined separately:</p>
+<div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Outline for solving a second order linear difference equation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Substitute the solution <span class="math inline">\(x_t = \lambda^t\)</span> into the difference equation. For the general difference equation, we obtain a the following quadratic relation by dividing everything by <span class="math inline">\(\lambda^{t-1}\)</span>:</li>
+</ol>
+<p><span class="math display">\[
+\lambda^{t+1} = a \lambda^{t} + b \lambda^{t-1} \Rightarrow \lambda^2 = a\lambda + b
+\]</span></p>
+<ol start="2" type="1">
+<li>Solve the quadratic equation for values of <span class="math inline">\(\lambda\)</span> which satisfy the difference equation:</li>
+</ol>
+<p><span class="math display">\[
+\lambda_{1,2} = \frac{a \pm \sqrt {a^2  + 4b} }{2}
+\]</span></p>
+<p>If <span class="math inline">\(a^2 + 4b &gt; 0\)</span>, this gives two values of <span class="math inline">\(\lambda\)</span>; if <span class="math inline">\(a^2 + 4b = 0\)</span>, there is a single value, and if <span class="math inline">\(a^2 + 4b &lt; 0\)</span>, then no real values of <span class="math inline">\(\lambda\)</span> satisfy the difference equation.</p>
+<ol start="3" type="1">
+<li>Once we have found the values <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span>, use the initial conditions (e.g.&nbsp;some values <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x_1\)</span>) to solve for the multiplicative constants:</li>
+</ol>
+<p><span class="math display">\[
+x_0 = A + B ; \; x_1 = A\lambda_1 + B\lambda_2
+\]</span></p>
+<p>Use <span class="math inline">\(A = x_0 - B\)</span> to plug into the second equation: <span class="math inline">\(x_1 = (x_0 - B) \lambda_1 + B \lambda_2\)</span></p>
+<ol start="4" type="1">
+<li>The general solution for <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is the following, provided <span class="math inline">\(\lambda_2 \neq \lambda_1\)</span>:</li>
+</ol>
+<p><span class="math display">\[
+B = \frac{x_1 -x_0 \lambda_1}{\lambda_2 - \lambda_1}; \; A =  \frac{x_0\lambda_2 - x_1}{\lambda_2 - \lambda_1}
+\]</span></p>
+</div>
+</div>
+<p>Let us apply this approach to solving the Fibonacci difference equation {eq}<code>fibonacci</code>:</p>
+<p><span class="math display">\[
+\lambda^{2}= \lambda + 1 \Longrightarrow \;  \lambda^2-\lambda-1= 0
+\]</span></p>
+<p>We find the solutions by the quadratic formula: <span class="math inline">\(\lambda_{1,2} = (1\pm \sqrt 5)/2\)</span>.</p>
+<p>Now let us use the initial conditions <span class="math inline">\(N_0 = 0\)</span> and <span class="math inline">\(N_1 = 1\)</span>. The two multiplicative constants must then satisfy the following:</p>
+<p><span class="math display">\[
+0 = A + B; \; 1 = A\lambda_1 + B\lambda_2
+\]</span></p>
+<p>By the formula we found above, the initial conditions are:</p>
+<p><span class="math display">\[
+A =  \frac{-1}{\lambda_2 - \lambda_1} =  \frac{1}{\sqrt 5} ; \; B = \frac{1}{\lambda_2 - \lambda_1} = \frac{-1}{\sqrt 5}
+\]</span></p>
+<p>The complete solution, which gives the <span class="math inline">\(t\)</span>-th number in the Fibonacci sequence is:</p>
+<p><span class="math display">\[
+N_t =  \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^t - \frac{1}{\sqrt 5}\left(\frac{1- \sqrt 5}{2}\right)^t
+\]</span></p>
+<p>There are several remarkable things about this formula. First is the fact that despite the abundance of irrational numbers, for each integer <span class="math inline">\(t\)</span> the number <span class="math inline">\(N_t\)</span> is an integer. One can check this by programming the formula in your favorite language, and plugging in any value of <span class="math inline">\(t\)</span>.</p>
+<p>Second, an important feature of the Fibonacci sequence is the ratio between successive terms in the sequence. Notice that of the two terms in the formula, <span class="math inline">\((\frac{1+ \sqrt 5}{2})^t\)</span> grows as <span class="math inline">\(t\)</span> increases, while <span class="math inline">\((\frac{1- \sqrt 5}{2})^t\)</span> decreases to zero, because the first number is greater than 1, while the second is less than 1. This means that for large <span class="math inline">\(t\)</span>, the terms in the Fibonacci sequence are approximately equal to:</p>
+<p><span class="math display">\[
+N_t \approx \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^t
+\]</span></p>
+<p>Since each successive term is multiplied by <span class="math inline">\((1+\sqrt5)/2\)</span>, the ratio between successive terms, <span class="math inline">\(\phi = N_{t+1}/N_t\)</span> approaches the value <span class="math inline">\(\phi=(1+\sqrt5)/2 \approx 1.618\)</span> for increasing <span class="math inline">\(t\)</span>.</p>
+<p>This number <span class="math inline">\((1+\sqrt 5)/2\)</span> is called the <em>golden ratio</em> or <em>golden section</em>, and was known from antiquity as the most aesthetically pleasing proportion in architecture and art, when used as a ratio between the height and width of the piece of art. Algebraically, the golden ratio is defined to be the number that is both the ratio between two quantities, e.g.&nbsp;<span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, and also the ratio between the sum of the two quantities (<span class="math inline">\(a+b\)</span>) and the larger of the quantities e.g.&nbsp;<span class="math inline">\(b\)</span> ({numref}<code>fig-gold-ratio</code>). Geometrically, the golden ratio can be constructed as the ratio between two sides of a rectangle, <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, which are also part of the larger rectangle with sides <span class="math inline">\(a+b\)</span> and <span class="math inline">\(a\)</span>. This construction is shown in {numref}<code>fig-gold-rect</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/golden_ratio_line.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Line segments that are in golden proportion to each other <a href="http://en.wikipedia.org/wiki/Golden_ratio" class="uri">http://en.wikipedia.org/wiki/Golden_ratio</a></figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/gold_rect_const.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Construction of a rectangle with the golden ratio between its sides <a href="http://en.wikipedia.org/wiki/Golden_ratio" class="uri">http://en.wikipedia.org/wiki/Golden_ratio</a></figcaption><p></p>
+</figure>
+</div>
+<p>To show that the geometric golden ratio is the same as the ratio that appears in the Fibonacci sequence, let us write down the algebraic condition stated above. Because we are interested in the ratio, let the smaller quantity be 1 and the larger one be <span class="math inline">\(\phi\)</span>; by the definition we obtain the following. <span class="math inline">\(\phi = (\phi+1)/\phi\)</span>, thus <span class="math inline">\(\phi^2-\phi-1 = 0\)</span>. This is the same quadratic equation that we derived for the exponential bases of the solution above. The solution to this equation (by the quadratic formula) is <span class="math inline">\(\phi=(1\pm\sqrt5)/2\)</span>, and the positive solution is the golden ratio.</p>
+</section>
+</section>
+<section id="matrices-and-vectors" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="matrices-and-vectors"><span class="header-section-number">5.3</span> Matrices and vectors</h2>
+<p>One basic advantage of matrix notation is that it makes it possible to write any set of <em>linear equations</em> as a single matrix equation. By linear equations we mean those that contain only constants or first powers of the variables. The field of mathematics studying matrices and their generalizations is called <em>linear algebra</em>; it is fundamental to both pure and applied mathematics. In this section we will learn some basic facts about matrices and their properties.</p>
+<section id="elementary-matrix-operations" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="elementary-matrix-operations"><span class="header-section-number">5.3.1</span> elementary matrix operations</h3>
+<p>Now is a good time to properly define what matrices are and how we can operate on them. We have already seen a matrix for the Fibonacci model, but just to make sure all of the terms are clear:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A matrix <span class="math inline">\(A\)</span> is a rectangular array of <em>elements</em> <span class="math inline">\(A_{ij}\)</span>, in which <span class="math inline">\(i\)</span> denotes the row number (index), counted from the top, and <span class="math inline">\(j\)</span> denotes the column number (index), counted from left to right. The <em>dimensions</em> of a matrix are defined by the number of rows and columns, so an <em>n by m matrix</em> contains <span class="math inline">\(n\)</span> rows and <span class="math inline">\(m\)</span> columns.</p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The elements of a matrix <span class="math inline">\(A\)</span> which have the same row and column index, e.g.&nbsp;<span class="math inline">\(A_{33}\)</span> are called the <em>diagonal elements</em>. Those which do not lie on the diagonal are called the <em>off-diagonal</em> elements.</p>
+</div>
+</div>
+<p>For instance, in the 3 by 3 matrix below, the elements <span class="math inline">\(a, e, i\)</span> are the diagonal elements:</p>
+<p><span class="math display">\[
+A = \left(\begin{array}{ccc}a &amp; b &amp; c \\d &amp; e &amp; f \\g &amp; h &amp; i\end{array}\right)
+\]</span></p>
+<p>Matrices can be added together if they have the same dimensions. Then matrix addition is defined simply as adding up corresponding elements, for instance the element in the second row and first column of matrix <span class="math inline">\(A\)</span> is added with the element in the second row and first column of matrix <span class="math inline">\(B\)</span> to give the element in the second row and first column of matrix <span class="math inline">\(C\)</span>. Recall from the previous chapter that rows in matrices are counted from top to bottom, while the columns are counted left to right.</p>
+</section>
+<section id="matrix-multiplication" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="matrix-multiplication"><span class="header-section-number">5.3.2</span> matrix multiplication</h3>
+<p>Matrices can also be multiplied, but this operation is trickier. For mathematical reasons, multiplication of matrices <span class="math inline">\(A \times B\)</span> does not mean multiplying corresponding elements. Instead, the definition seeks to capture the calculation of simultaneous equations, like the one in the previous section. Here is the definition of matrix multiplication, in words and in a formula <span class="citation" data-cites="strang_linear_2005">(<a href="references.html#ref-strang_linear_2005" role="doc-biblioref"><strong>strang_linear_2005?</strong></a>)</span>:</p>
+<p>The <em>product of matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></em> is defined to be a matrix <span class="math inline">\(C\)</span>, whose element <span class="math inline">\(c_{ij}\)</span> is the <strong>dot product of the i-th row of <span class="math inline">\(A\)</span> and the j-th column of <span class="math inline">\(B\)</span></strong>:</p>
+<p><span class="math display">\[
+c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + ... + a_{iN}b_{Nj} = \sum_{k=1}^q a_{ik} b_{kj}
+\]</span></p>
+<p>This definition is possible only if the length of the rows of <span class="math inline">\(A\)</span> and the length of columns of <span class="math inline">\(B\)</span> are the same, since we cannot compute the dot product of two vectors of different lengths. Matrix multiplication is defined only if <span class="math inline">\(A\)</span> is <span class="math inline">\(n\)</span> by <span class="math inline">\(q\)</span> and <span class="math inline">\(B\)</span> is <span class="math inline">\(q\)</span> by <span class="math inline">\(m\)</span>, for any integers <span class="math inline">\(n\)</span>, <span class="math inline">\(q\)</span>, and <span class="math inline">\(m\)</span> and the resulting matrix <span class="math inline">\(C\)</span> is a matrix with <span class="math inline">\(n\)</span> rows and <span class="math inline">\(m\)</span> columns. In other words, <strong>the inner dimensions of matrices have to match</strong> in order for matrix multiplication to be possible. This is illustrated in {numref}<code>fig-mat-mult</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/matrix_multiplication_tikz.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Multiplication of two matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> results in a new matrix <span class="math inline">\(C\)</span></figcaption><p></p>
+</figure>
+</div>
+<p><strong>Example.</strong> Let us multiply two matrices to illustrate how it’s done. Here both matrices are 2 by 2, so their inner dimensions match and the resulting matrix is 2 by 2 as well:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}1 &amp; 3 \\ 6 &amp; 1\end{array}\right) \times \left(\begin{array}{cc}4 &amp; 1 \\5 &amp; -1 \end{array}\right) = \left(\begin{array}{cc}1 \times 4 + 3 \times 5 &amp; 1 \times 1 +3 \times (-1) \\ 6 \times 4+ 1 \times 5 &amp; 6 \times 1+1 \times (-1) \end{array}\right) = \left(\begin{array}{cc}19 &amp; -2 \\ 29 &amp; 5 \end{array}\right)
+\]</span></p>
+<p>One important consequence of this definition is that <strong>matrix multiplication is not commutative</strong>. If you switch the order, e.g. <span class="math inline">\(B \times A\)</span>, the resulting multiplication requires dot products of the rows of <span class="math inline">\(B\)</span> by the columns of <span class="math inline">\(A\)</span>, and except in very special circumstances, they are not the same. In fact, unless <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> are the same integer, the product of <span class="math inline">\(B \times A\)</span> may not be defined at all.</p>
+<p>In the example above of the matrix representation of the Fibonacci model, we implicitly used the conventional rules for multiplying matrices and vectors. Each row of the matrix</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right)
+\]</span></p>
+<p>contains the numbers that multiply the two elements of the vector</p>
+<p><span class="math display">\[
+\left(\begin{array}{c}x_t \\ x_{t-1} \end{array}\right)
+\]</span></p>
+<p>in order to generate the two equations <span class="math inline">\(x_{t+1} = x_t + x_{t-1}\)</span> and <span class="math inline">\(x_t = x_t\)</span>.</p>
+<p>Take the matrix equation for the Fibonacci difference equation above. Put the first two values <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> into the vector. Then perform the multiplication of the matrix and the vector:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right)\left(\begin{array}{c}1\\ 0\end{array}\right) = \left(\begin{array}{c}0+ 1 \\ 1 \end{array}\right)  = \left(\begin{array}{c}1 \\ 1 \end{array}\right)
+\]</span></p>
+<p>We can take the resulting vector and apply the matrix again, to propagate the sequence for one more step:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right) \times
+\left(\begin{array}{c}1\\ 1\end{array}\right) = \left(\begin{array}{c}1+ 1 \\ 1 \end{array}\right)  = \left(\begin{array}{c}2 \\ 1 \end{array}\right)
+\]</span></p>
+<p>Multiplying matrices and vectors is a basic operation that depends on the orientation of the vector. One can only multiply a square matrix by a column vector on the left, as we saw above, not on the right. By the same token, a row vector can only multiply a matrix on the right, and not the left, because we must use the <em>rows</em> of the matrix on the left to multiply the <em>columns</em> of the matrix on the right. This underscores the important fact that matrix multiplication is not commutative.</p>
+</section>
+<section id="matrix-inverses" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="matrix-inverses"><span class="header-section-number">5.3.3</span> matrix inverses</h3>
+<p>Above we learned the rules of matrix multiplication, and we can write <span class="math inline">\(C = A \times B\)</span>, so long as the number of columns in <span class="math inline">\(A\)</span> matches the number of rows in <span class="math inline">\(B\)</span>. However, what if we want to reverse the process? If we know the resulting matrix <span class="math inline">\(C\)</span>, and one of the two matrices, e.g.&nbsp;<span class="math inline">\(A\)</span>, how can we find <span class="math inline">\(B\)</span>? Naively, we would like to be able to divide both sides by the matrix <span class="math inline">\(A\)</span>, and find <span class="math inline">\(B = C/A\)</span>. However, things are more complicated for matrices.</p>
+<p>Properly speaking, we need to introduce the <em>inverse</em> of a matrix <span class="math inline">\(A\)</span>. If we think about inverses of real numbers, <span class="math inline">\(a^{-1}\)</span> is a number that when it multiplies <span class="math inline">\(a\)</span>, results in one. In order to define the equivalent for matrices, we first need to introduce the unity of matrix multiplication.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>identity</em> matrix is an <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrix that does not change another <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrix by multiplication:</p>
+<p><span class="math display">\[
+A \times I = I \times A  = A
+\]</span></p>
+<p>The diagonal elements of the identity matrix are 1s and all off-diagonal elements are zero.</p>
+</div>
+</div>
+<p><strong>Example:</strong> Using the definition of matrix multiplication we can verify that this definition works for any 2 by 2 matrix:</p>
+<p><span class="math display">\[
+\begin{pmatrix}-6 &amp; -2 \\ 12 &amp; -1 \end{pmatrix} \times \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{pmatrix} =
+\begin{pmatrix}-6\times 1 + -2\times 0 &amp; -6\times 0 + -2\times 1  \\ 12\times 1 -1 \times 0 &amp; 12\times 0 -1 \times 1  \end{pmatrix} = \begin{pmatrix}-6 &amp; -2 \\ 12 &amp; -1 \end{pmatrix}
+\]</span></p>
+<p>Now that we have specified the identity, we can define the matrix inverse:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A square matrix <span class="math inline">\(A\)</span> has an <em>inverse matrix</em> <span class="math inline">\(A^{-1}\)</span> if it satisfies the following:</p>
+<p><span class="math display">\[
+A^{-1} \times A = A \times A^{-1} = I
+\]</span></p>
+</div>
+</div>
+<p>Finding the inverse of a matrix is not simple, and we will be content to let computers handle the dirty work. In fact, not every matrix possesses an inverse. There is a test for existence of an inverse of <span class="math inline">\(A\)</span>, and it depends on the determinant <span class="citation" data-cites="strang_linear_2005">(<a href="references.html#ref-strang_linear_2005" role="doc-biblioref"><strong>strang_linear_2005?</strong></a>)</span>:</p>
+<p>A square matrix <span class="math inline">\(A\)</span> possesses an inverse <span class="math inline">\(A^{-1}\)</span> and is called <em>invertible</em> if and only if its determinant is not zero.</p>
+</section>
+<section id="matrices-transform-vectors" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="matrices-transform-vectors"><span class="header-section-number">5.3.4</span> matrices transform vectors</h3>
+<p>In this section we will learn to characterize square matrices by finding special numbers and vectors associated with them. At the core of this analysis lies the concept of a matrix as an <em>operator</em> that transforms vectors by multiplication. To be clear, in this section we take as default that the matrices <span class="math inline">\(A\)</span> are square, and that vectors <span class="math inline">\(\vec v\)</span> are column vectors, and thus will multiply the matrix on the right: <span class="math inline">\(A \times \vec v\)</span>.</p>
+<p>A matrix multiplied by a vector produces another vector, provided the number of columns in the matrix is the same as the number of rows in the vector. This can be interpreted as the matrix transforming the vector <span class="math inline">\(\vec v\)</span> into another one: <span class="math inline">\(A \times \vec v = \vec u\)</span>. The resultant vector <span class="math inline">\(\vec u\)</span> may or may not resemble <span class="math inline">\(\vec v\)</span>, but there are special vectors for which the transformation is very simple.</p>
+<p><strong>Example.</strong> Let us multiply the following matrix and vector (specially chosen to make a point):</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right) \times
+\left(\begin{array}{c}1 \\ -1 \end{array}\right) = \left(\begin{array}{c}2 -1 \\ 2 - 3 \end{array}\right) =  \left(\begin{array}{c} 1 \\ -1 \end{array}\right)
+\]</span></p>
+<p>We see that this particular vector is unchanged when multiplied by this matrix, or we can say that the matrix multiplication is equivalent to multiplication by 1. Here is another such vector for the same matrix:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right) \times
+\left(\begin{array}{c}1 \\ 2 \end{array}\right) = \left(\begin{array}{c}2 +2 \\ 2 + 6 \end{array}\right) =  \left(\begin{array}{c} 4 \\ 8 \end{array}\right)
+\]</span></p>
+<p>In this case, the vector is changed, but only by multiplication by a constant (4). Thus the geometric direction of the vector remained unchanged.</p>
+<p>Generally, a square matrix has an associated set of vectors for which multiplication by the matrix is equivalent to multiplication by a constant. This can be written down as a definition:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An <em>eigenvector</em> of a square matrix <span class="math inline">\(A\)</span> is a vector <span class="math inline">\(\vec v\)</span> for which matrix multiplication by <span class="math inline">\(A\)</span> is equivalent to multiplication by a constant. This constant <span class="math inline">\(\lambda\)</span> is called its <em>eigenvalue</em> of <span class="math inline">\(A\)</span> corresponding the the eigenvector <span class="math inline">\(\vec v\)</span>. The relationship is summarized in the following equation:</p>
+<p><span class="math display">\[
+A  \times  \vec v = \lambda \vec v
+\]</span> (def-eigen)</p>
+</div>
+</div>
+<p>Note that this equation combines a matrix (<span class="math inline">\(A\)</span>), a vector (<span class="math inline">\(\vec v\)</span>) and a scalar <span class="math inline">\(\lambda\)</span>, and that both sides of the equation are column vectors. This definition is illustrated in {numref}<code>fig-eig-vec</code>, showing a vector (<span class="math inline">\(v\)</span>) multiplied by a matrix <span class="math inline">\(A\)</span>, and the resulting vector <span class="math inline">\(\lambda v\)</span>, which is in the same direction as <span class="math inline">\(v\)</span>, due to scalar multiplying all elements of a vector, thus either stretching it if <span class="math inline">\(\lambda&gt;1\)</span> or compressing it if <span class="math inline">\(\lambda &lt; 1\)</span>. This assumes that <span class="math inline">\(\lambda\)</span> is a real number, which is not always the case, but we will leave that complication aside for the purposes of this chapter.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Eigenvalue_equation.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Illustration of the geometry of a matrix <span class="math inline">\(A\)</span> multiplying its eigenvector <span class="math inline">\(v\)</span>, resulting in a vector in the same direction <span class="math inline">\(\lambda v\)</span>. (Figure by Lantonov under CC BY-SA 4.0 via Wikimedia Commons)</figcaption><p></p>
+</figure>
+</div>
+<p>The definition does not specify how many such eigenvectors and eigenvalues can exist for a given matrix <span class="math inline">\(A\)</span>. There are usually as many such vectors <span class="math inline">\(\vec v\)</span> and corresponding numbers <span class="math inline">\(\lambda\)</span> as the number of rows or columns of the square matrix <span class="math inline">\(A\)</span>, so a 2 by 2 matrix has two eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One ironclad rule is that there cannot be more distinct eigenvalues than the matrix dimension. Some matrices possess fewer eigenvalues than the matrix dimension, those are said to have a <em>degenerate</em> set of eigenvalues, and at least two of the eigenvectors share the same eigenvalue.</p>
+<p>The situation with eigenvectors is trickier. There are some matrices for which any vector is an eigenvector, and others which have a limited set of eigenvectors. What is difficult about counting eigenvectors is that an eigenvector is still an eigenvector when multiplied by a constant. You can show that for any matrix, multiplication by a constant is commutative: <span class="math inline">\(cA = Ac\)</span>, where <span class="math inline">\(A\)</span> is a matrix and <span class="math inline">\(c\)</span> is a constant. This leads us to the important result that if <span class="math inline">\(\vec v\)</span> is an eigenvector with eigenvalue <span class="math inline">\(\lambda\)</span>, then any scalar multiple <span class="math inline">\(c \vec v\)</span> is also an eigenvector with the same eigenvalue. The following demonstrates this algebraically:</p>
+<p><span class="math display">\[
+A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \vec v)
+\]</span></p>
+<p>This shows that when the vector <span class="math inline">\(c \vec v\)</span> is multiplied by the matrix <span class="math inline">\(A\)</span>, it results in its being multiplied by the same number <span class="math inline">\(\lambda\)</span>, so by definition it is an eigenvector. Therefore, an eigenvector <span class="math inline">\(\vec v\)</span> is not unique, as any constant multiple <span class="math inline">\(c \vec v\)</span> is also an eigenvector. It is more useful to think not of a single eigenvector <span class="math inline">\(\vec v\)</span>, but of a <strong>collection of vectors that can be interconverted by scalar multiplication</strong> that are all essentially the same eigenvector. Another way to represent this, if the eigenvector is real, is that an eigenvector as a <strong>direction that remains unchanged by multiplication by the matrix</strong>, such as direction of the vector <span class="math inline">\(v\)</span> in figure . As mentioned above, this is true only for real eigenvalues and eigenvectors, since complex eigenvectors cannot be used to define a direction in a real space.</p>
+<p>To summarize, eigenvalues and eigenvectors of a matrix are a set of numbers and a set of vectors (up to scalar multiple) that describe the action of the matrix as a multiplicative operator on vectors. “Well-behaved” square <span class="math inline">\(n\)</span> by <span class="math inline">\(n\)</span> matrices have <span class="math inline">\(n\)</span> distinct eigenvalues and <span class="math inline">\(n\)</span> eigenvectors pointing in distinct directions. In a deep sense, the collection of eigenvectors and eigenvalues defines a matrix <span class="math inline">\(A\)</span>, which is why an older name for them is characteristic vectors and values.</p>
+</section>
+<section id="calculating-eigenvalues" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="calculating-eigenvalues"><span class="header-section-number">5.3.5</span> calculating eigenvalues</h3>
+<p>Finding the eigenvalues and eigenvectors analytically, that is on paper, is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger ones there is no analytical solution. In practice, the task is outsourced to a computer. Nevertheless, it is useful to go through the process in 2 dimensions in order to gain an understanding of what is involved.</p>
+<p>First, let us define two quantities that will be useful for this calculation:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>trace</em> <span class="math inline">\(\tau\)</span> of a matrix <span class="math inline">\(A\)</span> is the sum of the diagonal elements: <span class="math inline">\(\tau = \sum_i A_{ii}\)</span></p>
+</div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>determinant</em> <span class="math inline">\(\Delta\)</span> of a 2x2 matrix <span class="math inline">\(A\)</span> is given by the following: <span class="math inline">\(\Delta = ad - bc\)</span>, where</p>
+<p><span class="math display">\[
+A = \left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right)
+\]</span></p>
+</div>
+</div>
+<p>For larger matrices, the determinant is defined recursively, in terms of 2x2 submatrices of the larger matrix, but we will not give the full definition here.</p>
+<p>From the definition [def:eigen] of eigenvalues and eigenvectors, the condition can be written in terms of the four elements of a 2 by 2 matrix:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right) \times
+\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
+\]</span></p>
+<p>This is now a system of two linear algebraic equations, which we can solve by substitution. First, let us solve for <span class="math inline">\(v_1\)</span> in the first row, to get</p>
+<p><span class="math display">\[
+v_1 = \frac{-bv_2}{a-\lambda}
+\]</span></p>
+<p>Then we substitute this into the second equation and get:</p>
+<p><span class="math display">\[
+\frac{-bcv_2}{a-\lambda} +(d-\lambda)v_2 = 0
+\]</span></p>
+<p>Since <span class="math inline">\(v_2\)</span> multiplies both terms, and is not necessarily zero, we require that its multiplicative factor be zero. Doing a little algebra, we obtain the following, known as the <em>characteristic equation</em> of the matrix:</p>
+<p><span class="math display">\[
+-bc +(a-\lambda)(d-\lambda) = \lambda^2-(a+d)\lambda +ad-bc = 0
+\]</span></p>
+<p>This equation can be simplified by using two quantities we defined at the beginning of the section: the sum of the diagonal elements called the trace <span class="math inline">\(\tau = a+d\)</span>, and the determinant <span class="math inline">\(\Delta = ad-bc\)</span>. The quadratic equation has two solutions, dependent solely on <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\Delta\)</span>:</p>
+<p><span class="math display">\[
+\lambda = \frac{\tau \pm \sqrt{\tau^2-4\Delta}}{2}
+\]</span></p>
+<p>This is the general expression for a 2 by 2 matrix, showing there are two possible eigenvalues. Note that if <span class="math inline">\(\tau^2-4\Delta&gt;0\)</span>, the eigenvalues are real, if <span class="math inline">\(\tau^2-4\Delta&lt;0\)</span>, they are complex (have real and imaginary parts), and if <span class="math inline">\(\tau^2-4\Delta=0\)</span>, there is only one eigenvalue. This situation is known as degenerate, because two eigenvectors share the same eigenvalue.</p>
+<p><strong>Example.</strong> Let us take the same matrix we looked at in the previous subsection:</p>
+<p><span class="math display">\[
+A = \left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)
+\]</span></p>
+<p>The trace of this matrix is <span class="math inline">\(\tau = 2+3 =5\)</span> and the determinant is <span class="math inline">\(\Delta = 6 - 2 = 4\)</span>. Then by our formula, the eigenvalues are:</p>
+<p><span class="math display">\[
+\lambda = \frac{5 \pm \sqrt{5^2-4 \times 4}}{2}  =  \frac{5 \pm 3}{2}  = 4, 1
+\]</span></p>
+<p>These are the multiples we found in the example above, as expected.</p>
+<p>A real matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts. For discrete time models, it is enough to consider the absolute value of a complex eigenvalue, which is defined as following: <span class="math inline">\(|a +b i|= \sqrt{a^2 + b^2}\)</span>. As before, the eigenvalue with the largest absolute value “wins” in the long term.</p>
+</section>
+<section id="calculation-of-eigenvectors-on-paper" class="level3" data-number="5.3.6">
+<h3 data-number="5.3.6" class="anchored" data-anchor-id="calculation-of-eigenvectors-on-paper"><span class="header-section-number">5.3.6</span> calculation of eigenvectors on paper</h3>
+<p>The surprising fact is that, as we saw in the last subsection, the eigenvalues of a matrix can be found without knowing its eigenvectors! However, the converse is not true: to find the eigenvectors, one first needs to know the eigenvalues. Given an eigenvalue <span class="math inline">\(\lambda\)</span>, let us again write down the defining equation of the eigenvector for a generic 2 by 2 matrix:</p>
+<p><span class="math display">\[
+\left(\begin{array}{cc}a &amp; b \\c &amp; d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)
+\]</span></p>
+<p>This vector equation is equivalent to two algebraic equations:</p>
+<p><span class="math display">\[
+\begin{aligned}
+av_1 + b v_2 &amp;= \lambda v_1 \\
+cv_1 + d v_2 &amp;= \lambda v_2
+\end{aligned}
+\]</span></p>
+<p>Since we’ve already found <span class="math inline">\(\lambda\)</span> by solving the characteristic equation, this is two linear equations with two unknowns (<span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span>). You may remember from advanced algebra that such equations may either have a single solution for each unknown, but sometimes they may have none, or infinitely many solutions. Since there are unknowns on both sides of the equation, we can make both equations be equal to zero:</p>
+<p><span class="math display">\[
+\begin{aligned}
+(a-\lambda)v_1 + b v_2 &amp;= 0 \\
+cv_1 + (d-\lambda ) v_2 &amp;=0
+\end{aligned}
+\]</span></p>
+<p>So the first equation yields the relationship <span class="math inline">\(v_1 = -v_2 b/(a-\lambda)\)</span> and the second equation is <span class="math inline">\(v_1 = -v_2(d-\lambda)/c\)</span>, which we already obtained in the last subsection. We know that these two equations must be the same, since the ratio of <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span> is what defines the eigenvector. So we can use either expression to find the eigenvector.</p>
+<p><strong>Example.</strong> Let us return to the same matrix we looked at in the previous subsection:</p>
+<p><span class="math display">\[
+A = \left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)
+\]</span></p>
+<p>The eigenvalues of the matrix are 1 and 4. Using our expression above, where the element <span class="math inline">\(a=2\)</span> and <span class="math inline">\(b=1\)</span>, let us find the eigenvector corresponding to the eigenvalue 1:</p>
+<p><span class="math display">\[
+v_1 = - v_2 \times  1/(2-1) = - v_2
+\]</span></p>
+<p>Therefore the eigenvector is characterized by the first and second elements being negatives of each other. We already saw in the example two subsections above that the vector <span class="math inline">\((1,-1)\)</span> is such as eigenvector, but it is also true of the vectors <span class="math inline">\((-1,1)\)</span>, <span class="math inline">\((-\pi, \pi)\)</span> and <span class="math inline">\((10^6, -10^6)\)</span>. This infinite collection of vectors, all along the same direction, can be described as the eigenvector (or eigendirection) corresponding to the eigenvalue 1.</p>
+<p>Repeating this procedure for <span class="math inline">\(\lambda = 4\)</span>, we obtain the linear relationship: <span class="math display">\[v_1 = - v_2 \times  1/(2-4) = 0.5 v_2\]</span> Once again, the example vector we saw two subsections <span class="math inline">\((2,1)\)</span> is in agreement with our calculation. Other vectors that satisfy this relationship include <span class="math inline">\((10,5)\)</span>, <span class="math inline">\((-20,-10)\)</span>, and <span class="math inline">\((-0.4,-0.2)\)</span>. This is again a collection of vectors that are all considered the same eigenvector with eigenvalue 4 which are all pointing in the same direction, with the only difference being their length.</p>
+</section>
+</section>
+<section id="age-structured-population-models" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="age-structured-population-models"><span class="header-section-number">5.4</span> Age-structured population models</h2>
+<p>It is often useful to divide a population into different groups by age in order to better describe the population dynamics. Typically, individuals at different life stages have distinct mortality and reproductive rates. The total population is represented as a vector, where each component denotes the size of the corresponding age group. The matrix <span class="math inline">\(A\)</span> that multiplies this vector defines the dynamics of the higher order difference equation:</p>
+<p><span class="math display">\[
+\vec x_{t+1} = A \vec x_t
+\]</span></p>
+<p>We will now analyze two common <em>age-structured models</em> used by biologists and demographers.</p>
+<section id="leslie-models" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="leslie-models"><span class="header-section-number">5.4.1</span> Leslie models</h3>
+<p>One type of age-structured model used to describe population dynamics is called the <em>Leslie model</em> <span class="citation" data-cites="edelstein-keshet_mathematical_2005 allman_mathematical_2003">(<a href="references.html#ref-edelstein-keshet_mathematical_2005" role="doc-biblioref"><strong>edelstein-keshet_mathematical_2005?</strong></a>; <a href="references.html#ref-allman_mathematical_2003" role="doc-biblioref"><strong>allman_mathematical_2003?</strong></a>)</span>. In this model, there are several different age groups, and after a single time step, individuals in each one all either advance to the next oldest age group or die. This type of can be described in general using the following matrix (called a Leslie matrix):</p>
+<p><span class="math display">\[
+L = \left(\begin{array}{cccc}f_1 &amp; f_2 &amp; ... &amp; f_n \\s_1 &amp; 0 &amp; ... &amp; 0 \\... &amp; ... &amp;...&amp; ... \\0 &amp; ... &amp; s_{n-1}&amp; 0\end{array}\right)
+\]</span></p>
+<p>where <span class="math inline">\(f_i\)</span> is the fecundity (number of offspring produced by an individual) of the <span class="math inline">\(i\)</span>-th age group, and <span class="math inline">\(s_i\)</span> is the survival rate of the <span class="math inline">\(i\)</span>-th age group (the fraction of the group that survives and becomes the next age group). Population of the next generation is given by multiplying the age-structure vector of the previous generation: <span class="math inline">\(\vec x_{t+1} = L \vec x_t\)</span>. Note that each age group proceeds straight to the next age group (multiplied by the survival rate) but no individuals stay in the same age group after one time step. Biologically, this assumes a clear, synchronized maturation of every age group in the population. Mathematically, this means that the <em>diagonal elements</em> of the matrix (those in the <span class="math inline">\(i\)</span>-th row and <span class="math inline">\(i\)</span>-th column) are 0.</p>
+<p>Let us model a hypothetical population in which there are two age groups: a young age group which does not reproduce, with survival rate of 0.4 to become mature, and a mature age group which reproduces with mean fecundity of 2, and then dies. Let <span class="math inline">\(j_t\)</span> be the population of the juveniles at time <span class="math inline">\(t\)</span>, and <span class="math inline">\(m_t\)</span> be the population of mature adults. Then the following Leslie matrix describes this model:</p>
+<p><span class="math display">\[
+\left(\begin{array}{c}j_{t+1}\\ m_{t+1}\end{array}\right) =  \left(\begin{array}{cc}0 &amp; 2 \\0.4 &amp; 0\end{array}\right) \left(\begin{array}{c}j_{t}\\ m_{t}\end{array}\right)
+\]</span></p>
+<p>We can also express this model as a single difference equation, with the variable of total population. Because it takes two time steps for a young individual to reproduce, we need to consider the population in two previous time steps. The matrix equation above can be written as the following two equations:</p>
+<p><span class="math display">\[
+j_{t+1} = 2 m_t ; \; m_{t+1} = 0.4 j_t
+\]</span></p>
+<p>This two-dimensional model can be turned into a second-order model by a simple substitution. The first equation can be written as <span class="math inline">\(j_t = 2 m_{t-1}\)</span>, and then substitute it into second one to, to obtain:</p>
+<p><span class="math display">\[
+m_{t+1} = 0.8m_{t-1}
+\]</span></p>
+<p>We can solve this equation using the tools from the analytical section. First, let us find the exponential bases <span class="math inline">\(\lambda\)</span>:</p>
+<p><span class="math display">\[
+\lambda^2 = 0.8 \Rightarrow \lambda = \pm \sqrt{0.8}
+\]</span></p>
+<p>To solve the dynamical system completely, let us suppose we have the initial conditions <span class="math inline">\(m_0\)</span> and <span class="math inline">\(m_1\)</span>. Then we have the following equations to solve:</p>
+<p><span class="math display">\[
+A + B = m_0; \; A\sqrt 0.8 - B \sqrt 0.8 = m_1\Rightarrow (m_0 - B) \sqrt 0.8 - B \sqrt 0.8 = m_1 \Rightarrow B =m_0 - \frac{m_1}{\sqrt 8}; \; A = \frac{m_1}{\sqrt 8}
+\]</span></p>
+<p>We have the following analytic solution of the difference equation:</p>
+<p><span class="math display">\[
+m_t = \frac{m_1}{\sqrt 8} \sqrt 8^t - \left(m_0 - \frac{m_1}{\sqrt 8} \right)  \sqrt 8^t = 2m_1 \sqrt 8^{t-1}  - m_0 \sqrt 8^{t}
+\]</span></p>
+<p>This solution can be used to predict the long-term dynamics of the population model. Since the bases of the exponentials are less than 1, the total number of individuals will decline to zero. This solution can be verified via a numerical solution of this model. {numref}<code>fig-leslie</code> shows the population over 20 time steps, starting with 10 individuals both for <span class="math inline">\(m_0\)</span> and <span class="math inline">\(m_1\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/leslie_dynamics.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">A plot of the total population in the Leslie model shown above, showing an oscillatory decay to 0</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="usher-models" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="usher-models"><span class="header-section-number">5.4.2</span> Usher models</h3>
+<p>Usher models are a modification of the Leslie model, where individuals are allowed to remain in the same age group after one time step. Thus, the form of an Usher matrix is:</p>
+<p><span class="math display">\[
+U = \left(\begin{array}{cccc}f_1 &amp; f_2 &amp; ... &amp; f_n \\s_1 &amp; r_2 &amp; ... &amp; 0 \\... &amp; ... &amp;...&amp; ... \\0 &amp; ... &amp; s_{n-1} &amp; r_n\end{array}\right)
+\]</span></p>
+<p>where <span class="math inline">\(r_i\)</span> is the rate of remaining in the same age cohort.</p>
+<p>For instance, it the population model above, we can introduce a rate of adults remaining adults (rather than dead) after a time step (let it be 0.2):</p>
+<p><span class="math display">\[
+U =  \left(\begin{array}{cc}0 &amp; 2 \\0.4 &amp; 0.2\end{array}\right)
+\]</span></p>
+<p><span class="math display">\[
+j_{t+1} = 2 m_t ; \; m_{t+1} = 0.4 j_t +0.2m_t
+\]</span></p>
+<p>Once again, we can find the solution for this model by recasting it as a single second-order equation. Let us substitute <span class="math inline">\(2m_{t-1}\)</span> for <span class="math inline">\(j_t\)</span> to obtain the following:</p>
+<p><span class="math display">\[
+m_{t+1} = 0.4(2 m_{t-1} )+ 0.2 m_t
+\]</span></p>
+<p>We can solve this second-order equation in the same fashion as above:</p>
+<p><span class="math display">\[
+\lambda^2 = 0.2 \lambda + 0.8 \Rightarrow \lambda = (0.2 \pm \sqrt {0.04+3.2})/2 = (0.2 \pm 1.8)/2 = 1, -0.8
+\]</span></p>
+<p>The two exponential bases are 1 and -0.8, and therefore the solution has the general form <span class="math inline">\(m_t = A + B(-0.8)^t\)</span>. The behavior of the solution over the long term is going to stabilize at some level <span class="math inline">\(A\)</span>, determined by the initial conditions, because the term <span class="math inline">\(B(-0.8)^t\)</span>, when raised to progressively larger powers, will decay to 0.</p>
+<p>We can run a computer simulation to test this prediction, and see that the total population indeed approaches a constant. Starting with population of 10 individuals in the first two time steps, the time course of the population is plotted in {numref}<code>fig-usher</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/usher_dynamics.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The total population of the Usher model shown above, showing oscillation and converging to a single value.</figcaption><p></p>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ch4_cobweb_plots.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graphical analysis of difference equations</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ch6_matrix_mult.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Matrix multiplication and population models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -126,7 +126,7 @@ Note that the function may depend on both the dependent variable $x$ and the ind
 An ODE is *autonomous* if the defining function $f$ depends only on the dependent variable $x$ and not on $t$.
 :::
 
-For example, $\dot x = 5x -4$ is an autonomous equation, while $\dot x = 5t $ is not. An autonomous ODE is also said to have *constant coefficients* (e.g. 5 and -4 in the first equation above).
+For example, $\dot x = 5x -4$ is an autonomous equation, while $\dot x = 5t$ is not. An autonomous ODE is also said to have *constant coefficients* (e.g. 5 and -4 in the first equation above).
 
 :::{.callout-note}  
 
@@ -288,11 +288,11 @@ At this point, you might have noticed something about solutions of linear ODEs: 
 
 ## Important Fact
 
-Any linear ODE of the form $\dot x= ax +b $ has an analytic solution of the form: 
+Any linear ODE of the form $\dot x= ax +b$ has an analytic solution of the form: 
 
 $$
 x(t) = Ce^{at} + D
-$$ (sol-nonhom)
+$$ 
 
 with $D = -b/a$ and $C$ determined by the initial value $x(0)$.
 :::
@@ -303,7 +303,7 @@ Thus, if you want to solve a linear no ODE $\dot x= ax +b$ , you can bypass the 
 
 ### model of drug concentration
 
-Describing and predicting the dynamics of drug concentration in the body is the goal of *pharmacokinetics*. Any drug that humans take goes through several stages: first it is administered (put into the body), then absorbed, metabolized (transformed), and excreted (removed from the body) \citep{rosenbaum_basic_2011}. Almost any drug has a dose at which it has a toxic effect, and most can kill a human if the dose is high enough. Drugs which are used for medical purposes have a *therapeutic range*, which lies between the lowest possible concentration (usually measured in the blood plasma) that achieves the therapeutic effect and the concentration which is toxic. One of the basic questions that medical practitioners need to know is how much and how frequently to administer a drug to maintain drug concentration in the therapeutic range.
+Describing and predicting the dynamics of drug concentration in the body is the goal of *pharmacokinetics*. Any drug that humans take goes through several stages: first it is administered (put into the body), then absorbed, metabolized (transformed), and excreted (removed from the body) @rosenbaum_basic_2011. Almost any drug has a dose at which it has a toxic effect, and most can kill a human if the dose is high enough. Drugs which are used for medical purposes have a *therapeutic range*, which lies between the lowest possible concentration (usually measured in the blood plasma) that achieves the therapeutic effect and the concentration which is toxic. One of the basic questions that medical practitioners need to know is how much and how frequently to administer a drug to maintain drug concentration in the therapeutic range.
 
 The concentration of a drug is a dynamic variable which depends on the rates of several processes, most directly on the rate of administration and the rate of metabolism. Drugs can be administered through various means (e.g. orally or intravenously) which influences their rate of absorption and thus how the concentration increases. Once in the blood plasma, drugs are metabolized primarily by enzymes in the liver, converting drug molecules into compounds that can be excreted through the kidneys or the large intestine. The process of \index{kinetics!drug metabolism} *metabolism proceeds at a rate that depends on both the concentration of the drug and on the enzyme that catalyzes the reaction. For some drugs the metabolic rate may be constant, or independent of the drug concentration, since the enzymes are already working at full capacity and can't turn over any more reactions, for example alcohol is metabolized at a constant rate of about 1 drink per hours for most humans. {numref}`fig-alc-met` shows the time plots of the blood alcohol concentration for 4 males who ingested different amounts of alcohol, and the curves are essentially linear with the same slope after the peak.  For other drugs, if the plasma concentration is low enough, the enzymes are not occupied all the time and increasing the drug concentration leads to an increase in the rate of metabolism. One can see this behavior in the metabolism of the anti-depressant drug bupropion in figure {numref}`fig-bupropion`, where the concentration curve shows a faster decay rate for higher concentration of the drug than for lower concentration. In the simplest case, the rate of metabolism is linear, or proportional to the concentration of the drug, with proportionality constant called the first-order metabolic rate. 
 
