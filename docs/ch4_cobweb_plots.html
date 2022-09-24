@@ -358,13 +358,11 @@ Cobweb plot pseudocode
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[-3.  0.  0.  0.  0.  0.  0.  0.  0.  0.]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[0 2 4 6 8]</code></pre>
+<pre><code>[-3.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+[0 2 4 6 8]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="ch4_cobweb_plots_files/figure-html/cell-4-output-3.png" width="587" height="449"></p>
+<p><img src="ch4_cobweb_plots_files/figure-html/cell-4-output-2.png" width="587" height="449"></p>
 </div>
 </div>
 <p>You can see that the solution, shown in green, start from initial value of -3 and steps upward toward the fixed point at 2. You can experiment by trying a different initial value, say 10 (you will have to change the domain of the plotted function) but you should still observe convergence to the fixed point at 2.</p>
@@ -437,60 +435,60 @@ Characteristics of chaos
 <p>We have seen how graphical tools can be used to analyze and predict the behavior of a discrete-time dynamical system. We investigated the logistic model by finding the fixed points and analyzing their stability. Together with analysis of the graph of the updating function and making a cobweb plot, this allowed us to describe the dynamics of population growth in the logistic model, without doing any “math”. Together, analytical and graphical analysis provide powerful tools for biological modelers.</p>
 <p><strong>Q3.1:</strong> For the logistic model with an initial population of 0.5 and <span class="math inline">\(r=1.1\)</span>, compute the first 50 iterations using the same for loop iteration you used above and plot the solution against time.</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">50</span> <span class="co">#set number of iterations</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.8</span> <span class="co">#set parameter</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.5</span> <span class="co">#initial value</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#logistic population model</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N) <span class="co">#plot solution</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time'</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'population'</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Solution of logistic model wtih r='</span><span class="op">+</span><span class="bu">str</span>(r))</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">50</span> <span class="co">#set number of iterations</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.8</span> <span class="co">#set parameter</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.5</span> <span class="co">#initial value</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#logistic population model</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N) <span class="co">#plot solution</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'population'</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Solution of logistic model wtih r='</span><span class="op">+</span><span class="bu">str</span>(r))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ch4_cobweb_plots_files/figure-html/cell-5-output-1.png" width="597" height="449"></p>
 </div>
 </div>
 <p><strong>Q3.2:</strong> Change the parameter <span class="math inline">\(r\)</span> to the following values: 0.5, 2.0, and 3.2, and in each case plot the solutions against time in separate figures. Describe each plot with a sentence.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">50</span> <span class="co">#set number of iterations</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">.5</span> <span class="co">#set parameter</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.5</span> <span class="co">#initial value</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N, label <span class="op">=</span> <span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r)) <span class="co">#plot solution</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">2.0</span> <span class="co">#set parameter</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">0.75</span> <span class="co">#initial value</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N, label <span class="op">=</span> <span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r)) <span class="co">#plot solution</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">3.2</span> <span class="co">#set parameter</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.5</span> <span class="co">#initial value</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(N)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N, label <span class="op">=</span> <span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r)) <span class="co">#plot solution</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time'</span>)</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'population'</span>)</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Solutions of logistic model with different parameters'</span>)</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">50</span> <span class="co">#set number of iterations</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">.5</span> <span class="co">#set parameter</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.5</span> <span class="co">#initial value</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N, label <span class="op">=</span> <span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r)) <span class="co">#plot solution</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">2.0</span> <span class="co">#set parameter</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">0.75</span> <span class="co">#initial value</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N, label <span class="op">=</span> <span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r)) <span class="co">#plot solution</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">3.2</span> <span class="co">#set parameter</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.5</span> <span class="co">#initial value</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(N)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N, label <span class="op">=</span> <span class="st">'r='</span><span class="op">+</span><span class="bu">str</span>(r)) <span class="co">#plot solution</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time'</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'population'</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Solutions of logistic model with different parameters'</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0.5        0.8        0.512      0.7995392  0.51288406 0.7994688
  0.51301899 0.79945762 0.51304043 0.79945583 0.51304386 0.79945554
@@ -513,31 +511,31 @@ Characteristics of chaos
 </ul>
 <p>Increase the parameter <span class="math inline">\(r\)</span> further until you see strange, aperiodic behavior called chaos. Report at least one value of <span class="math inline">\(r\)</span> at which you see chaotic dynamics.</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">100</span> <span class="co">#set number of iterations</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">3.7</span> <span class="co">#set parameter</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.7</span> <span class="co">#initial value</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t, N, label <span class="op">=</span> <span class="st">'N0 ='</span> <span class="op">+</span> <span class="bu">str</span>(N[<span class="dv">0</span>]))</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">100</span> <span class="co">#set number of iterations</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">3.7</span> <span class="co">#set parameter</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.701</span> <span class="co">#initial value</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N, label <span class="op">=</span> <span class="st">'N0 ='</span> <span class="op">+</span> <span class="bu">str</span>(N[<span class="dv">0</span>])) <span class="co">#plot solution</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time'</span>)</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'population'</span>)</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Logistic model, r='</span><span class="op">+</span><span class="bu">str</span>(r))</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">100</span> <span class="co">#set number of iterations</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">3.7</span> <span class="co">#set parameter</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.7</span> <span class="co">#initial value</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t, N, label <span class="op">=</span> <span class="st">'N0 ='</span> <span class="op">+</span> <span class="bu">str</span>(N[<span class="dv">0</span>]))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">100</span> <span class="co">#set number of iterations</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">3.7</span> <span class="co">#set parameter</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">0</span>]<span class="op">=</span><span class="fl">.701</span> <span class="co">#initial value</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="bu">range</span>(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialze time vector</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">10</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(numsteps):</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    N[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> r<span class="op">*</span>N[i]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>N[i]) <span class="co">#linear population model</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.plot(t,N, label <span class="op">=</span> <span class="st">'N0 ='</span> <span class="op">+</span> <span class="bu">str</span>(N[<span class="dv">0</span>])) <span class="co">#plot solution</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'time'</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'population'</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Logistic model, r='</span><span class="op">+</span><span class="bu">str</span>(r))</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="ch4_cobweb_plots_files/figure-html/cell-7-output-1.png" width="589" height="449"></p>
 </div>
