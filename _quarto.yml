@@ -14,13 +14,16 @@ book:
     - ch4_cobweb_plots.qmd
     - ch5_discrete_higher.qmd
     - ch6_matrix_mult.qmd
-    - ch7_1var_ode.qmd
-    - ch8_numeric_ode.qmd
-    - ch9_linear_pplane.qmd
-    - ch10_phase_portraits.qmd
-    - ch11_lin_oscillations.qmd
-    - ch12_fourier.qmd
-    - ch13_linearization.qmd
+    - ch7_linear_reg.qmd
+    - ch8_LinReg_python.qmd
+    - ch9_1var_ode.qmd
+    - ch10_numeric_ode.qmd
+    - ch11_graph_ode.qmd
+    - ch12_linear_pplane.qmd
+    - ch13_phase_portraits.qmd
+    - ch14_lin_oscillations.qmd
+    - ch15_fourier.qmd
+    - ch16_linearization.qmd
     - references.qmd
 
 bibliography: references.bib

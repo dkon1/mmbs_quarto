@@ -194,37 +194,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch7_1var_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Models with one variable in continuous time</span></a>
+  <a href="./ch7_linear_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Linear regression</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch8_numeric_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numeric solutions of ODEs</span></a>
+  <a href="./ch8_LinReg_python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear regression in Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch9_linear_pplane.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Linear ODEs with two variables</span></a>
+  <a href="./ch9_1var_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Models with one variable in continuous time</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch10_phase_portraits.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Phase portraits in Python</span></a>
+  <a href="./ch10_numeric_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numeric solutions of ODEs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch11_lin_oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Forces and potentials in biological modeling</span></a>
+  <a href="./ch11_graph_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Graphical analysis of ordinary differential equations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch12_fourier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Fourier series: decomposition by frequency</span></a>
+  <a href="./ch12_linear_pplane.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Linear ODEs with two variables</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch13_linearization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Linearization of ODEs</span></a>
+  <a href="./ch13_phase_portraits.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Phase portraits in Python</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch14_lin_oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Forces and potentials in biological modeling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch15_fourier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fourier series: decomposition by frequency</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ch16_linearization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linearization of ODEs</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -424,13 +439,13 @@ x(t+1) = x(t) + bx(t) - dx(t) = rx(t)
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The standard deviation of the sample is "</span> <span class="op">+</span> <span class="bu">str</span>(np.std(norm_sample)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[4.97933018 4.68608442 5.68622502 4.45670357 4.15153217 5.57445952
- 4.80262096 4.9871278  5.51622235 4.56118153 5.71107329 5.4424495
- 5.86947149 5.18684141 4.69589747 5.33064279 4.17690902 4.80143032
- 5.36815722 4.57719907 4.66508275 4.96959057 4.63615669 4.41692795
- 5.35670118 4.52799966 4.67940388 5.90091849 4.87643441 4.72058147]
-The mean of the sample is 4.977045205179726
-The standard deviation of the sample is 0.4853125727421423</code></pre>
+<pre><code>[4.521846   5.8267477  4.84084257 4.714853   5.54602891 4.5253058
+ 5.33609004 4.70792991 5.79585131 4.27853502 5.10773956 4.17738775
+ 5.0897418  5.02965409 5.06026232 4.39412107 4.27882781 4.99105208
+ 5.02308921 4.05086745 4.42961131 4.43279114 6.10581794 4.61700219
+ 4.97783544 5.63628728 4.90736006 6.23306395 4.17457312 5.60054921]
+The mean of the sample is 4.94705550031026
+The standard deviation of the sample is 0.585741463744956</code></pre>
 </div>
 </div>
 
