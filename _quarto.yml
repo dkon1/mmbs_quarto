@@ -20,6 +20,7 @@ book:
     - ch10_phase_portraits.qmd
     - ch11_lin_oscillations.qmd
     - ch12_fourier.qmd
+    - ch13_linearization.qmd
     - references.qmd
 
 bibliography: references.bib
