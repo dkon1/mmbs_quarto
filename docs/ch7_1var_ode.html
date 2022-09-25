@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -146,6 +151,11 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ch11_lin_oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Forces and potentials in biological modeling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -154,23 +164,23 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ordinary-differential-equations" id="toc-ordinary-differential-equations" class="nav-link active" data-scroll-target="#ordinary-differential-equations"> <span class="header-section-number">7.1</span> Ordinary differential equations</a>
+  <li><a href="#ordinary-differential-equations" id="toc-ordinary-differential-equations" class="nav-link active" data-scroll-target="#ordinary-differential-equations"><span class="toc-section-number">7.1</span>  Ordinary differential equations</a>
   <ul class="collapse">
-  <li><a href="#growth-proportional-to-population-size" id="toc-growth-proportional-to-population-size" class="nav-link" data-scroll-target="#growth-proportional-to-population-size"> <span class="header-section-number">7.1.1</span> growth proportional to population size</a></li>
-  <li><a href="#chemical-kinetics" id="toc-chemical-kinetics" class="nav-link" data-scroll-target="#chemical-kinetics"> <span class="header-section-number">7.1.2</span> chemical kinetics</a></li>
+  <li><a href="#growth-proportional-to-population-size" id="toc-growth-proportional-to-population-size" class="nav-link" data-scroll-target="#growth-proportional-to-population-size"><span class="toc-section-number">7.1.1</span>  growth proportional to population size</a></li>
+  <li><a href="#chemical-kinetics" id="toc-chemical-kinetics" class="nav-link" data-scroll-target="#chemical-kinetics"><span class="toc-section-number">7.1.2</span>  chemical kinetics</a></li>
   </ul></li>
-  <li><a href="#analytic-solutions-of-linear-odes" id="toc-analytic-solutions-of-linear-odes" class="nav-link" data-scroll-target="#analytic-solutions-of-linear-odes"> <span class="header-section-number">7.2</span> Analytic solutions of linear ODEs</a>
+  <li><a href="#analytic-solutions-of-linear-odes" id="toc-analytic-solutions-of-linear-odes" class="nav-link" data-scroll-target="#analytic-solutions-of-linear-odes"><span class="toc-section-number">7.2</span>  Analytic solutions of linear ODEs</a>
   <ul class="collapse">
-  <li><a href="#concepts-of-odes" id="toc-concepts-of-odes" class="nav-link" data-scroll-target="#concepts-of-odes"> <span class="header-section-number">7.2.1</span> concepts of ODEs</a></li>
-  <li><a href="#solutions-via-separate-and-integrate" id="toc-solutions-via-separate-and-integrate" class="nav-link" data-scroll-target="#solutions-via-separate-and-integrate"> <span class="header-section-number">7.2.2</span> solutions via separate-and-integrate</a></li>
-  <li><a href="#solution-of-nonhomogeneous-odes" id="toc-solution-of-nonhomogeneous-odes" class="nav-link" data-scroll-target="#solution-of-nonhomogeneous-odes"> <span class="header-section-number">7.2.3</span> solution of nonhomogeneous ODEs</a></li>
-  <li><a href="#model-of-drug-concentration" id="toc-model-of-drug-concentration" class="nav-link" data-scroll-target="#model-of-drug-concentration"> <span class="header-section-number">7.2.4</span> model of drug concentration</a></li>
+  <li><a href="#concepts-of-odes" id="toc-concepts-of-odes" class="nav-link" data-scroll-target="#concepts-of-odes"><span class="toc-section-number">7.2.1</span>  concepts of ODEs</a></li>
+  <li><a href="#solutions-via-separate-and-integrate" id="toc-solutions-via-separate-and-integrate" class="nav-link" data-scroll-target="#solutions-via-separate-and-integrate"><span class="toc-section-number">7.2.2</span>  solutions via separate-and-integrate</a></li>
+  <li><a href="#solution-of-nonhomogeneous-odes" id="toc-solution-of-nonhomogeneous-odes" class="nav-link" data-scroll-target="#solution-of-nonhomogeneous-odes"><span class="toc-section-number">7.2.3</span>  solution of nonhomogeneous ODEs</a></li>
+  <li><a href="#model-of-drug-concentration" id="toc-model-of-drug-concentration" class="nav-link" data-scroll-target="#model-of-drug-concentration"><span class="toc-section-number">7.2.4</span>  model of drug concentration</a></li>
   </ul></li>
-  <li><a href="#membrane-as-electric-circuit" id="toc-membrane-as-electric-circuit" class="nav-link" data-scroll-target="#membrane-as-electric-circuit"> <span class="header-section-number">7.3</span> Membrane as electric circuit</a></li>
+  <li><a href="#membrane-as-electric-circuit" id="toc-membrane-as-electric-circuit" class="nav-link" data-scroll-target="#membrane-as-electric-circuit"><span class="toc-section-number">7.3</span>  Membrane as electric circuit</a></li>
   </ul>
 </nav>
     </div>
@@ -586,8 +596,7 @@ I_{app} = C \frac{dV}{dt} + \sum_i g (V-V_{Ri})
 <p><span class="math display">\[
 \frac{dV}{dt} = -\frac{g}{C} (V-V_{Ri})
 \]</span></p>
-<p>The Cole membrane potential ODE cam also be solved by the separate-and-integrate method. Dividing both sides by <span class="math inline">\(V-V_R\)</span> and multiplying through by the differential <span class="math inline">\(dt\)</span>, we get:</p>
-<p><span class="math display">\[
+<p>The Cole membrane potential ODE cam also be solved by the separate-and-integrate method. Dividing both sides by <span class="math inline">\(V-V_R\)</span> and multiplying through by the differential <span class="math inline">\(dt\)</span>, we get: <span class="math display">\[
 \frac{ dV }{V-V_R} = - \frac{g}{C}dt
 \]</span></p>
 <p>Remember, that <span class="math inline">\(V_R\)</span> is a constant, while <span class="math inline">\(V(t)\)</span> is the dependent variable. Performing the substitution <span class="math inline">\(u = V - V_R\)</span>, and integrating, we get <span class="math inline">\(\ln |V - V_R | = - \frac{g}{C}t + A\)</span>, where <span class="math inline">\(A\)</span> is the integration constant. Exponentiating both sides and solving for <span class="math inline">\(V(t)\)</span>, we obtain:</p>
@@ -674,7 +683,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
