@@ -24,6 +24,7 @@ book:
     - ch14_lin_oscillations.qmd
     - ch15_fourier.qmd
     - ch16_linearization.qmd
+    - ch17_nonlinear_oscillations.qmd
     - references.qmd
 
 bibliography: references.bib

@@ -1,63 +1,162 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
 # Nonlinear oscillations in biology
 
 ## Introduction
-In previous chapters we examined periodic solutions that arise in linear or conservative nonlinear systems. These solutions show up in the phase plane as closed trajectories, looping around a fixed point of the center classification; they are known as linear oscillations, since their time plots are oscillatory, and because the dynamics around the fixed point are correctly described by the linear approximation. In this chapter we will see a new kind of closed trajectories, known as nonlinear oscillations. These solution describe very different dynamics, which is found in many biological systems, characterized by cycles with excitatory and refractory phases, for example action potentials in neurons.
 
-In the modeling section, we will see a simple prototype model which produces nonlinear oscillations, and then describe the qualitative properties of excitatory systems in biology. In the analytic section, we will describe some types bifurcations in the plane. In particular, we will describe the bifurcation which results in the birth of nonlinear oscillations. Finally, in the synthesis section we will analyze the classic neuroscience model of an action potential, called the Fitzhugh-Nagumo model.
+In previous chapters we examined periodic solutions that arise in linear
+or conservative nonlinear systems. These solutions show up in the phase
+plane as closed trajectories, looping around a fixed point of the center
+classification; they are known as linear oscillations, since their time
+plots are oscillatory, and because the dynamics around the fixed point
+are correctly described by the linear approximation. In this chapter we
+will see a new kind of closed trajectories, known as nonlinear
+oscillations. These solution describe very different dynamics, which is
+found in many biological systems, characterized by cycles with
+excitatory and refractory phases, for example action potentials in
+neurons.
+
+In the modeling section, we will see a simple prototype model which
+produces nonlinear oscillations, and then describe the qualitative
+properties of excitatory systems in biology. In the analytic section, we
+will describe some types bifurcations in the plane. In particular, we
+will describe the bifurcation which results in the birth of nonlinear
+oscillations. Finally, in the synthesis section we will analyze the
+classic neuroscience model of an action potential, called the
+Fitzhugh-Nagumo model.
 
 ## Modeling: nonlinear oscillations
 
 ### Van der Pol oscillator
-Let us consider a harmonic oscillator model with a nonlinear damping term, known as the van der Pol oscillator (here $k$ and $\mu$ are positive parameters):
+
+Let us consider a harmonic oscillator model with a nonlinear damping
+term, known as the van der Pol oscillator (here $k$ and $\mu$ are
+positive parameters):
 
 $$m\ddot x= -kx - \mu(x^2-1)\dot x $$
 
-This equation is similar to the damped harmonic oscillator equation we saw in the chapter 10, but in this model the damping coefficient, or the multiplier of velocity $\dot x$, is $\mu(x^2-1)$ and thus depends on the variable $x$. If $x>1$, the coefficient of damping is positive (with a negative sign in front) and there are damped harmonic oscillations. However, if $x<1$, the coefficient is negative, so instead of damping, there is amplification of oscillations.  Let us write this as two first-order ODEs, and analyze its behavior is the phase plane.
+This equation is similar to the damped harmonic oscillator equation we
+saw in the chapter 10, but in this model the damping coefficient, or the
+multiplier of velocity $\dot x$, is $\mu(x^2-1)$ and thus depends on the
+variable $x$. If $x>1$, the coefficient of damping is positive (with a
+negative sign in front) and there are damped harmonic oscillations.
+However, if $x<1$, the coefficient is negative, so instead of damping,
+there is amplification of oscillations. Let us write this as two
+first-order ODEs, and analyze its behavior is the phase plane.
 
 $$
-\dot x &=& y \\
-\dot y &=&  -\frac{k}{m}x - \frac{\mu}{m}(x^2-1)y
+x' = y
+$$ 
+$$
+y' = -\frac{k}{m}x - \frac{\mu}{m}(x^2-1)y
 $$
 
-
-There is only one fixed point, at $x=0, y=0$. It is unstable because of the amplification (reverse damping) effect when $x$ is small. This can be properly shown by linearizing around the fixed point and finding the eigenvalues - we'll leave it as an exercise. However, since damping kicks in for $x>1$ and is stronger for higher values of $x$, trajectories that start far away from the origin will flow toward it. The effect of the outward flow from the origin combined with flow toward the origin (from trajectories that start sufficiently far away) creates a new type of periodic trajectory, called a *limit cycle*.
+There is only one fixed point, at $x=0, y=0$. It is unstable because of
+the amplification (reverse damping) effect when $x$ is small. This can
+be properly shown by linearizing around the fixed point and finding the
+eigenvalues - we'll leave it as an exercise. However, since damping
+kicks in for $x>1$ and is stronger for higher values of $x$,
+trajectories that start far away from the origin will flow toward it.
+The effect of the outward flow from the origin combined with flow toward
+the origin (from trajectories that start sufficiently far away) creates
+a new type of periodic trajectory, called a *limit cycle*.
 
 ### oscillatory behavior in biology
-The properties of linear oscillations do not correspond well to periodic behavior in living systems. Closed trajectories around center points can have any amplitude as determined by the initial conditions, and a frequency which is determined by the eigenvalues of the Jacobian, therefore independent of the amplitude of oscillations. In biological systems (and many other natural systems) periodic behavior typically has an optimal period as well as an optimal amplitude. For instance, the action potential of a neuron, as we will discuss in the Synthesis section, has a well-defined maximum and minimum membrane voltage, as well as a set period between peak voltages (neuron firing). Other periodic biological processes, such as oscillations in metabolism or circadian rhythms, share the same property of having well-defined frequency and amplitude. For a mathematical modeler this suggests constructing dynamical systems that have a *unique and attracting* periodic trajectory.
 
-There are several common features of biological oscillatory models. One is the competitive interplay between an inhibiting and activating species, which are commonly seen in biochemical reactions or gene regulatory models. We will see such an example in the model of oscillations in glycolysis. The other is the so-called excitable systems, in which there is a threshold value, for stimulus to produce an oscillatory response. Such systems have oscillations which are divided into fast stages of excitation and slow stages of relaxation. We will see a prototypical model of this kind in the Synthesis section.
+The properties of linear oscillations do not correspond well to periodic
+behavior in living systems. Closed trajectories around center points can
+have any amplitude as determined by the initial conditions, and a
+frequency which is determined by the eigenvalues of the Jacobian,
+therefore independent of the amplitude of oscillations. In biological
+systems (and many other natural systems) periodic behavior typically has
+an optimal period as well as an optimal amplitude. For instance, the
+action potential of a neuron, as we will discuss in the Synthesis
+section, has a well-defined maximum and minimum membrane voltage, as
+well as a set period between peak voltages (neuron firing). Other
+periodic biological processes, such as oscillations in metabolism or
+circadian rhythms, share the same property of having well-defined
+frequency and amplitude. For a mathematical modeler this suggests
+constructing dynamical systems that have a *unique and attracting*
+periodic trajectory.
+
+There are several common features of biological oscillatory models. One
+is the competitive interplay between an inhibiting and activating
+species, which are commonly seen in biochemical reactions or gene
+regulatory models. We will see such an example in the model of
+oscillations in glycolysis. The other is the so-called excitable
+systems, in which there is a threshold value, for stimulus to produce an
+oscillatory response. Such systems have oscillations which are divided
+into fast stages of excitation and slow stages of relaxation. We will
+see a prototypical model of this kind in the Synthesis section.
 
 ## Limit cycles and flow-trapping regions
 
 ### limit cycles
-There is an important result in dynamical systems theory that states that the only possible  attractors (sets of points which solutions approach in the long run) in two dimensions are either fixed points (steady states) or closed orbits (oscillations). We saw linear oscillations  in the harmonic oscillator model, and the oscillatory solutions in the Lotka-Volterra model similarly correspond to an infinite set of closed trajectories. Below we consider circumstances under which unique closed trajectories arise.
 
-A limit cycle is an isolated closed trajectory, which makes it different from oscillations around a center. Limit cycles can be stable (with nearby trajectories spiraling toward it), unstable (with nearby trajectories spiraling farther away) and half-stable (inner trajectories and outer trajectories behaving differently). This phenomenon requires some nonlinearity in the equations, like the nonlinear damping above, and thus limit cycles are known as *nonlinear oscillations*. Limit cycles cannot be found by linearization (since it neglects the essential nonlinearity), so we need another method.
+There is an important result in dynamical systems theory that states
+that the only possible attractors (sets of points which solutions
+approach in the long run) in two dimensions are either fixed points
+(steady states) or closed orbits (oscillations). We saw linear
+oscillations in the harmonic oscillator model, and the oscillatory
+solutions in the Lotka-Volterra model similarly correspond to an
+infinite set of closed trajectories. Below we consider circumstances
+under which unique closed trajectories arise.
 
-```{admonition} Theorem (Poincare - Bendixson)
-A region of the phase plane which contains no stable fixed points, and for which the direction of the flow everywhere on the boundary is inward, must contain a limit cycle. 
-```
+A limit cycle is an isolated closed trajectory, which makes it different
+from oscillations around a center. Limit cycles can be stable (with
+nearby trajectories spiraling toward it), unstable (with nearby
+trajectories spiraling farther away) and half-stable (inner trajectories
+and outer trajectories behaving differently). This phenomenon requires
+some nonlinearity in the equations, like the nonlinear damping above,
+and thus limit cycles are known as *nonlinear oscillations*. Limit
+cycles cannot be found by linearization (since it neglects the essential
+nonlinearity), so we need another method.
 
-Another important difference between linear and nonlinear oscillations is in *robustness* of the solutions to changes in parameters. Linear centers are fragile with respect to parameter changes, because in order for the eigenvalues to be purely imaginary, the trace of the matrix (sum of the diagonal elements) has to be exactly 0, and the smallest deviation will destroy the closed orbits, transforming them into a spiral. Limit cycles, in contrast, are generally robust to parameter changes, because a small change will not dramatically affect the direction of the flow into the region of Poincare-Bendixson Theorem.
+:::{.callout-note}  
+##  Theorem (Poincare - Bendixson) 
+A region of the phase plane which contains no stable fixed points, and for which the direction of the flow everywhere on the boundary is inward, must contain a limit cycle.
+:::
 
-This result allows us to find limit cycles around fixed points by checking if there is a region with flow oriented in the opposite direction from that near the fixed point. In practice, finding such a region may be difficult, so we demonstrate one common type of ODE which satisfied the conditions of the theorem.
+Another important difference between linear and nonlinear oscillations
+is in *robustness* of the solutions to changes in parameters. Linear
+centers are fragile with respect to parameter changes, because in order
+for the eigenvalues to be purely imaginary, the trace of the matrix (sum
+of the diagonal elements) has to be exactly 0, and the smallest
+deviation will destroy the closed orbits, transforming them into a
+spiral. Limit cycles, in contrast, are generally robust to parameter
+changes, because a small change will not dramatically affect the
+direction of the flow into the region of Poincare-Bendixson Theorem.
 
-** Example: cubic nullclines.** One common type of models in physics and biology which has limit cycle solutions are those with cubic terms in the governing ODEs. For instance, there is a class of models that look as follows:
+This result allows us to find limit cycles around fixed points by
+checking if there is a region with flow oriented in the opposite
+direction from that near the fixed point. In practice, finding such a
+region may be difficult, so we demonstrate one common type of ODE which
+satisfied the conditions of the theorem.
+
+### Example: cubic nullclines 
+
+One common type of models in physics and biology which has limit cycle solutions are those with cubic terms in the governing ODEs. For instance, there is a class of models that look as follows:
 
 $$
-\dot x &=& y - f(x) \\
-\dot y &=& -x
+x' = y - f(x)
+$$ 
+$$
+y' = -x
 $$
 
-This system has nullclines on the curves: $y=f(x)$ and $x=0$ (y-axis). If the function $f(x)$ is a cubic function with a maximum and a minimum, e.g. $f(x) = x^3-x$, then the phase plane will look like figure {numref}`fig-cub-null`.
+This system has nullclines on the curves: $y=f(x)$ and $x=0$ (y-axis).
+If the function $f(x)$ is a cubic function with a maximum and a minimum,
+e.g. $f(x) = x^3-x$, then the phase plane will look like figure
+{numref}`fig-cub-null`.
 
 
-```{figure} images/lec15_fig1.png
----
-name: fig-cub-null
----
-Cubic nullcline with a maximum and minimum generates a limit cycle
-```
+![Cubic nullcline with a maximum and minimum generates a limit cycle](images/lec15_fig1.png)
+
+        
 
 
 Let us analyze the geometry of the flow. First, there is only one fixed point, at the origin, and the flow may circulate around it. To show that a limit cycle exists, we must:
@@ -78,20 +177,15 @@ $$ \lambda = \frac{-f'(x) \pm \sqrt{f'(x)^2 -4}}{2} $$
 
 The eigenvalues are real if $f'(x)^2 >4$ and complex if  $f'(x)^2 <4$. If they are complex, the real part is $-f'(x)/2$, and so the stability is determined by the sign of $f'(x)$. If the eigenvalues are real, stability still depends on the sign of $f'(x)$, because $f'(x)>\sqrt{f'(x)^2 -4}$ and thus adding or subtracting the square root will not change the sign of the expression.  Check for yourself the direction of the flow on the nullclines (e.g. for the $y$-nullcline, on which $\dot y = 0$, we need to consider when $\dot x > 0$ and when $\dot x < 0$). In figure {numref}`fig-pos-slope`, the horizontal flow coming off the y-axis misses the nullcline that would turn it around, while in figure {numref}`fig-neg-slope`, the horizontal flow runs right into the positive-sloped nullcline. Thus, when $f'(x) <0$, the fixed point is stable (either a node or a spiral), and when $f'(x) > 0$, the fixed point is unstable (either a node or a spiral). As a corollary, when the two nullclines are perpendicular, the fixed point is a center.
 
-```{figure} images/nullclines_pos_slope.png
----
-name: fig-pos-slope
----
-Slope of $x$-nullcline (in blue) determines the stability of the fixed point; the positive slope of the function $f(x)$ creates an unstable fixed point.
-```
+
+![Slope of $x$-nullcline (in blue) determines the stability of the fixed point; the positive slope of the function $f(x)$ creates an unstable fixed point.](images/nullclines_pos_slope.png)
 
 
-```{figure} images/nullclines_neg_slope.png
----
-name: fig-neg-slope
----
-Slope of $x$-nullcline (in blue) determines the stability of the fixed point; the negative slope of the function $f(x)$ creates an stable fixed point.
-```
+
+
+![Slope of $x$-nullcline (in blue) determines the stability of the fixed
+point; the negative slope of the function $f(x)$ creates an stable fixed
+point.] (images/nullclines_neg_slope.png)
 
 
 Now let us go back to the cubic nullcline in figure {numref}`fig-cub-null`. It should be clear that there is a trapping region of phase space, because at any point sufficiently far from the origin, the direction of flow is toward the origin. Intuitively, the directions of flow on the nullclines ensure that the flow heads down on the right hand side of the plane, and upward on the left-hand side of the plane; the flow is trapped by the cubic "arms" of the graph of $f(x)$. One can construct a flow trapping-region more rigorously, but I will leave this as a potential exercise for the reader. Therefore, as long as there is an unstable fixed point inside a flow-trapping region, which is determined  by the slope of $f(x)$ at the intersection of the nullclines, the Poincare-Bendixson theorem ensures the existence of a limit cycle in that region. This result is used in many biological models.
@@ -142,13 +236,14 @@ name: fig-glyco-stable
 Phase portrait of the glycolysis model (nullclines for $x$ and $y$ shown in orange and pink): with a stable fixed point.
 ```
 
+\`\`\`{figure} images/glycolytic_cycle.png
+31b8e172-b470-440e-83d8-e6b185028602:dAB5AHAAZQA6AFoAUQBBAHgAQQBEAGcAQQBNAFEAQQA1AEEARABZAEEATQBBAEEAMQBBAEMAMABBAE0AQQBCAGgAQQBHAE0AQQBaAEEAQQB0AEEARABRAEEAWgBnAEIAaABBAEcAVQBBAEwAUQBBADQAQQBHAEkAQQBPAFEAQQA1AEEAQwAwAEEATwBRAEIAagBBAEQARQBBAFkAZwBBADMAQQBHAEkAQQBaAEEAQQAzAEEARwBNAEEATQBBAEIAbQBBAEQARQBBAAoAcABvAHMAaQB0AGkAbwBuADoATQBRAEEAMABBAEQAZwBBAE4AUQBBADUAQQBBAD0APQAKAHAAcgBlAGYAaQB4ADoACgBzAG8AdQByAGMAZQA6AEwAUQBBAHQAQQBDADAAQQBDAGcAQgB1AEEARwBFAEEAYgBRAEIAbABBAEQAbwBBAEkAQQBCAG0AQQBHAGsAQQBaAHcAQQB0AEEARwBjAEEAYgBBAEIANQBBAEcATQBBAGIAdwBBAHQAQQBHAE0AQQBlAFEAQgBqAEEARwB3AEEAWgBRAEEASwBBAEMAMABBAEwAUQBBAHQAQQBBAD0APQAKAHMAdQBmAGYAaQB4ADoA:31b8e172-b470-440e-83d8-e6b185028602
 
-```{figure} images/glycolytic_cycle.png
----
-name: fig-glyco-cycle
----
-Phase portrait of the glycolysis model (nullclines for $x$ and $y$ shown in orange and pink): with an unstable fixed point and a solution trajectory converging to a limit cycle.
-```
+Phase portrait of the glycolysis model (nullclines for $x$ and $y$ shown
+in orange and pink): with an unstable fixed point and a solution
+trajectory converging to a limit cycle.
+
+```         
 
 ## Fitzhugh-Nagumo model of neural excitation
 
@@ -182,11 +277,16 @@ name: fig-fn-stable
 Stable fixed point in the Fitzhugh-Nagumo model
 ```
 
-```{figure} images/lec16_fn_unstable.png
----
-name: fig-fn-unstable
----
-Unstable fixed point in the Fitzhugh-Nagumo model
-```
+\`\`\`{figure} images/lec16_fn_unstable.png
+31b8e172-b470-440e-83d8-e6b185028602:dAB5AHAAZQA6AFoAUQBBAHgAQQBEAGcAQQBNAFEAQQA1AEEARABZAEEATQBBAEEAMQBBAEMAMABBAE0AQQBCAGgAQQBHAE0AQQBaAEEAQQB0AEEARABRAEEAWgBnAEIAaABBAEcAVQBBAEwAUQBBADQAQQBHAEkAQQBPAFEAQQA1AEEAQwAwAEEATwBRAEIAagBBAEQARQBBAFkAZwBBADMAQQBHAEkAQQBaAEEAQQAzAEEARwBNAEEATQBBAEIAbQBBAEQARQBBAAoAcABvAHMAaQB0AGkAbwBuADoATQBRAEEAMwBBAEQAYwBBAE4AUQBBADIAQQBBAD0APQAKAHAAcgBlAGYAaQB4ADoACgBzAG8AdQByAGMAZQA6AEwAUQBBAHQAQQBDADAAQQBDAGcAQgB1AEEARwBFAEEAYgBRAEIAbABBAEQAbwBBAEkAQQBCAG0AQQBHAGsAQQBaAHcAQQB0AEEARwBZAEEAYgBnAEEAdABBAEgAVQBBAGIAZwBCAHoAQQBIAFEAQQBZAFEAQgBpAEEARwB3AEEAWgBRAEEASwBBAEMAMABBAEwAUQBBAHQAQQBBAD0APQAKAHMAdQBmAGYAaQB4ADoA:31b8e172-b470-440e-83d8-e6b185028602
 
-As we saw above, if the fixed point is unstable and the shape of cubic prevents the flow from leaving a larger region, then there must exist a limit cycle. On the other hand, if the fixed point is stable, then there is no limit cycle. So the Fitzhugh-Nagumo provides a simple model for the transition between a resting state with constant voltage (stable fixed point) to the excited state where periodic action potentials are generated (limit cycle). The readers can convince themselves that the addition of the external signal $z(t)$ can lead to this transition.
+Unstable fixed point in the Fitzhugh-Nagumo model \`\`\`
+
+As we saw above, if the fixed point is unstable and the shape of cubic
+prevents the flow from leaving a larger region, then there must exist a
+limit cycle. On the other hand, if the fixed point is stable, then there
+is no limit cycle. So the Fitzhugh-Nagumo provides a simple model for
+the transition between a resting state with constant voltage (stable
+fixed point) to the excited state where periodic action potentials are
+generated (limit cycle). The readers can convince themselves that the
+addition of the external signal $z(t)$ can lead to this transition.
