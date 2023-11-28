@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.280">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./ch17_nonlinear_oscillations.html" rel="next">
 <link href="./ch15_fourier.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -181,6 +181,11 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ch17_nonlinear_oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Nonlinear oscillations in biology</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -222,6 +227,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -242,8 +248,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Suppose two species are competing for the same resources, e.g.&nbsp;rabbits and sheep want to graze in the same fields. Let their individual growth rates be governed by logistic equations, with certain carrying capacities <span class="math inline">\(K_r\)</span> and <span class="math inline">\(K_s\)</span> and rates of growth <span class="math inline">\(a_r\)</span> and <span class="math inline">\(a_s\)</span>. In addition, the two species influence each others’ rates of growth when their respective populations grow, by using up resources that both populations need to survive. Thus, the effect of competition can be represented by a term proportional to the <strong>product of the two populations</strong>. The effect of competition on the rabbits is represented by <span class="math inline">\(c_r\)</span> and that on the sheep <span class="math inline">\(c_s\)</span>, and the two parameters need not be the same, e.g.&nbsp;because the sheep are less sensitive to competition from rabbits than vice versa. The two variable ODE model can then be written as follows, with <span class="math inline">\(S\)</span> representing sheep and <span class="math inline">\(R\)</span> rabbits:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\dot S &amp;=&amp; a_s S(K_s -S) - c_s SR \\
-\dot R &amp;=&amp; a_r R(K_r - R) - c_r SR
+\dot S &amp;=&amp; r_1 S(K_1 -S) - c_s SR \\
+\dot R &amp;=&amp; r_2 R(K_2 - R) - c_r SR
 \end{aligned}
 \]</span></p>
 <p>These equations are nonlinear due to the squared terms and the <span class="math inline">\(SR\)</span> terms. We cannot apply the powerful methods of linear algebra and find the eigenvalues of the system, since the equations cannot be written in matrix-vector form. In the analytical section, we will learn to use the method of linearization around a fixed point to determine behavior locally near equilibrium points.</p>
@@ -256,16 +262,14 @@ A + B {\textstyle \overset{k_1}{\underset{k_{-1}}{\rightleftarrows}}} C
 %A + B \xrightleftharpoons[k_{-1}]{k_1}C
 \]</span></p>
 <p>The chemical reaction rates <span class="math inline">\(k_1\)</span> and <span class="math inline">\(k_{-1}\)</span> are related to the speed of the forward (association) and backward (dissociation) reactions, but the two processes are fundamentally different, as in the SIS model above. The forward reaction depends on molecule <span class="math inline">\(A\)</span> encountering molecule <span class="math inline">\(B\)</span>, and thus its rate is proportional to the product of their concentrations. The dissociation reaction rate depends linearly on the concentration of <span class="math inline">\(C\)</span>. Thus, the differential equations describing the rates of change of the concentrations of the three molecules are:</p>
-<p><span class="math display">\[
-\begin{aligned}
+<span class="math display">\[\begin{aligned}
 \dot A &amp;=&amp;  -k_1 AB + k_{-1} C \\
 \dot  B &amp;=&amp;  -k_1 AB + k_{-1} C\\
 \dot C &amp;=&amp; k_1 AB - k_{-1} C
-\end{aligned}
-\]</span></p>
+\end{aligned}\]</span>
 <p>The equation are redundant, as the rates of change of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are equal. Therefore, if <span class="math inline">\(A_0\)</span> and <span class="math inline">\(B_0\)</span> are the initial concentrations of the two molecules, the concentration of <span class="math inline">\(B(t)\)</span> at some further time is given by <span class="math inline">\(B(t) = A(t) - A_0 + B_0\)</span> (adjusting for the difference in initial concentrations).</p>
 <p>Further, there is a conserved quantity found by adding either <span class="math inline">\(\dot A + \dot C = 0\)</span> or <span class="math inline">\(\dot B + \dot C = 0\)</span>. Thus, the sum of either the number of molecules <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> or of <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> is constant in the course of the reaction. Let <span class="math inline">\(C_0\)</span> be the initial concentration of <span class="math inline">\(C\)</span>. Since the sum of two concentrations is constant, <span class="math inline">\(C(t) + A(t) = C_0 + A_0 \Rightarrow C(t) = C_0 + A_0 - A(t)\)</span>. Note that the total number of molecules <span class="math inline">\(A+B+C\)</span> is not conserved, since the reactions change the number of molecules. The two redundancies make it possible to reduce the three equations to one:</p>
-<p><span class="math display">\[\dot A = -k_1A(A-A_0+B_0) + k_{-1} A(C_0 + A_0 - A)\]</span></p>
+<p><span class="math display">\[ A' = -k_1A(A-A_0+B_0) + k_{-1} A(C_0 + A_0 - A)\]</span></p>
 <p>This equation can be examined using standard stability analysis for one-dimensional ODEs.</p>
 </section>
 </section>
@@ -321,7 +325,7 @@ Example: rabbits and sheep
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The fixed points of the model introduced in the modeling section, equation <span class="math inline">\(\ref{eq:rs_competition}\)</span> must satisfy the conditions <span class="math inline">\(\dot s = \dot r = 0\)</span>. Let us set the following constants for our example <span class="math inline">\(K_s = 2\)</span>, <span class="math inline">\(K_r = 3\)</span>, <span class="math inline">\(a_s = a_r = 1\)</span>, <span class="math inline">\(c_s = 1\)</span>, <span class="math inline">\(c_r = 2\)</span>. Then the two equations that define the fixed points are:</p>
+<p>The fixed points of the model introduced in the modeling section, equation <span class="math inline">\(\ref{eq:rs_competition}\)</span> must satisfy the conditions <span class="math inline">\(\dot s = \dot r = 0\)</span>. Let us set the following constants for our example <span class="math inline">\(K_1 = 2\)</span>, <span class="math inline">\(K_r2 = 3\)</span>, <span class="math inline">\(r_1 = r_2 = 1\)</span>, <span class="math inline">\(c_s = 1\)</span>, <span class="math inline">\(c_r = 2\)</span>. Then the two equations that define the fixed points are:</p>
 <p><span class="math display">\[
 \begin{aligned}
 0 &amp;=&amp;  s(2 -s) - sr \\
@@ -364,7 +368,7 @@ Definition
 <p>For a multivariable function, e.g.&nbsp;<span class="math inline">\(f(x,y)\)</span> a <em>partial derivative</em> <span class="math inline">\(\frac{\partial f}{\partial x}\)</span> is the derivative of the function calculated while treating the other variables (e.g.&nbsp;<span class="math inline">\(y\)</span>) constant. The partial derivative can then be evaluated at any point <span class="math inline">\((x_0,y_0)\)</span> to obtain the rate of change of the function in the <span class="math inline">\(x\)</span> direction at that point.</p>
 </div>
 </div>
-<p>** Example:** For <span class="math inline">\(f(x,y) = 4x^3y - 5y^2\)</span> the partial derivatives are:</p>
+<p><strong>Example:</strong> For <span class="math inline">\(f(x,y) = 4x^3y - 5y^2\)</span> the partial derivatives are:</p>
 <ul>
 <li><p><span class="math inline">\(\frac{\partial f}{\partial x} = 12x^2y\)</span></p></li>
 <li><p><span class="math inline">\(\frac{\partial f}{\partial y} = 4x^3 - 10y\)</span></p></li>
@@ -373,12 +377,12 @@ Definition
 <p>The partial derivatives of a nonlinear function evaluated at a point allow us to approximate the behavior of the function using only linear terms. This is analogous to the linear Taylor approximation of a function of one variable, which approximates a nonlinear function with its tangent line. Specifically, for a function <span class="math inline">\(f(x,y)\)</span> which is zero at a particular point <span class="math inline">\((x^*, y^*)\)</span> - that is it, it’s a fixed point - the function can be approximated like this:</p>
 <p><span class="math display">\[ f(x^*+u,y^*+v) = u\frac{\partial f}{\partial x} + v\frac{\partial f}{\partial y} + O((u,v)^2)\]</span></p>
 <p>The new variables <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> represent the deviations from the fixed point in the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> direction, respectively and the <span class="math inline">\(O((u,v)^2)\)</span> term represents the higher-order terms that are neglected by using only the linear terms. Since in the vicinity of the fixed point <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are very small, raising them to higher powers produces very small numbers that can be neglected (although sometimes they must be considered, when linear stability analysis is inconclusive).</p>
-<p>Note that these partial derivatives are the directions of flow <strong>at a particular fixed point</strong>, thus they have to calculated separately for each fixed point <span class="math inline">\((x^*,y^*)\)</span>. This produces a linera approximation in terms of the small increments <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, and the partial derivatives play the role of constants, the local rates of change in <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions.</p>
+<p>Note that these partial derivatives are the directions of flow <strong>at a particular fixed point</strong>, thus they have to calculated separately for each fixed point <span class="math inline">\((x^*,y^*)\)</span>. This produces a linear approximation in terms of the small increments <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>, and the partial derivatives play the role of constants, the local rates of change in <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions.</p>
 <p>Let us focus on two-dimensional systems, for specificity. We can now approximate the functions <span class="math inline">\(f_1(x,y)\)</span> and <span class="math inline">\(f_2(x,y)\)</span> in the vicinity of a fixed point <span class="math inline">\((x^*, y^*)\)</span> using their partial derivatives as above. We can express the two variables near the fixed point as <span class="math inline">\(x = x^* + u\)</span> and <span class="math inline">\(y = y^*+v\)</span> and therefore obtain a local linear approximation for the system of two ODEs:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\dot u &amp;=&amp; u\frac{\partial f_1}{\partial x} \vert_{(x^*,y^*)} + v \frac{\partial f_1}{\partial y} \vert_{(x^*,y^*)} \\
-\dot v &amp;=&amp; u\frac{\partial f_2}{\partial x} \vert_{(x^*, y^*)} + v\frac{\partial f_2}{\partial y} \vert_{(x^*, y^*)}
+\dot u &amp;=&amp; u\frac{\partial f_1}{\partial x} (x^*,y^*) + v \frac{\partial f_1}{\partial y} (x^*,y^*) \\
+\dot v &amp;=&amp; u\frac{\partial f_2}{\partial x} (x^*, y^*) + v\frac{\partial f_2}{\partial y} (x^*, y^*)
 \end{aligned}
 \]</span></p>
 <p>What this achieves is an approximation of nonlinear differential equations by a set of linear differential equations, with the dependent variables expressed in terms of deviations from the fixed point. We now have a linear dynamical system, which can be written in matrix form:</p>
@@ -485,12 +489,11 @@ Outline for classification of fixed points
 <ul>
 <li>obtain the Jacobian by calling <span class="math inline">\(Jac(x[i],y[i])\)</span></li>
 <li>calculated its eigenvalues <span class="math inline">\(v[0]\)</span> and <span class="math inline">\(v[1]\)</span> (by calling an eigenvalue function)</li>
-<li>if $ Re(v[0]) &gt; 0$ and <span class="math inline">\(Re(v[1]) &gt; 0\)</span>
+<li>if <span class="math inline">\(Re(v[0]) &gt; 0\)</span> and <span class="math inline">\(Re(v[1]) &gt; 0\)</span>
 <ul>
 <li>if <span class="math inline">\(Im(v[0]) == 0\)</span>
 <ul>
-<li>print ‘unstable node’<br>
-</li>
+<li>print ‘unstable node’</li>
 </ul></li>
 <li>else
 <ul>
@@ -623,7 +626,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -659,24 +679,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
@@ -687,8 +725,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ch17_nonlinear_oscillations.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Nonlinear oscillations in biology</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
