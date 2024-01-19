@@ -46,7 +46,7 @@ The *norm* of a function $f(x)$, denoted $||f||$, is a mapping from the function
 
 1. $||f|| = 0$ iff $f(x) = 0$ (the function is zero everywhere)
 2. $||af|| = a||f||$ for any real number $a$
-3.  $|| f+g || \leq ||f|| + ||g||$ for any functions $f$ and $g$ in the function space (triangle inequality)
+3. $|| f+g || \leq ||f|| + ||g||$ for any functions $f$ and $g$ in the function space (triangle inequality)
 :::
 
 The norm that we will utilize in the function spaces is called the $L^2$ norm and it is defined as follows:
