@@ -36,13 +36,13 @@ $$
 
 The chemical reaction rates $k_1$ and $k_{-1}$ are related to the speed of the forward (association) and backward (dissociation) reactions, but the two processes are fundamentally different, as in the SIS model above. The forward reaction depends on molecule $A$ encountering molecule $B$, and thus its rate is proportional to the product of their concentrations. The dissociation reaction rate depends linearly on the concentration of $C$. Thus, the differential equations describing the rates of change of the concentrations of the three molecules are:
 
-```{=tex}
+$$
 \begin{aligned}
 \dot A &=&  -k_1 AB + k_{-1} C \\
 \dot  B &=&  -k_1 AB + k_{-1} C\\
 \dot C &=& k_1 AB - k_{-1} C
 \end{aligned}
-```
+$$
 
 The equation are redundant, as the rates of change of $A$ and $B$ are equal. Therefore, if $A_0$ and $B_0$ are the initial concentrations of the two molecules, the concentration of $B(t)$ at some further time is given by $B(t) = A(t) - A_0 + B_0$ (adjusting for the difference in initial concentrations).
 

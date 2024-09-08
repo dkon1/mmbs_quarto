@@ -262,11 +262,13 @@ A + B {\textstyle \overset{k_1}{\underset{k_{-1}}{\rightleftarrows}}} C
 %A + B \xrightleftharpoons[k_{-1}]{k_1}C
 \]</span></p>
 <p>The chemical reaction rates <span class="math inline">\(k_1\)</span> and <span class="math inline">\(k_{-1}\)</span> are related to the speed of the forward (association) and backward (dissociation) reactions, but the two processes are fundamentally different, as in the SIS model above. The forward reaction depends on molecule <span class="math inline">\(A\)</span> encountering molecule <span class="math inline">\(B\)</span>, and thus its rate is proportional to the product of their concentrations. The dissociation reaction rate depends linearly on the concentration of <span class="math inline">\(C\)</span>. Thus, the differential equations describing the rates of change of the concentrations of the three molecules are:</p>
-<span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 \dot A &amp;=&amp;  -k_1 AB + k_{-1} C \\
 \dot  B &amp;=&amp;  -k_1 AB + k_{-1} C\\
 \dot C &amp;=&amp; k_1 AB - k_{-1} C
-\end{aligned}\]</span>
+\end{aligned}
+\]</span></p>
 <p>The equation are redundant, as the rates of change of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are equal. Therefore, if <span class="math inline">\(A_0\)</span> and <span class="math inline">\(B_0\)</span> are the initial concentrations of the two molecules, the concentration of <span class="math inline">\(B(t)\)</span> at some further time is given by <span class="math inline">\(B(t) = A(t) - A_0 + B_0\)</span> (adjusting for the difference in initial concentrations).</p>
 <p>Further, there is a conserved quantity found by adding either <span class="math inline">\(\dot A + \dot C = 0\)</span> or <span class="math inline">\(\dot B + \dot C = 0\)</span>. Thus, the sum of either the number of molecules <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> or of <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> is constant in the course of the reaction. Let <span class="math inline">\(C_0\)</span> be the initial concentration of <span class="math inline">\(C\)</span>. Since the sum of two concentrations is constant, <span class="math inline">\(C(t) + A(t) = C_0 + A_0 \Rightarrow C(t) = C_0 + A_0 - A(t)\)</span>. Note that the total number of molecules <span class="math inline">\(A+B+C\)</span> is not conserved, since the reactions change the number of molecules. The two redundancies make it possible to reduce the three equations to one:</p>
 <p><span class="math display">\[ A' = -k_1A(A-A_0+B_0) + k_{-1} A(C_0 + A_0 - A)\]</span></p>
