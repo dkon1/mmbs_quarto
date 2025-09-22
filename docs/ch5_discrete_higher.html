@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Mathematical Methods for Biology, Part 1 - 5&nbsp; Discrete models of higher order</title>
+<title>5&nbsp; Discrete models of higher order – Mathematical Methods for Biology, Part 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,10 +17,30 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,22 +52,30 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./ch6_matrix_mult.html" rel="next">
 <link href="./ch4_cobweb_plots.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,24 +84,59 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ch5_discrete_higher.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -81,145 +144,167 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Mathematical Methods for Biology, Part 1</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch1_discrete1var.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">One variable in discrete time</span></a>
+  <a href="./ch1_discrete1var.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">One variable in discrete time</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch2_plotting_python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting in Python</span></a>
+  <a href="./ch2_plotting_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Plotting in Python</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch3_discrete_chaos.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Nonlinear discrete-time dynamic models</span></a>
+  <a href="./ch3_discrete_chaos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Nonlinear discrete-time dynamic models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch4_cobweb_plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graphical analysis of difference equations</span></a>
+  <a href="./ch4_cobweb_plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graphical analysis of difference equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch5_discrete_higher.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></a>
+  <a href="./ch5_discrete_higher.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch6_matrix_mult.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Matrix multiplication and population models</span></a>
+  <a href="./ch6_matrix_mult.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Matrix multiplication and population models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch7_linear_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Linear regression</span></a>
+  <a href="./ch7_linear_reg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Linear regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch8_LinReg_python.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear regression in Python</span></a>
+  <a href="./ch8_LinReg_python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linear regression in Python</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch9_1var_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Models with one variable in continuous time</span></a>
+  <a href="./ch9_1var_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Models with one variable in continuous time</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch10_numeric_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numeric solutions of ODEs</span></a>
+  <a href="./ch10_numeric_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numeric solutions of ODEs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch11_graph_ode.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Graphical analysis of ordinary differential equations</span></a>
+  <a href="./ch11_graph_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Graphical analysis of ordinary differential equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch12_linear_pplane.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Linear ODEs with two variables</span></a>
+  <a href="./ch12_linear_pplane.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Linear ODEs with two variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch13_phase_portraits.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Phase portraits in Python</span></a>
+  <a href="./ch13_phase_portraits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Phase portraits in Python</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch14_lin_oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Forces and potentials in biological modeling</span></a>
+  <a href="./ch14_lin_oscillations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Forces and potentials in biological modeling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch15_fourier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fourier series: decomposition by frequency</span></a>
+  <a href="./ch15_fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fourier series: decomposition by frequency</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch16_linearization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linearization of ODEs</span></a>
+  <a href="./ch16_linearization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linearization of ODEs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ch17_nonlinear_oscillations.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Nonlinear oscillations in biology</span></a>
+  <a href="./ch17_nonlinear_oscillations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Nonlinear oscillations in biology</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#higher-order-difference-equations" id="toc-higher-order-difference-equations" class="nav-link active" data-scroll-target="#higher-order-difference-equations"><span class="toc-section-number">5.1</span>  higher order difference equations</a>
+  <li><a href="#higher-order-difference-equations" id="toc-higher-order-difference-equations" class="nav-link active" data-scroll-target="#higher-order-difference-equations"><span class="header-section-number">5.1</span> higher order difference equations</a>
   <ul class="collapse">
-  <li><a href="#the-fibonacci-model-and-sequence" id="toc-the-fibonacci-model-and-sequence" class="nav-link" data-scroll-target="#the-fibonacci-model-and-sequence"><span class="toc-section-number">5.1.1</span>  the Fibonacci model and sequence</a></li>
-  <li><a href="#matrix-representation-of-discrete-time-models" id="toc-matrix-representation-of-discrete-time-models" class="nav-link" data-scroll-target="#matrix-representation-of-discrete-time-models"><span class="toc-section-number">5.1.2</span>  matrix representation of discrete time models</a></li>
+  <li><a href="#the-fibonacci-model-and-sequence" id="toc-the-fibonacci-model-and-sequence" class="nav-link" data-scroll-target="#the-fibonacci-model-and-sequence"><span class="header-section-number">5.1.1</span> the Fibonacci model and sequence</a></li>
+  <li><a href="#matrix-representation-of-discrete-time-models" id="toc-matrix-representation-of-discrete-time-models" class="nav-link" data-scroll-target="#matrix-representation-of-discrete-time-models"><span class="header-section-number">5.1.2</span> matrix representation of discrete time models</a></li>
   </ul></li>
-  <li><a href="#solutions-for-linear-higher-order-difference-equations" id="toc-solutions-for-linear-higher-order-difference-equations" class="nav-link" data-scroll-target="#solutions-for-linear-higher-order-difference-equations"><span class="toc-section-number">5.2</span>  Solutions for linear higher order difference equations</a>
+  <li><a href="#solutions-for-linear-higher-order-difference-equations" id="toc-solutions-for-linear-higher-order-difference-equations" class="nav-link" data-scroll-target="#solutions-for-linear-higher-order-difference-equations"><span class="header-section-number">5.2</span> Solutions for linear higher order difference equations</a>
   <ul class="collapse">
-  <li><a href="#solutions-of-linear-difference-equations" id="toc-solutions-of-linear-difference-equations" class="nav-link" data-scroll-target="#solutions-of-linear-difference-equations"><span class="toc-section-number">5.2.1</span>  solutions of linear difference equations</a></li>
+  <li><a href="#solutions-of-linear-difference-equations" id="toc-solutions-of-linear-difference-equations" class="nav-link" data-scroll-target="#solutions-of-linear-difference-equations"><span class="header-section-number">5.2.1</span> solutions of linear difference equations</a></li>
   </ul></li>
-  <li><a href="#matrices-and-vectors" id="toc-matrices-and-vectors" class="nav-link" data-scroll-target="#matrices-and-vectors"><span class="toc-section-number">5.3</span>  Matrices and vectors</a>
+  <li><a href="#matrices-and-vectors" id="toc-matrices-and-vectors" class="nav-link" data-scroll-target="#matrices-and-vectors"><span class="header-section-number">5.3</span> Matrices and vectors</a>
   <ul class="collapse">
-  <li><a href="#elementary-matrix-operations" id="toc-elementary-matrix-operations" class="nav-link" data-scroll-target="#elementary-matrix-operations"><span class="toc-section-number">5.3.1</span>  elementary matrix operations</a></li>
-  <li><a href="#matrix-multiplication" id="toc-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication"><span class="toc-section-number">5.3.2</span>  matrix multiplication</a></li>
-  <li><a href="#matrix-inverses" id="toc-matrix-inverses" class="nav-link" data-scroll-target="#matrix-inverses"><span class="toc-section-number">5.3.3</span>  matrix inverses</a></li>
-  <li><a href="#matrices-transform-vectors" id="toc-matrices-transform-vectors" class="nav-link" data-scroll-target="#matrices-transform-vectors"><span class="toc-section-number">5.3.4</span>  matrices transform vectors</a></li>
-  <li><a href="#calculating-eigenvalues" id="toc-calculating-eigenvalues" class="nav-link" data-scroll-target="#calculating-eigenvalues"><span class="toc-section-number">5.3.5</span>  calculating eigenvalues</a></li>
-  <li><a href="#calculation-of-eigenvectors-on-paper" id="toc-calculation-of-eigenvectors-on-paper" class="nav-link" data-scroll-target="#calculation-of-eigenvectors-on-paper"><span class="toc-section-number">5.3.6</span>  calculation of eigenvectors on paper</a></li>
+  <li><a href="#elementary-matrix-operations" id="toc-elementary-matrix-operations" class="nav-link" data-scroll-target="#elementary-matrix-operations"><span class="header-section-number">5.3.1</span> elementary matrix operations</a></li>
+  <li><a href="#matrix-multiplication" id="toc-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication"><span class="header-section-number">5.3.2</span> matrix multiplication</a></li>
+  <li><a href="#matrix-inverses" id="toc-matrix-inverses" class="nav-link" data-scroll-target="#matrix-inverses"><span class="header-section-number">5.3.3</span> matrix inverses</a></li>
+  <li><a href="#matrices-transform-vectors" id="toc-matrices-transform-vectors" class="nav-link" data-scroll-target="#matrices-transform-vectors"><span class="header-section-number">5.3.4</span> matrices transform vectors</a></li>
+  <li><a href="#calculating-eigenvalues" id="toc-calculating-eigenvalues" class="nav-link" data-scroll-target="#calculating-eigenvalues"><span class="header-section-number">5.3.5</span> calculating eigenvalues</a></li>
+  <li><a href="#calculation-of-eigenvectors-on-paper" id="toc-calculation-of-eigenvectors-on-paper" class="nav-link" data-scroll-target="#calculation-of-eigenvectors-on-paper"><span class="header-section-number">5.3.6</span> calculation of eigenvectors on paper</a></li>
   </ul></li>
-  <li><a href="#age-structured-population-models" id="toc-age-structured-population-models" class="nav-link" data-scroll-target="#age-structured-population-models"><span class="toc-section-number">5.4</span>  Age-structured population models</a>
+  <li><a href="#age-structured-population-models" id="toc-age-structured-population-models" class="nav-link" data-scroll-target="#age-structured-population-models"><span class="header-section-number">5.4</span> Age-structured population models</a>
   <ul class="collapse">
-  <li><a href="#leslie-models" id="toc-leslie-models" class="nav-link" data-scroll-target="#leslie-models"><span class="toc-section-number">5.4.1</span>  Leslie models</a></li>
-  <li><a href="#usher-models" id="toc-usher-models" class="nav-link" data-scroll-target="#usher-models"><span class="toc-section-number">5.4.2</span>  Usher models</a></li>
+  <li><a href="#leslie-models" id="toc-leslie-models" class="nav-link" data-scroll-target="#leslie-models"><span class="header-section-number">5.4.1</span> Leslie models</a></li>
+  <li><a href="#usher-models" id="toc-usher-models" class="nav-link" data-scroll-target="#usher-models"><span class="header-section-number">5.4.2</span> Usher models</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -229,7 +314,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discrete models of higher order</span></h1>
 </div>
 
 
@@ -242,7 +327,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p>It is not unusual for biological systems to have multiple variables which influence each other, and thus need to be accounted in any model that aims to be useful. In this unit we will learn how to construct such models, and the methods for analyzing, solving, and numerically simulating them. We will see how models with two or more variables are used in a variety of biological fields: to describe population demographics, motility of cochlear cells, psychology of human relationships, gene regulation, and motion of molecular structures.</p>
 <p>We will need new mathematical tools in order to analyze models with multiple variables. These methods are primarily from the realm of linear algebra. We will express multiple equations in terms of matrices and vectors, and learn how to operate on these objects. The dynamics of these models can be analyzed by doing calculations with the matrices, specifically finding special numbers and vectors known as eigenvalues and eigenvectors. These concepts, which will be introduced later, are absolutely central to all of applied mathematics, and to computational biology in particular.</p>
@@ -272,10 +359,10 @@ N_{t+1} = N_t + N_{t-1}
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/fibonacci-rabbits.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">The Fibbonaci model with each pair of individuals waiting one generation before producing another pair each subsequent generation &lt;https://artblot.wordpress.com/2013/05/10/rich-with-fibonacci-gold/</figcaption><p></p>
+<figcaption>The Fibbonaci model with each pair of individuals waiting one generation before producing another pair each subsequent generation &lt;https://artblot.wordpress.com/2013/05/10/rich-with-fibonacci-gold/</figcaption>
 </figure>
 </div>
-<p>[The shell of the <em>Nautilus pompilius</em> mollusk has the shape of a Fibonacci spiral, shown here filled with squares of the corresponding size <a href="http://mathforum.org/mathimages" class="uri">http://mathforum.org/mathimages</a>] (images/fibo_nautilus.jpg)</p>
+<p>![The shell of the <em>Nautilus pompilius</em> mollusk has the shape of a Fibonacci spiral, shown here filled with squares of the corresponding size <a href="http://mathforum.org/mathimages" class="uri">http://mathforum.org/mathimages</a>] (images/fibo_nautilus.jpg)</p>
 </section>
 <section id="matrix-representation-of-discrete-time-models" class="level3" data-number="5.1.2">
 <h3 data-number="5.1.2" class="anchored" data-anchor-id="matrix-representation-of-discrete-time-models"><span class="header-section-number">5.1.2</span> matrix representation of discrete time models</h3>
@@ -305,13 +392,13 @@ x_{t+1} = ax_{t} + b x_{t-1}
 x_t  = A \lambda_1^t + B \lambda_2^t
 \]</span></p>
 <p>The solution for a second order difference equation is a sum of two terms that look like solutions to first order difference equations. There are two different types of constants in the solution: the bases of the exponential <span class="math inline">\(\lambda_1, \lambda_2\)</span> and the multiplicative constants <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. They are different because the exponential parameters depend on the equation itself, but not on the initial conditions, while the multiplicative constants depend only on the initial conditions. Therefore, they can be determined separately:</p>
-<div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Outline for solving a second order linear difference equation
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Outline for solving a second order linear difference equation
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -324,7 +411,7 @@ Outline for solving a second order linear difference equation
 <p><span class="math display">\[
 \lambda_{1,2} = \frac{a \pm \sqrt {a^2  + 4b} }{2}
 \]</span></p>
-<p>If <span class="math inline">\(a^2 + 4b &gt; 0\)</span>, this gives two values of <span class="math inline">\(\lambda\)</span>; if <span class="math inline">\(a^2 + 4b = 0\)</span>, there is a single value, and if <span class="math inline">\(a^2 + 4b &lt; 0\)</span>, then no real values of <span class="math inline">\(\lambda\)</span> satisfy the difference equation.</p>
+<p>If <span class="math inline">\(a^2  + 4b &gt; 0\)</span>, this gives two values of <span class="math inline">\(\lambda\)</span>; if <span class="math inline">\(a^2  + 4b = 0\)</span>, there is a single value, and if <span class="math inline">\(a^2  + 4b &lt; 0\)</span>, then no real values of <span class="math inline">\(\lambda\)</span> satisfy the difference equation.</p>
 <ol start="3" type="1">
 <li>Once we have found the values <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span>, use the initial conditions (e.g.&nbsp;some values <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x_1\)</span>) to solve for the multiplicative constants:</li>
 </ol>
@@ -367,13 +454,13 @@ N_t \approx \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^t
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/golden_ratio_line.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Line segments that are in golden proportion to each other <a href="http://en.wikipedia.org/wiki/Golden_ratio" class="uri">http://en.wikipedia.org/wiki/Golden_ratio</a></figcaption><p></p>
+<figcaption>Line segments that are in golden proportion to each other <a href="http://en.wikipedia.org/wiki/Golden_ratio" class="uri">http://en.wikipedia.org/wiki/Golden_ratio</a></figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/gold_rect_const.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Construction of a rectangle with the golden ratio between its sides <a href="http://en.wikipedia.org/wiki/Golden_ratio" class="uri">http://en.wikipedia.org/wiki/Golden_ratio</a></figcaption><p></p>
+<figcaption>Construction of a rectangle with the golden ratio between its sides <a href="http://en.wikipedia.org/wiki/Golden_ratio" class="uri">http://en.wikipedia.org/wiki/Golden_ratio</a></figcaption>
 </figure>
 </div>
 <p>To show that the geometric golden ratio is the same as the ratio that appears in the Fibonacci sequence, let us write down the algebraic condition stated above. Because we are interested in the ratio, let the smaller quantity be 1 and the larger one be <span class="math inline">\(\phi\)</span>; by the definition we obtain the following. <span class="math inline">\(\phi = (\phi+1)/\phi\)</span>, thus <span class="math inline">\(\phi^2-\phi-1 = 0\)</span>. This is the same quadratic equation that we derived for the exponential bases of the solution above. The solution to this equation (by the quadratic formula) is <span class="math inline">\(\phi=(1\pm\sqrt5)/2\)</span>, and the positive solution is the golden ratio.</p>
@@ -385,26 +472,26 @@ N_t \approx \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^t
 <section id="elementary-matrix-operations" class="level3" data-number="5.3.1">
 <h3 data-number="5.3.1" class="anchored" data-anchor-id="elementary-matrix-operations"><span class="header-section-number">5.3.1</span> elementary matrix operations</h3>
 <p>Now is a good time to properly define what matrices are and how we can operate on them. We have already seen a matrix for the Fibonacci model, but just to make sure all of the terms are clear:</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Definition
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>A matrix <span class="math inline">\(A\)</span> is a rectangular array of <em>elements</em> <span class="math inline">\(A_{ij}\)</span>, in which <span class="math inline">\(i\)</span> denotes the row number (index), counted from the top, and <span class="math inline">\(j\)</span> denotes the column number (index), counted from left to right. The <em>dimensions</em> of a matrix are defined by the number of rows and columns, so an <em>n by m matrix</em> contains <span class="math inline">\(n\)</span> rows and <span class="math inline">\(m\)</span> columns.</p>
 </div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Definition
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -418,7 +505,7 @@ A = \left(\begin{array}{ccc}a &amp; b &amp; c \\d &amp; e &amp; f \\g &amp; h &a
 </section>
 <section id="matrix-multiplication" class="level3" data-number="5.3.2">
 <h3 data-number="5.3.2" class="anchored" data-anchor-id="matrix-multiplication"><span class="header-section-number">5.3.2</span> matrix multiplication</h3>
-<p>Matrices can also be multiplied, but this operation is trickier. For mathematical reasons, multiplication of matrices <span class="math inline">\(A \times B\)</span> does not mean multiplying corresponding elements. Instead, the definition seeks to capture the calculation of simultaneous equations, like the one in the previous section. Here is the definition of matrix multiplication, in words and in a formula <span class="citation" data-cites="strang_linear_2005">(<a href="references.html#ref-strang_linear_2005" role="doc-biblioref"><strong>strang_linear_2005?</strong></a>)</span>:</p>
+<p>Matrices can also be multiplied, but this operation is trickier. For mathematical reasons, multiplication of matrices <span class="math inline">\(A \times B\)</span> does not mean multiplying corresponding elements. Instead, the definition seeks to capture the calculation of simultaneous equations, like the one in the previous section. Here is the definition of matrix multiplication, in words and in a formula <span class="citation" data-cites="strang_linear_2005">(<a href="references.html#ref-strang_linear_2005" role="doc-biblioref">Strang 2005</a>)</span>:</p>
 <p>The <em>product of matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></em> is defined to be a matrix <span class="math inline">\(C\)</span>, whose element <span class="math inline">\(c_{ij}\)</span> is the <strong>dot product of the i-th row of <span class="math inline">\(A\)</span> and the j-th column of <span class="math inline">\(B\)</span></strong>:</p>
 <p><span class="math display">\[
 c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + ... + a_{iN}b_{Nj} = \sum_{k=1}^q a_{ik} b_{kj}
@@ -427,7 +514,7 @@ c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + ... + a_{iN}b_{Nj} = \sum_{k=1}^q a_{ik} 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/matrix_multiplication_tikz.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Multiplication of two matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> results in a new matrix <span class="math inline">\(C\)</span></figcaption><p></p>
+<figcaption>Multiplication of two matrices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> results in a new matrix <span class="math inline">\(C\)</span></figcaption>
 </figure>
 </div>
 <p><strong>Example.</strong> Let us multiply two matrices to illustrate how it’s done. Here both matrices are 2 by 2, so their inner dimensions match and the resulting matrix is 2 by 2 as well:</p>
@@ -459,13 +546,13 @@ c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + ... + a_{iN}b_{Nj} = \sum_{k=1}^q a_{ik} 
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="matrix-inverses"><span class="header-section-number">5.3.3</span> matrix inverses</h3>
 <p>Above we learned the rules of matrix multiplication, and we can write <span class="math inline">\(C = A \times B\)</span>, so long as the number of columns in <span class="math inline">\(A\)</span> matches the number of rows in <span class="math inline">\(B\)</span>. However, what if we want to reverse the process? If we know the resulting matrix <span class="math inline">\(C\)</span>, and one of the two matrices, e.g.&nbsp;<span class="math inline">\(A\)</span>, how can we find <span class="math inline">\(B\)</span>? Naively, we would like to be able to divide both sides by the matrix <span class="math inline">\(A\)</span>, and find <span class="math inline">\(B = C/A\)</span>. However, things are more complicated for matrices.</p>
 <p>Properly speaking, we need to introduce the <em>inverse</em> of a matrix <span class="math inline">\(A\)</span>. If we think about inverses of real numbers, <span class="math inline">\(a^{-1}\)</span> is a number that when it multiplies <span class="math inline">\(a\)</span>, results in one. In order to define the equivalent for matrices, we first need to introduce the unity of matrix multiplication.</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Definition
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -482,13 +569,13 @@ A \times I = I \times A  = A
 \begin{pmatrix}-6\times 1 + -2\times 0 &amp; -6\times 0 + -2\times 1  \\ 12\times 1 -1 \times 0 &amp; 12\times 0 -1 \times 1  \end{pmatrix} = \begin{pmatrix}-6 &amp; -2 \\ 12 &amp; -1 \end{pmatrix}
 \]</span></p>
 <p>Now that we have specified the identity, we can define the matrix inverse:</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Definition
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -498,13 +585,13 @@ A^{-1} \times A = A \times A^{-1} = I
 \]</span></p>
 </div>
 </div>
-<p>Finding the inverse of a matrix is not simple, and we will be content to let computers handle the dirty work. In fact, not every matrix possesses an inverse. There is a test for existence of an inverse of <span class="math inline">\(A\)</span>, and it depends on the determinant <span class="citation" data-cites="strang_linear_2005">(<a href="references.html#ref-strang_linear_2005" role="doc-biblioref"><strong>strang_linear_2005?</strong></a>)</span>:</p>
+<p>Finding the inverse of a matrix is not simple, and we will be content to let computers handle the dirty work. In fact, not every matrix possesses an inverse. There is a test for existence of an inverse of <span class="math inline">\(A\)</span>, and it depends on the determinant <span class="citation" data-cites="strang_linear_2005">(<a href="references.html#ref-strang_linear_2005" role="doc-biblioref">Strang 2005</a>)</span>:</p>
 <p>A square matrix <span class="math inline">\(A\)</span> possesses an inverse <span class="math inline">\(A^{-1}\)</span> and is called <em>invertible</em> if and only if its determinant is not zero.</p>
 </section>
 <section id="matrices-transform-vectors" class="level3" data-number="5.3.4">
 <h3 data-number="5.3.4" class="anchored" data-anchor-id="matrices-transform-vectors"><span class="header-section-number">5.3.4</span> matrices transform vectors</h3>
-<p>In this section we will learn to characterize square matrices by finding special numbers and vectors associated with them. At the core of this analysis lies the concept of a matrix as an <em>operator</em> that transforms vectors by multiplication. To be clear, in this section we take as default that the matrices <span class="math inline">\(A\)</span> are square, and that vectors <span class="math inline">\(\vec v\)</span> are column vectors, and thus will multiply the matrix on the right: <span class="math inline">\(A \times \vec v\)</span>.</p>
-<p>A matrix multiplied by a vector produces another vector, provided the number of columns in the matrix is the same as the number of rows in the vector. This can be interpreted as the matrix transforming the vector <span class="math inline">\(\vec v\)</span> into another one: <span class="math inline">\(A \times \vec v = \vec u\)</span>. The resultant vector <span class="math inline">\(\vec u\)</span> may or may not resemble <span class="math inline">\(\vec v\)</span>, but there are special vectors for which the transformation is very simple.</p>
+<p>In this section we will learn to characterize square matrices by finding special numbers and vectors associated with them. At the core of this analysis lies the concept of a matrix as an <em>operator</em> that transforms vectors by multiplication. To be clear, in this section we take as default that the matrices <span class="math inline">\(A\)</span> are square, and that vectors <span class="math inline">\(\vec v\)</span> are column vectors, and thus will multiply the matrix on the right: <span class="math inline">\(A \times  \vec v\)</span>.</p>
+<p>A matrix multiplied by a vector produces another vector, provided the number of columns in the matrix is the same as the number of rows in the vector. This can be interpreted as the matrix transforming the vector <span class="math inline">\(\vec v\)</span> into another one: <span class="math inline">\(A  \times  \vec v = \vec u\)</span>. The resultant vector <span class="math inline">\(\vec u\)</span> may or may not resemble <span class="math inline">\(\vec v\)</span>, but there are special vectors for which the transformation is very simple.</p>
 <p><strong>Example.</strong> Let us multiply the following matrix and vector (specially chosen to make a point):</p>
 <p><span class="math display">\[
 \left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right) \times
@@ -517,13 +604,13 @@ A^{-1} \times A = A \times A^{-1} = I
 \]</span></p>
 <p>In this case, the vector is changed, but only by multiplication by a constant (4). Thus the geometric direction of the vector remained unchanged.</p>
 <p>Generally, a square matrix has an associated set of vectors for which multiplication by the matrix is equivalent to multiplication by a constant. This can be written down as a definition:</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Definition
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -537,7 +624,7 @@ A  \times  \vec v = \lambda \vec v
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Eigenvalue_equation.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Illustration of the geometry of a matrix <span class="math inline">\(A\)</span> multiplying its eigenvector <span class="math inline">\(v\)</span>, resulting in a vector in the same direction <span class="math inline">\(\lambda v\)</span>. (Figure by Lantonov under CC BY-SA 4.0 via Wikimedia Commons)</figcaption><p></p>
+<figcaption>Illustration of the geometry of a matrix <span class="math inline">\(A\)</span> multiplying its eigenvector <span class="math inline">\(v\)</span>, resulting in a vector in the same direction <span class="math inline">\(\lambda v\)</span>. (Figure by Lantonov under CC BY-SA 4.0 via Wikimedia Commons)</figcaption>
 </figure>
 </div>
 <p>The definition does not specify how many such eigenvectors and eigenvalues can exist for a given matrix <span class="math inline">\(A\)</span>. There are usually as many such vectors <span class="math inline">\(\vec v\)</span> and corresponding numbers <span class="math inline">\(\lambda\)</span> as the number of rows or columns of the square matrix <span class="math inline">\(A\)</span>, so a 2 by 2 matrix has two eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One ironclad rule is that there cannot be more distinct eigenvalues than the matrix dimension. Some matrices possess fewer eigenvalues than the matrix dimension, those are said to have a <em>degenerate</em> set of eigenvalues, and at least two of the eigenvectors share the same eigenvalue.</p>
@@ -552,26 +639,26 @@ A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \ve
 <h3 data-number="5.3.5" class="anchored" data-anchor-id="calculating-eigenvalues"><span class="header-section-number">5.3.5</span> calculating eigenvalues</h3>
 <p>Finding the eigenvalues and eigenvectors analytically, that is on paper, is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger ones there is no analytical solution. In practice, the task is outsourced to a computer. Nevertheless, it is useful to go through the process in 2 dimensions in order to gain an understanding of what is involved.</p>
 <p>First, let us define two quantities that will be useful for this calculation:</p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Definition
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>The <em>trace</em> <span class="math inline">\(\tau\)</span> of a matrix <span class="math inline">\(A\)</span> is the sum of the diagonal elements: <span class="math inline">\(\tau = \sum_i A_{ii}\)</span></p>
 </div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Definition
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -657,7 +744,7 @@ v_1 = - v_2 \times  1/(2-1) = - v_2
 <p>We will now analyze two common <em>age-structured models</em> used by biologists and demographers.</p>
 <section id="leslie-models" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="leslie-models"><span class="header-section-number">5.4.1</span> Leslie models</h3>
-<p>One type of age-structured model used to describe population dynamics is called the <em>Leslie model</em> <span class="citation" data-cites="edelstein-keshet_mathematical_2005 allman_mathematical_2003">(<a href="references.html#ref-edelstein-keshet_mathematical_2005" role="doc-biblioref"><strong>edelstein-keshet_mathematical_2005?</strong></a>; <a href="references.html#ref-allman_mathematical_2003" role="doc-biblioref"><strong>allman_mathematical_2003?</strong></a>)</span>. In this model, there are several different age groups, and after a single time step, individuals in each one all either advance to the next oldest age group or die. This type of can be described in general using the following matrix (called a Leslie matrix):</p>
+<p>One type of age-structured model used to describe population dynamics is called the <em>Leslie model</em> <span class="citation" data-cites="edelstein-keshet_mathematical_2005 allman_mathematical_2003">(<a href="references.html#ref-edelstein-keshet_mathematical_2005" role="doc-biblioref">Edelstein-Keshet 2005</a>; <a href="references.html#ref-allman_mathematical_2003" role="doc-biblioref">Allman and Rhodes 2003</a>)</span>. In this model, there are several different age groups, and after a single time step, individuals in each one all either advance to the next oldest age group or die. This type of can be described in general using the following matrix (called a Leslie matrix):</p>
 <p><span class="math display">\[
 L = \left(\begin{array}{cccc}f_1 &amp; f_2 &amp; ... &amp; f_n \\s_1 &amp; 0 &amp; ... &amp; 0 \\... &amp; ... &amp;...&amp; ... \\0 &amp; ... &amp; s_{n-1}&amp; 0\end{array}\right)
 \]</span></p>
@@ -690,7 +777,7 @@ m_t = \frac{m_1}{\sqrt 8} \sqrt 8^t - \left(m_0 - \frac{m_1}{\sqrt 8} \right)  \
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/leslie_dynamics.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">A plot of the total population in the Leslie model shown above, showing an oscillatory decay to 0</figcaption><p></p>
+<figcaption>A plot of the total population in the Leslie model shown above, showing an oscillatory decay to 0</figcaption>
 </figure>
 </div>
 </section>
@@ -721,161 +808,440 @@ m_{t+1} = 0.4(2 m_{t-1} )+ 0.2 m_t
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/usher_dynamics.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">The total population of the Usher model shown above, showing oscillation and converging to a single value.</figcaption><p></p>
+<figcaption>The total population of the Usher model shown above, showing oscillation and converging to a single value.</figcaption>
 </figure>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-allman_mathematical_2003" class="csl-entry" role="listitem">
+Allman, Elizabeth S., and John A. Rhodes. 2003. <em>Mathematical <span>Models</span> in <span>Biology</span>: <span>An</span> <span>Introduction</span></em>. 1st ed. Cambridge University Press.
+</div>
+<div id="ref-edelstein-keshet_mathematical_2005" class="csl-entry" role="listitem">
+Edelstein-Keshet, Leah. 2005. <em>Mathematical <span>Models</span> in <span>Biology</span></em>. 1st ed. SIAM: Society for Industrial; Applied Mathematics.
+</div>
+<div id="ref-strang_linear_2005" class="csl-entry" role="listitem">
+Strang, Gilbert. 2005. <em>Linear <span>Algebra</span> and <span>Its</span> <span>Applications</span></em>. 4th ed. Brooks Cole.
+</div>
+</div>
 </section>
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
-    });
-  }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
-    } else {
-      return undefined;
+      return false;
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ch4_cobweb_plots.html" class="pagination-link">
+      <a href="./ch4_cobweb_plots.html" class="pagination-link" aria-label="Graphical analysis of difference equations">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graphical analysis of difference equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ch6_matrix_mult.html" class="pagination-link">
+      <a href="./ch6_matrix_mult.html" class="pagination-link" aria-label="Matrix multiplication and population models">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Matrix multiplication and population models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

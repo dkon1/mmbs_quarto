@@ -27,7 +27,7 @@ book:
     - ch17_nonlinear_oscillations.qmd
     - references.qmd
 
-bibliography: references.bib
+bibliography: MMBS1.bib
 
 format:
   html:
