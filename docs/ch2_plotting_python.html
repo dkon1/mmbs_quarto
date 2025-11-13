@@ -331,7 +331,11 @@ window.Quarto = {
 
 
 <p>You can find an introduction to the plotting library <a href="https://matplotlib.org/tutorials/introductory/pyplot.html">matplotlib here</a>.</p>
+<<<<<<< Updated upstream
 <div id="b84e6d1e" class="cell" data-execution_count="1">
+=======
+<div id="208f8e12" class="cell" data-execution_count="1">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># package for work with arrays and matrices</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># package with plotting capabilities</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -339,7 +343,11 @@ window.Quarto = {
 <section id="arrays-and-basic-plotting" class="level3" data-number="2.0.1">
 <h3 data-number="2.0.1" class="anchored" data-anchor-id="arrays-and-basic-plotting"><span class="header-section-number">2.0.1</span> arrays and basic plotting</h3>
 <p>Here is an example of performing calculations with arrays (vectors) of values and plotting the results:</p>
+<<<<<<< Updated upstream
 <div id="17949c40" class="cell" data-execution_count="2">
+=======
+<div id="305493cd" class="cell" data-execution_count="2">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">10</span>,<span class="fl">0.1</span>) <span class="co"># create an array of numbers between 0 and 10 with step 0.1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(x))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (x<span class="op">-</span><span class="dv">5</span>)<span class="op">**</span><span class="dv">2</span> <span class="co"># do calculations on all the array values, call it y</span></span>
@@ -351,13 +359,21 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch2_plotting_python_files/figure-html/cell-3-output-2.png" width="566" height="411" class="figure-img"></p>
+=======
+<p><img src="ch2_plotting_python_files/figure-html/cell-3-output-2.png" width="369" height="248" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
 </div>
 <p>A two dimensional array (matrix) can be defined as follows, and the function np.shape prints out the number of rows and columns in the matrix:</p>
+<<<<<<< Updated upstream
 <div id="b286a731" class="cell" data-execution_count="3">
+=======
+<div id="d7a34e6d" class="cell" data-execution_count="3">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(x))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -368,7 +384,11 @@ window.Quarto = {
 </div>
 </div>
 <p>An example of concatenating a text string together with a numeric variable, which can then be used for labels or legends in plots:</p>
+<<<<<<< Updated upstream
 <div id="7407e031" class="cell" data-execution_count="4">
+=======
+<div id="a49546c3" class="cell" data-execution_count="4">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> <span class="fl">0.5</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>string1 <span class="op">=</span> <span class="st">'The value of prob is '</span> <span class="op">+</span> <span class="bu">str</span>(prob)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -411,7 +431,11 @@ window.Quarto = {
 x(t+1) = x(t) + bx(t) - dx(t) = rx(t)
 \]</span></p>
 <p>Example of a script for producing a numeric solution of a discrete time dynamic model:</p>
+<<<<<<< Updated upstream
 <div id="f34fcf06" class="cell" data-execution_count="5">
+=======
+<div id="42dad3c3" class="cell" data-execution_count="5">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">20</span> <span class="co"># number of iterations</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>birth <span class="op">=</span> <span class="fl">0.8</span> <span class="co"># birth rate</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>death <span class="op">=</span>  <span class="fl">0.5</span> <span class="co"># death rate</span></span>
@@ -435,7 +459,11 @@ x(t+1) = x(t) + bx(t) - dx(t) = rx(t)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch2_plotting_python_files/figure-html/cell-6-output-2.png" width="593" height="449" class="figure-img"></p>
+=======
+<p><img src="ch2_plotting_python_files/figure-html/cell-6-output-2.png" width="388" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
@@ -444,7 +472,11 @@ x(t+1) = x(t) + bx(t) - dx(t) = rx(t)
 <section id="plotting-multiple-curves-with-a-legend" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="plotting-multiple-curves-with-a-legend"><span class="header-section-number">2.1.2</span> plotting multiple curves with a legend</h3>
 <p>Multiple solution plots can be overlayed on the same figure, as long as the <code>plt.show()</code> is only used once in the end. For multiple graphs it’s best to use multiple colors and a legend to label different curves, using the option label in the <code>plt.plot</code> function and adding the function <code>plt.legend()</code> before producing the figure. Here’s an example with solutions of the demographic model with different death rates:</p>
+<<<<<<< Updated upstream
 <div id="13cda82d" class="cell" data-execution_count="6">
+=======
+<div id="90405b85" class="cell" data-execution_count="6">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">20</span> <span class="co"># number of iterations</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>birth <span class="op">=</span> <span class="fl">0.8</span> <span class="co"># birth rate</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>death <span class="op">=</span>  <span class="fl">0.5</span> <span class="co"># death rate</span></span>
@@ -472,7 +504,11 @@ x(t+1) = x(t) + bx(t) - dx(t) = rx(t)
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch2_plotting_python_files/figure-html/cell-7-output-1.png" width="593" height="449" class="figure-img"></p>
+=======
+<p><img src="ch2_plotting_python_files/figure-html/cell-7-output-1.png" width="388" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
@@ -481,7 +517,11 @@ x(t+1) = x(t) + bx(t) - dx(t) = rx(t)
 <section id="random-number-generators" class="level3" data-number="2.1.3">
 <h3 data-number="2.1.3" class="anchored" data-anchor-id="random-number-generators"><span class="header-section-number">2.1.3</span> random number generators</h3>
 <p>Numpy provides a variety of random number generators, and we’ll use these functions in the course for many purposes. Here is an example of producing arrays of random normally distributed numbers. The function requires inputs of the mean, the standard deviation, and the number of random values (or size of the array):</p>
+<<<<<<< Updated upstream
 <div id="401ee15b" class="cell" data-execution_count="7">
+=======
+<div id="db2989bf" class="cell" data-execution_count="7">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.5</span></span>
@@ -496,6 +536,7 @@ x(t+1) = x(t) + bx(t) - dx(t) = rx(t)
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The standard deviation of the sample is "</span> <span class="op">+</span> <span class="bu">str</span>(np.std(norm_sample)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
+<<<<<<< Updated upstream
 <pre><code>[4.59037024 5.09152639 4.77934253 3.72381702 4.44993732 5.56128612
  4.86936998 4.22856705 5.54980673 5.02443801 5.52575681 4.57273198
  4.42327976 5.33097773 4.61855486 5.52462197 4.66590733 4.62515408
@@ -503,6 +544,15 @@ x(t+1) = x(t) + bx(t) - dx(t) = rx(t)
  5.30249526 5.26258316 4.63486276 5.01680021 4.90377168 4.99319162]
 The mean of the sample is 4.9154100535865455
 The standard deviation of the sample is 0.46340593017448106</code></pre>
+=======
+<pre><code>[5.01935982 4.60147614 4.76153862 5.3333929  5.49779524 5.26226041
+ 5.0545969  5.07662521 5.33605166 4.79883978 4.81572858 5.97728757
+ 5.53543374 4.67657124 5.30068209 4.25854175 5.94933463 5.41907352
+ 5.75116627 5.02693206 4.56494069 4.93197052 5.53408095 5.8616671
+ 5.43671805 4.95741434 4.8185062  5.56908333 5.88585461 5.44208975]
+The mean of the sample is 5.215167122609083
+The standard deviation of the sample is 0.44085566244000646</code></pre>
+>>>>>>> Stashed changes
 </div>
 </div>
 

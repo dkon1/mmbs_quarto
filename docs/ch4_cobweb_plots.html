@@ -55,6 +55,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+<<<<<<< Updated upstream
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -76,6 +77,9 @@ div.csl-right-inline {
 div.csl-indent {
   margin-left: 2em;
 }</style>
+=======
+</style>
+>>>>>>> Stashed changes
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -375,12 +379,20 @@ window.Quarto = {
 x_{t+1} = 5x_t - 10
 \]</span></p>
 <p>Instead of iterating this equation starting from a particular initial value to produce a sequence of values, we will plot the function <span class="math inline">\(f(x) = 0.5 x - 10\)</span> and use it to predict how solutions behave starting from <em>any</em> initial value. To do this, we will plot this function over a range of x values, along the the line <span class="math inline">\(y=x\)</span>.</p>
+<<<<<<< Updated upstream
 <div id="31411ebe" class="cell" data-execution_count="1">
+=======
+<div id="ff2c4d42" class="cell" data-execution_count="1">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># package for work with arrays and matrices</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># package with plotting capabilities</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<<<<<<< Updated upstream
 <div id="2d13b811" class="cell" data-execution_count="2">
+=======
+<div id="8acf8d38" class="cell" data-execution_count="2">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">3</span>,<span class="dv">10</span>,<span class="fl">0.1</span>) <span class="co"># range of x values</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fx <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">1</span> <span class="co"># values of the updating function</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, fx, label <span class="op">=</span> <span class="st">'updating function'</span>) <span class="co"># plot the updating function</span></span>
@@ -393,7 +405,11 @@ x_{t+1} = 5x_t - 10
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch4_cobweb_plots_files/figure-html/cell-3-output-1.png" width="587" height="449" class="figure-img"></p>
+=======
+<p><img src="ch4_cobweb_plots_files/figure-html/cell-3-output-1.png" width="384" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
@@ -434,7 +450,11 @@ x_{t+1} = 5x_t - 10
 </div>
 </div>
 <p>Here is an implementation of the cobweb plot for the same linear model as above.</p>
+<<<<<<< Updated upstream
 <div id="b5cbd08f" class="cell" data-execution_count="3">
+=======
+<div id="24ac4494" class="cell" data-execution_count="3">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">3</span>,<span class="dv">5</span>,<span class="fl">0.1</span>) <span class="co"># range of x values</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fx <span class="op">=</span> <span class="fl">0.5</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">1</span> <span class="co"># values of the updating function</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, fx, label <span class="op">=</span> <span class="st">'updating function'</span>) <span class="co"># plot the updating function</span></span>
@@ -468,7 +488,11 @@ x_{t+1} = 5x_t - 10
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch4_cobweb_plots_files/figure-html/cell-4-output-2.png" width="587" height="449" class="figure-img"></p>
+=======
+<p><img src="ch4_cobweb_plots_files/figure-html/cell-4-output-2.png" width="384" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
@@ -542,7 +566,11 @@ x_{t+1} = 5x_t - 10
 <p>Despite the initial flurry of excitement, so-called chaos theory has failed to make a big impact on our understanding of complex biological systems. Although it is still quite fascinating intellectually, a simple model like the logistic model is not an adequate model for any realistic population, particularly for large values of <span class="math inline">\(r\)</span> where the chaotic behavior occurs. We now appreciate that the essential complexity of biological system requires multiple interacting variables which cannot be reduced to a single equation. However, there has been some successful observation of chaotic behavior in a population of flour beetles, which seemed to agree with predictions of a three-variable difference equation model <span class="citation" data-cites="costantino_chaotic_1997">(<a href="references.html#ref-costantino_chaotic_1997" role="doc-biblioref"><strong>costantino_chaotic_1997?</strong></a>)</span>.</p>
 <p>We have seen how graphical tools can be used to analyze and predict the behavior of a discrete-time dynamical system. We investigated the logistic model by finding the fixed points and analyzing their stability. Together with analysis of the graph of the updating function and making a cobweb plot, this allowed us to describe the dynamics of population growth in the logistic model, without doing any “math”. Together, analytical and graphical analysis provide powerful tools for biological modelers.</p>
 <p><strong>Q3.1:</strong> For the logistic model with an initial population of 0.5 and <span class="math inline">\(r=1.1\)</span>, compute the first 50 iterations using the same for loop iteration you used above and plot the solution against time.</p>
+<<<<<<< Updated upstream
 <div id="4c284111" class="cell" data-execution_count="4">
+=======
+<div id="c79a8251" class="cell" data-execution_count="4">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">50</span> <span class="co">#set number of iterations</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.8</span> <span class="co">#set parameter</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
@@ -559,13 +587,21 @@ x_{t+1} = 5x_t - 10
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch4_cobweb_plots_files/figure-html/cell-5-output-1.png" width="597" height="449" class="figure-img"></p>
+=======
+<p><img src="ch4_cobweb_plots_files/figure-html/cell-5-output-1.png" width="392" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
 </div>
 <p><strong>Q3.2:</strong> Change the parameter <span class="math inline">\(r\)</span> to the following values: 0.5, 2.0, and 3.2, and in each case plot the solutions against time in separate figures. Describe each plot with a sentence.</p>
+<<<<<<< Updated upstream
 <div id="151ddede" class="cell" data-execution_count="5">
+=======
+<div id="01c29206" class="cell" data-execution_count="5">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">50</span> <span class="co">#set number of iterations</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">.5</span> <span class="co">#set parameter</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
@@ -615,7 +651,11 @@ x_{t+1} = 5x_t - 10
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch4_cobweb_plots_files/figure-html/cell-6-output-2.png" width="589" height="449" class="figure-img"></p>
+=======
+<p><img src="ch4_cobweb_plots_files/figure-html/cell-6-output-2.png" width="385" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
@@ -626,7 +666,11 @@ x_{t+1} = 5x_t - 10
 <li>The solution for r=3.2 oscillates between two values indefinitely</li>
 </ul>
 <p>Increase the parameter <span class="math inline">\(r\)</span> further until you see strange, aperiodic behavior called chaos. Report at least one value of <span class="math inline">\(r\)</span> at which you see chaotic dynamics.</p>
+<<<<<<< Updated upstream
 <div id="31de26ba" class="cell" data-execution_count="6">
+=======
+<div id="74018ec3" class="cell" data-execution_count="6">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>numsteps <span class="op">=</span> <span class="dv">100</span> <span class="co">#set number of iterations</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">3.7</span> <span class="co">#set parameter</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.zeros(numsteps<span class="op">+</span><span class="dv">1</span>) <span class="co">#initialize solution vector</span></span>
@@ -655,7 +699,11 @@ x_{t+1} = 5x_t - 10
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch4_cobweb_plots_files/figure-html/cell-7-output-1.png" width="589" height="449" class="figure-img"></p>
+=======
+<p><img src="ch4_cobweb_plots_files/figure-html/cell-7-output-1.png" width="385" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>

@@ -325,11 +325,22 @@ window.Quarto = {
 </header>
 
 
+<<<<<<< Updated upstream
 <div id="124a24b1" class="cell" data-execution_count="1">
+=======
+<div id="61450c09" class="cell" data-execution_count="1">
+>>>>>>> Stashed changes
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Necessary imports</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co">#package for work with arrays and matrices</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co">#package with plotting capabilities</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<<<<<<< Updated upstream
+=======
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/homebrew/lib/python3.9/site-packages/scipy/__init__.py:146: UserWarning: A NumPy version &gt;=1.17.3 and &lt;1.25.0 is required for this version of SciPy (detected version 1.26.4
+  warnings.warn(f"A NumPy version &gt;={np_minversion} and &lt;{np_maxversion}"</code></pre>
+</div>
+>>>>>>> Stashed changes
 </div>
 <section id="phase-plane-plots-via-quiver" class="level3" data-number="13.0.1">
 <h3 data-number="13.0.1" class="anchored" data-anchor-id="phase-plane-plots-via-quiver"><span class="header-section-number">13.0.1</span> phase plane plots via quiver</h3>
@@ -342,6 +353,7 @@ dy/dt &amp;=&amp; cx + dy
 \]</span></p>
 <p>Python’s <code>ax.quiver()</code> function allows displays vectors with arrows made of the components <span class="math inline">\((u,v)\)</span>, which is exactly what we need. The function takes 4 inputs <span class="math inline">\((x,y,u,v)\)</span>: <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are the grid points and <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> components of the vector, which are given by our ODEs.</p>
 <p>In order to make the grid points <span class="math inline">\((x,y)\)</span>, we will use the function <code>np.meshgrid()</code>. It’s a pretty handy function that takes as input a range of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values and returns two matrices <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> that together give us the grid points. Here is the code to produce a grid with an <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> range from (-1.5, 1.5) with a spacing of 0.2, we could do the following:</p>
+<<<<<<< Updated upstream
 <div id="6bb761db" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span> <span class="co">#change the parameters here to control the range of the axes</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> <span class="fl">1.5</span></span>
@@ -374,6 +386,40 @@ dy/dt &amp;=&amp; cx + dy
 <div>
 <figure class="figure">
 <p><img src="ch13_phase_portraits_files/figure-html/cell-5-output-1.png" width="600" height="449" class="figure-img"></p>
+=======
+<div id="2b237648" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span> <span class="co">#change the parameters here to control the range of the axes</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ymin <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">0.2</span> <span class="co">#set the size of the x-step on the grid</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> <span class="fl">0.2</span> <span class="co">#set the size of the y-step on the grid</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.arange(xmin, xmax, dx)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> np.arange(ymin, ymax, dy)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> np.meshgrid(X,Y) <span class="co">#create a grid</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Define the arrays dx and dy based on the ODE in order to compute the flow vectors on that grid. Here is a linear example:</p>
+<div id="da960291" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> a<span class="op">*</span>x<span class="op">+</span>b<span class="op">*</span>y <span class="co">#overwrites the other dx</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> c<span class="op">*</span>x<span class="op">+</span>d<span class="op">*</span>y <span class="co">#overwrites the other dy</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Then plot the arrows given by arrays dx,dy at points x,y:</p>
+<div id="9dc868d1" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> ax.quiver(x, y, dx, dy)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Phase plane example'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_phase_portraits_files/figure-html/cell-5-output-1.png" width="394" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
@@ -383,6 +429,7 @@ dy/dt &amp;=&amp; cx + dy
 <h3 data-number="13.0.2" class="anchored" data-anchor-id="ode-solutions-using-odeint"><span class="header-section-number">13.0.2</span> ODE solutions using odeint</h3>
 <p>Python has an entire suite of ode solvers. We’ll use the function <code>odeint</code>, with documentation provided here: <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html" class="uri">https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html</a></p>
 <p>This requires defining a function <code>fun</code> that sets the two functions for the two-variable ODE, to be called by the <code>odeint</code>, together with parameter values a, b, c, d.&nbsp;There are many other options that you can read about in the documentation page. Here is the sample code:</p>
+<<<<<<< Updated upstream
 <div id="9201aa1e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span> <span class="co">#change the parameters here to control the range of the axes</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> <span class="fl">1.5</span></span>
@@ -441,13 +488,77 @@ dy/dt &amp;=&amp; cx + dy
 <div>
 <figure class="figure">
 <p><img src="ch13_phase_portraits_files/figure-html/cell-6-output-1.png" width="608" height="449" class="figure-img"></p>
+=======
+<div id="0aa80729" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span> <span class="co">#change the parameters here to control the range of the axes</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ymin <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ymax <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">0.2</span> <span class="co">#set the size of the x-step on the grid</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> <span class="fl">0.2</span> <span class="co">#set the size of the y-step on the grid</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.arange(xmin, xmax, dx)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> np.arange(ymin, ymax, dy)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> np.meshgrid(X, Y)<span class="op">;</span>  <span class="co">#create a grid</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="fl">0.3</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> a<span class="op">*</span>x<span class="op">+</span>b<span class="op">*</span>y</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> c<span class="op">*</span>x<span class="op">+</span>d<span class="op">*</span>y</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># define the function for the ODES: note the order of inputs </span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(xy, t, a, b, c, d):  <span class="co"># inputs are: variable array, time, any parameters</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    newxy <span class="op">=</span> [a<span class="op">*</span>xy[<span class="dv">0</span>]<span class="op">+</span>b<span class="op">*</span>xy[<span class="dv">1</span>], c<span class="op">*</span>xy[<span class="dv">0</span>]<span class="op">+</span>d<span class="op">*</span>xy[<span class="dv">1</span>]]</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> newxy</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the initial values, the vector of times, and call the ODE solver</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>init <span class="op">=</span> [<span class="dv">1</span>, <span class="fl">0.5</span>] <span class="co">#[intial x, initial y]</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">101</span>) <span class="co"># create time vector </span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> odeint(fun, init, t, args<span class="op">=</span>(a, b, c, d)) <span class="co"># calculate numeric solution of ODE defined in fun</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the solutions over time</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.plot(t, sol)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'t'</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Solutions of x and y variables'</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the arrows given by arrays dx,dy at points x,y:</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> ax.quiver(x, y, dx, dy)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>ax.plot(sol[:,<span class="dv">0</span>], sol[:,<span class="dv">1</span>]) <span class="co"># plot the x and the y variable in the phase plane</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Set different initial values, the vector of times, and call the ODE solver again</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>init <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>] <span class="co">#[intial x, initial y]</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">101</span>) <span class="co"># create time vector </span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> odeint(fun, init, t, args<span class="op">=</span>(a, b, c, d)) <span class="co"># calculate numeric solution of ODE defined in fun</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>ax.plot(sol[:,<span class="dv">0</span>], sol[:,<span class="dv">1</span>]) <span class="co"># plot the x and the y variable in the phase plane</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>) <span class="co">#use more informative labels for a real model</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ODE solver example phase plane'</span>)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ch13_phase_portraits_files/figure-html/cell-6-output-1.png" width="400" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
+<<<<<<< Updated upstream
 <p><img src="ch13_phase_portraits_files/figure-html/cell-6-output-2.png" width="611" height="449" class="figure-img"></p>
+=======
+<p><img src="ch13_phase_portraits_files/figure-html/cell-6-output-2.png" width="401" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 </figure>
 </div>
 </div>
