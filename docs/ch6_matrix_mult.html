@@ -370,7 +370,11 @@ A =  \left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right); \;  \vec x_0
 \end{array}
 \]</span></p>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <div id="058e0aec" class="cell" data-execution_count="1">
+=======
+<div id="c50abd37" class="cell" data-execution_count="1">
+>>>>>>> Stashed changes
 =======
 <div id="c50abd37" class="cell" data-execution_count="1">
 >>>>>>> Stashed changes
@@ -388,7 +392,11 @@ A =  \left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right); \;  \vec x_0
 \]</span></p>
 <p>where <span class="math inline">\(j_t\)</span> is the number of juveniles after <span class="math inline">\(t\)</span> generations and <span class="math inline">\(m_t\)</span> is the number of mature individuals after <span class="math inline">\(t\)</span> generations. Propagation of this model requires multiplication of the matrix and the population vector. There is a special symbol in Python for this operation:</p>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <div id="edafea48" class="cell" data-execution_count="2">
+=======
+<div id="61a19721" class="cell" data-execution_count="2">
+>>>>>>> Stashed changes
 =======
 <div id="61a19721" class="cell" data-execution_count="2">
 >>>>>>> Stashed changes
@@ -407,7 +415,11 @@ A =  \left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right); \;  \vec x_0
 </div>
 <p>This propagates the population by one time step only. To compute a numeric solution of this population over a number of time steps, use a for loop like in our last week’s assignment. The only difference is that the solution is now a two-dimensional array instead of a one-dimensional one, with two rows for the two ages and numsteps+1 columns, and it needs to be pre-allocated before the for loop:</p>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <div id="76bdeeac" class="cell" data-execution_count="3">
+=======
+<div id="629a2d0b" class="cell" data-execution_count="3">
+>>>>>>> Stashed changes
 =======
 <div id="629a2d0b" class="cell" data-execution_count="3">
 >>>>>>> Stashed changes
@@ -428,7 +440,11 @@ A =  \left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right); \;  \vec x_0
 <div>
 <figure class="figure">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <p><img src="ch6_matrix_mult_files/figure-html/cell-4-output-1.png" width="593" height="449" class="figure-img"></p>
+=======
+<p><img src="ch6_matrix_mult_files/figure-html/cell-4-output-1.png" width="388" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 =======
 <p><img src="ch6_matrix_mult_files/figure-html/cell-4-output-1.png" width="388" height="277" class="figure-img"></p>
 >>>>>>> Stashed changes
@@ -440,7 +456,11 @@ A =  \left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right); \;  \vec x_0
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="eigenvalue-and-eigenvector-analysis"><span class="header-section-number">6.1.1</span> Eigenvalue and eigenvector analysis</h3>
 <p>The <em>eigenvalues</em> of the matrix L determine the dynamics of the population, the the <em>eigenvectors</em> determine the population structure. Python has a single function for finding eigenvalues and eigenvectors: <code>np.linalg.eig()</code>.</p>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <div id="9963b43e" class="cell" data-execution_count="4">
+=======
+<div id="1b71d2ec" class="cell" data-execution_count="4">
+>>>>>>> Stashed changes
 =======
 <div id="1b71d2ec" class="cell" data-execution_count="4">
 >>>>>>> Stashed changes
@@ -462,7 +482,11 @@ Eigenvectors:
 <p>The largest (in absolute value) eigenvalue is the <em>dominant eigenvalue</em> and determines the long term behavior of the population. In this example, both eigenvalues are equal in absolute value and are less than 1, which predicts population decay.</p>
 <p>The lack of a single dominant eigenvalue means that the population structure (ratio of juveniles and adults) does not converge to a stable fraction:</p>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <div id="f0109d62" class="cell" data-execution_count="5">
+=======
+<div id="3e8349e5" class="cell" data-execution_count="5">
+>>>>>>> Stashed changes
 =======
 <div id="3e8349e5" class="cell" data-execution_count="5">
 >>>>>>> Stashed changes
@@ -475,7 +499,11 @@ Eigenvectors:
 <div>
 <figure class="figure">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <p><img src="ch6_matrix_mult_files/figure-html/cell-6-output-1.png" width="585" height="449" class="figure-img"></p>
+=======
+<p><img src="ch6_matrix_mult_files/figure-html/cell-6-output-1.png" width="382" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 =======
 <p><img src="ch6_matrix_mult_files/figure-html/cell-6-output-1.png" width="382" height="277" class="figure-img"></p>
 >>>>>>> Stashed changes
@@ -488,7 +516,11 @@ Eigenvectors:
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="eigenvectors-and-population-structure"><span class="header-section-number">6.1.2</span> Eigenvectors and population structure</h3>
 <p>Let us modify the Leslie matrix to allow the adults to survive with probability 0.2, which creates an Usher matrix with the following eigenvalues and eigenvectors. Below we also calculate the fraction of juveniles and adults in the long-term population:</p>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <div id="80ff5079" class="cell" data-execution_count="6">
+=======
+<div id="2ed74d16" class="cell" data-execution_count="6">
+>>>>>>> Stashed changes
 =======
 <div id="2ed74d16" class="cell" data-execution_count="6">
 >>>>>>> Stashed changes
@@ -516,7 +548,11 @@ The long term fractions of juveniles and adults are: [0.66666667 0.33333333]</co
 </div>
 <p>Why did we use the second column (index 1)? Because it corresponds to the dominant eigenvalue 1, as you can check by looking at eVals. Notice that the population distribution remains stable in this population even as the total population declines, as can be seen by plotting the ratio of the juveniles to the adults:</p>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <div id="6932a5bf" class="cell" data-execution_count="7">
+=======
+<div id="702b40be" class="cell" data-execution_count="7">
+>>>>>>> Stashed changes
 =======
 <div id="702b40be" class="cell" data-execution_count="7">
 >>>>>>> Stashed changes
@@ -544,7 +580,11 @@ The long term fractions of juveniles and adults are: [0.66666667 0.33333333]</co
 <div>
 <figure class="figure">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <p><img src="ch6_matrix_mult_files/figure-html/cell-8-output-1.png" width="585" height="449" class="figure-img"></p>
+=======
+<p><img src="ch6_matrix_mult_files/figure-html/cell-8-output-1.png" width="382" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 =======
 <p><img src="ch6_matrix_mult_files/figure-html/cell-8-output-1.png" width="382" height="277" class="figure-img"></p>
 >>>>>>> Stashed changes
@@ -555,7 +595,11 @@ The long term fractions of juveniles and adults are: [0.66666667 0.33333333]</co
 <div>
 <figure class="figure">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <p><img src="ch6_matrix_mult_files/figure-html/cell-8-output-2.png" width="589" height="449" class="figure-img"></p>
+=======
+<p><img src="ch6_matrix_mult_files/figure-html/cell-8-output-2.png" width="385" height="277" class="figure-img"></p>
+>>>>>>> Stashed changes
 =======
 <p><img src="ch6_matrix_mult_files/figure-html/cell-8-output-2.png" width="385" height="277" class="figure-img"></p>
 >>>>>>> Stashed changes
